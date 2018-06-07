@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Curso</b>L5.5',
+    'logo' => '<b>Plataforma </b>SES-PE',
 
-    'logo_mini' => '<b>L</b>5.5',
+    'logo_mini' => '<b>P</b>SES',
 
     /*
     |--------------------------------------------------------------------------
@@ -110,12 +110,33 @@ return [
     'menu' => [
         //'MENU',
         [
-            'text'        => 'Dashboard',
+            'text'        => 'Caixa de Entrada',
+            'url'         => 'admin',
+            'icon'        => 'envelope',
+        ],
+        [
+            'text'        => 'Caixa de Saida',
+            'url'         => 'admin',
+            'icon'        => 'envelope',
+        ],
+        [
+            'text'        => 'Caixa de Finalizadas',
+            'url'         => 'admin',
+            'icon'        => 'envelope',
+        ],
+        [
+            'text'        => 'Cadastros',
             'url'         => 'admin',
             'icon'        => 'dashboard',
         ],
         [
-           'text' => 'Financeiro',
+            'text'        => 'Monitoramento',
+            'url'         => 'admin',
+            'icon'        => 'dashboard',
+        ],
+
+        [
+           'text' => 'SMART',
            'icon' => 'money',
            'submenu'  =>  [
                 [

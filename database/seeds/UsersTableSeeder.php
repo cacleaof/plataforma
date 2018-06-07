@@ -15,11 +15,13 @@ class UsersTableSeeder extends Seeder
     	User::create([
     		'name' 		=> 'Carlos Leao',
     		'email' 	=> 'cacleaof@gmail.com',
+            'cpf'       => '68631839434',
     		'password' 	=> bcrypt('123456'),
     	]);
         User::create([
             'name'      => 'Carlos SES',
             'email'     => 'carlos.leao@saude.pe.gov.br',
+            'cpf'       => '96105097468',
             'password'  => bcrypt('123456'),
         ]);
     }
