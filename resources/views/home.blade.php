@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+//@extends('adminlte::page')
 
 @section('title', 'AdminLTE')
 
@@ -7,5 +7,5 @@
 @stop
 
 @section('content')
-    <p>You are logged in!</p>
+    <p>Esse é o Home da view!</p>
 @stop

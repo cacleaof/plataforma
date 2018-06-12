@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Histórico de Movimentações')
+@section('title', 'Histórico das Consultorias')
 
 @section('content_header')
-    <h1>Histórico de Movimentações</h1>
+    <h1>Histórico das Consultorias</h1>
 
     <ol class="breadcrumb">
     	<li><a href="">Dashboard</a></li>
-    	<li><a href="">Histórico de Movimentações</a></li>
+    	<li><a href="">Histórico das Consultorias</a></li>
     </ol>
      
 @stop

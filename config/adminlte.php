@@ -111,7 +111,7 @@ return [
         //'MENU',
         [
             'text'        => 'Caixa de Entrada',
-            'url'         => 'admin',
+            'url'         => '/post',
             'icon'        => 'envelope',
         ],
         [
@@ -140,7 +140,7 @@ return [
            'icon' => 'money',
            'submenu'  =>  [
                 [
-                    'text'        => 'Saldo',
+                    'text'        => 'Teleconsultoria',
                     'url'         => 'admin/balance',
                     'icon'        => 'credit-card-alt'
                 ],
