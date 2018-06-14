@@ -15,9 +15,9 @@ class SiteController extends Controller
     public function post(Post $post)
     {
 
-    //	$posts = $post->all();
+    	$posts = $post->all();
 
-	$posts = $post->where('user_id', 2)->get();
+	//$posts = $post->where('user_id', 2)->get();
 
     	return view('admin.home.post', compact('posts'));
     }

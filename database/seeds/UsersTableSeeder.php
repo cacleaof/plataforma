@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Models\Post;
 
 class UsersTableSeeder extends Seeder
 {
@@ -16,13 +17,61 @@ class UsersTableSeeder extends Seeder
     		'name' 		=> 'Carlos Leao',
     		'email' 	=> 'cacleaof@gmail.com',
             'cpf'       => '68631839434',
-    		'password' 	=> bcrypt('123456'),
+    		'password' 	=> bcrypt('123'),
     	]);
         User::create([
             'name'      => 'Carlos SES',
             'email'     => 'carlos.leao@saude.pe.gov.br',
             'cpf'       => '96105097468',
-            'password'  => bcrypt('123456'),
+            'password'  => bcrypt('123'),
         ]);
+        User::create([
+            'name'      => 'solicitante',
+            'email'     => 'solicitante@ses.br',
+            'cpf'       => '3',
+            'password'  => bcrypt('123'),
+        ]);
+        User::create([
+            'name'      => 'regulador',
+            'email'     => 'regulador@ses.br',
+            'cpf'       => '4',
+            'password'  => bcrypt('123'),
+        ]);
+        User::create([
+            'name'      => 'consultor',
+            'email'     => 'consultor@ses.br',
+            'cpf'       => '5',
+            'password'  => bcrypt('123'),
+        ]);
+        User::create([
+            'name'      => 'monitor',
+            'email'     => 'monitor@ses.br',
+            'cpf'       => '6',
+            'password'  => bcrypt('123'),
+        ]);
+        Post::create([
+            'user_id'      => '3',
+            'status'       => 'R',
+            'descriçao'    => 'Solicitação feita e enviada ao Regulador',
+        ]);
+        Post::create([
+            'user_id'      => '4',
+            'status'       => 'C',
+            'descriçao'    => 'Solicitação regulada e enviada ao Teleconsultor',
+        ]);
+        Post::create([
+            'user_id'      => '5',
+            'status'       => 'A',
+            'descriçao'    => 'Consultoria finalizada pelo Teleconsultor e enviada ao solicitante',
+        ]);
+        Post::create([
+            'user_id'      => '3',
+            'status'       => 'F',
+            'descriçao'    => 'Consultoria avaliada pelo solicitante',
+        ]);
+        //Perfil::create([
+        //    'user_id'      => '3',
+        //    'perfil'       => 'S',
+        //]);
     }
 }

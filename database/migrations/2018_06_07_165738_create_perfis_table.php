@@ -17,8 +17,9 @@ class CreatePerfisTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('perfil', 30);
+            $table->foreign('user_id')->references('id')->on('users');
+            //->onDelete('cascade');
+            $table->string('perfil', 1);
         });
     }
 

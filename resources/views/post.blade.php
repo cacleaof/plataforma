@@ -1,8 +1,8 @@
 @section('content')
     <div class="container">
     	@forelse($posts as $post)
-    	<h1>{{ $post->title}}</h1>
-    	<p>{{ $post->description}}</p>
+    	<h1>{{ $post->status}}</h1>
+    	<p>{{ $post->descriçao}}</p>
     	<hr>
     	@empty
     	<p>Nenhum post cadastrado</p>
