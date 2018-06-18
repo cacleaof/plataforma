@@ -21,8 +21,6 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 
 	$this->get('/', 'AdminController@index')->name('admin.home');
 
-	$this->get('/post', 'Site\PostController@entrada')->name('post.entrada');
-
 
 });
      //o certo é colocar o post, saida, fim dentro do 'middleware' => ['auth'] pois o
@@ -33,11 +31,15 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 
 	$this->get('/', 'Site\SiteController@index')->name('home');
 
-	$this->get('/post', 'Site\SiteController@post')->name('admin.home.post');
+	$this->get('/post', 'Site\SiteController@post')->name('admin.home.post')->middleware('auth');
 
-	$this->get('/saida', 'Site\SiteController@saida')->name('admin.home.saida');
+	$this->get('/saida', 'Site\SiteController@saida')->name('admin.home.saida')->middleware('auth');
 
-	$this->get('/fim', 'Site\SiteController@fim')->name('admin.home.fim');
+	$this->get('/fim', 'Site\SiteController@fim')->name('admin.home.fim')->middleware('auth');
+
+	//$this->get('/post', 'Site\SiteController@post')->name('post')->middleware('auth');
+
+	$this->get('/solicitaçao', 'Site\SiteController@solicitaçao')->name('admin.home.solitaçao')->middleware('auth');
 	//Route::get('/post', function(){
 	//	return view('post');});
 

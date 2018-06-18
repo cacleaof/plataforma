@@ -9,7 +9,7 @@
     <div class="container">
         <div class="box">
         <div class="box-header">
-            <a href="{{ route('balance.deposit')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Solicitação</a>
+            <a href="{{ route('admin.home.solitaçao')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Solicitação</a>
         </div>
         </div>
     </div>

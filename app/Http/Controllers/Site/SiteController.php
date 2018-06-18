@@ -49,4 +49,9 @@ class SiteController extends Controller
 
         return view('admin.home.fim', compact('posts'));
     }
+    public function solicitaçao()
+    {
+        //return 'entrada';
+        return view('admin.home.solicitaçao');
+    }
 }

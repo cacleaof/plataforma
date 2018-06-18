@@ -20,6 +20,6 @@ class PostController extends Controller
     }
     public function entrada()
     {
-    	return 'entrada'
+    	return 'entrada';
     }
 }
