@@ -24,7 +24,7 @@ class MoneyValidationFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'value' => 'required|numeric',  
+            'value' => 'required|string',  
         ];
     }
 }

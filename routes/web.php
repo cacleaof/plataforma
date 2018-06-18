@@ -21,8 +21,12 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 
 	$this->get('/', 'AdminController@index')->name('admin.home');
 
-});
+	$this->get('/post', 'Site\PostController@entrada')->name('post.entrada');
 
+
+});
+     //o certo é colocar o post, saida, fim dentro do 'middleware' => ['auth'] pois o
+	//usuario tem que estar logado para que ele possar ver os posts
 	$this->post('atualizar-perfil', 'Admin\UserControl@profileUpdate')->name('profile.update')->middleware('auth');
 
 	$this->get('meu-perfil', 'Admin\UserControl@profile')->name('profile')->middleware('auth');
@@ -31,6 +35,9 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 
 	$this->get('/post', 'Site\SiteController@post')->name('admin.home.post');
 
+	$this->get('/saida', 'Site\SiteController@saida')->name('admin.home.saida');
+
+	$this->get('/fim', 'Site\SiteController@fim')->name('admin.home.fim');
 	//Route::get('/post', function(){
 	//	return view('post');});
 

@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\User;
 use App\Models\Post;
+use App\Models\Perfil;
 
 class UsersTableSeeder extends Seeder
 {
@@ -69,9 +70,21 @@ class UsersTableSeeder extends Seeder
             'status'       => 'F',
             'descriçao'    => 'Consultoria avaliada pelo solicitante',
         ]);
-        //Perfil::create([
-        //    'user_id'      => '3',
-        //    'perfil'       => 'S',
-        //]);
+        Perfil::create([
+            'user_id'      => '3',
+            'perfil'       => 'S',
+        ]);
+        Perfil::create([
+            'user_id'      => '4',
+            'perfil'       => 'R',
+        ]);
+        Perfil::create([
+            'user_id'      => '5',
+            'perfil'       => 'C',
+        ]);
+        Perfil::create([
+            'user_id'      => '6',
+            'perfil'       => 'M',
+        ]);
     }
 }

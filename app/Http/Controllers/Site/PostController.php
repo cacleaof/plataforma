@@ -18,4 +18,8 @@ class PostController extends Controller
 
     	return view('admin.home.post', compact('posts'));
     }
+    public function entrada()
+    {
+    	return 'entrada'
+    }
 }

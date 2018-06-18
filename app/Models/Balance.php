@@ -11,7 +11,7 @@ class Balance extends Model
     //
     public $timestamps = false;
 
-    public function deposit(float $value) : Array
+    public function deposit(longText $value) : Array
     {
     	DB::beginTransaction();
 

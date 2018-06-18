@@ -116,12 +116,12 @@ return [
         ],
         [
             'text'        => 'Caixa de Saida',
-            'url'         => 'admin',
+            'url'         => '/saida',
             'icon'        => 'envelope',
         ],
         [
             'text'        => 'Caixa de Finalizadas',
-            'url'         => 'admin',
+            'url'         => '/fim',
             'icon'        => 'envelope',
         ],
         [

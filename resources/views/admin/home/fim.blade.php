@@ -1,10 +1,5 @@
 @extends('adminlte::page')
 
-@section('content_header')
-<div class="box">
-    <p><strong>Usuário Logado: </strong>{{auth()->user()->name }}</p>
-</div>
-@stop
 @section('content')
     <div class="container">
         <div class="box">
@@ -13,9 +8,6 @@
         </div>
         </div>
     </div>
-    @forelse($sol as $array) 
-        @if ( $array->perfil == 'S') 
-        @forelse($posts as $post) 
         <table>
             <tr>
             <hr>
@@ -24,7 +16,9 @@
             <th>DESCRIÇÃO </th>
             <th>NOME SOLICITANTE </th>
             <th>MUNICIPIO </th>
-            </tr> 
+            </tr>
+        @forelse($posts as $post)
+        @if($post->status == 'F')
             <tr>
             <td>{{ $post->id}} </td>
             <td>{{ $post->status}} </td>
@@ -32,12 +26,10 @@
             <td>{{$post->user->name}} </td>
             <td>{{$post->municipio}} </td>
             </tr>
-        @empty
-    	@endforelse     
-        </table>
-        @else
-        <p>Não encontrado</p>
         @endif
-        @empty
-        @endforelse
+    	@empty
+    	<p>Nenhum solicitação realizada</p>
+    	@endforelse
+        </table>
+    </div>
 @endsection

@@ -24,7 +24,7 @@
 					{!! csrf_field() !!}
 
 					<div class="form-group">
-						<input type="texto" name="value" placeholder="valor recarga" class "form-control">
+						<input type="texto" name="value" placeholder="Descreva sua Solicitação" class "form-control">
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-success">Solicitação</button>
