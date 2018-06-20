@@ -6,6 +6,7 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 	$this->get('historic', 'BalanceController@historic')->name('admin.historic');
 
 	$this->post('transfer', 'BalanceController@TransferStore')->name('transfer.store');
+	
 	$this->post('confirm-transfer', 'BalanceController@confirmTransfer')->name('confirm.transfer');
 
 	$this->get('transfer', 'BalanceController@transfer')->name('balance.transfer');
@@ -17,10 +18,12 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 	$this->get('deposit', 'BalanceController@deposit')->name('balance.deposit');
 	$this->get('balance', 'BalanceController@index')->name('admin.balance');
 
-	$this->get('balance', 'BalanceController@index')->name('admin.balance');
 
-	$this->get('/', 'AdminController@index')->name('admin.home');
+	$this->get('/', 'AdminController@index')->name('admin.consult');
 
+	$this->get('entrada', 'ConsultController@entrada')->name('consult.entrada');
+
+	$this->post('nova', 'ConsultController@nova')->name('admin.nova');
 
 });
      //o certo é colocar o post, saida, fim dentro do 'middleware' => ['auth'] pois o
@@ -31,15 +34,13 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 
 	$this->get('/', 'Site\SiteController@index')->name('home');
 
-	$this->get('/post', 'Site\SiteController@post')->name('admin.home.post')->middleware('auth');
+	$this->get('/saida', 'admin\ConsultController@saida')->name('admin.consult.saida')->middleware('auth');
 
-	$this->get('/saida', 'Site\SiteController@saida')->name('admin.home.saida')->middleware('auth');
-
-	$this->get('/fim', 'Site\SiteController@fim')->name('admin.home.fim')->middleware('auth');
+	$this->get('/finalizadas', 'admin\ConsultController@finalizada')->name('admin.home.finalizada')->middleware('auth');
 
 	//$this->get('/post', 'Site\SiteController@post')->name('post')->middleware('auth');
 
-	$this->get('/solicitaçao', 'Site\SiteController@solicitaçao')->name('admin.home.solitaçao')->middleware('auth');
+	$this->post('/duvida', 'Site\SiteController@duvida')->name('admin.home.duvida')->middleware('auth');
 	//Route::get('/post', function(){
 	//	return view('post');});
 

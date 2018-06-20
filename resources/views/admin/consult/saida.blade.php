@@ -17,17 +17,16 @@
             <th>NOME SOLICITANTE </th>
             <th>MUNICIPIO </th>
             </tr>
-        @forelse($posts as $post)
+        @forelse($consults as $consult)
             <tr>
-            <td>{{ $post->id}} </td>
-            <td>{{ $post->status}} </td>
-            <td>{{ $post->descriçao}} </td>
-            <td>{{$post->user->name}} </td>
-            <td>{{$post->municipio}} </td>
+            <td>{{ $consult->id}} </td>
+            <td>{{ $consult->status}} </td>
+            <td>{{ $consult->descriçao}} </td>
+            <td>{{$consult->user->name}} </td>
+            <td>{{$consult->municipio}} </td>
             </tr>
     	@empty
     	<p>Nenhum solicitação realizada</p>
     	@endforelse
         </table>
-    </div>
 @endsection

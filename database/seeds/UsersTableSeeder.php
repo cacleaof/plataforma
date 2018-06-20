@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
-use App\Models\Post;
+use App\Models\Consult;
 use App\Models\Perfil;
 
 class UsersTableSeeder extends Seeder
@@ -50,22 +50,22 @@ class UsersTableSeeder extends Seeder
             'cpf'       => '6',
             'password'  => bcrypt('123'),
         ]);
-        Post::create([
+        Consult::create([
             'user_id'      => '3',
             'status'       => 'R',
             'descriçao'    => 'Solicitação feita e enviada ao Regulador',
         ]);
-        Post::create([
+        Consult::create([
             'user_id'      => '4',
             'status'       => 'C',
             'descriçao'    => 'Solicitação regulada e enviada ao Teleconsultor',
         ]);
-        Post::create([
+        Consult::create([
             'user_id'      => '5',
             'status'       => 'A',
             'descriçao'    => 'Consultoria finalizada pelo Teleconsultor e enviada ao solicitante',
         ]);
-        Post::create([
+        Consult::create([
             'user_id'      => '3',
             'status'       => 'F',
             'descriçao'    => 'Consultoria avaliada pelo solicitante',

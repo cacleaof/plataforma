@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'Sistema de Saldo com Laravel 5.5',
+    'title' => 'Plataforma Telessaude',
 
     'title_prefix' => '',
 
@@ -111,7 +111,7 @@ return [
         //'MENU',
         [
             'text'        => 'Caixa de Entrada',
-            'url'         => '/post',
+            'url'         => '/admin/entrada',
             'icon'        => 'envelope',
         ],
         [
@@ -121,17 +121,17 @@ return [
         ],
         [
             'text'        => 'Caixa de Finalizadas',
-            'url'         => '/fim',
+            'url'         => '/finalizadas',
             'icon'        => 'envelope',
         ],
         [
             'text'        => 'Cadastros',
-            'url'         => 'admin',
+            'url'         => 'admin/adm',
             'icon'        => 'dashboard',
         ],
         [
             'text'        => 'Monitoramento',
-            'url'         => 'admin',
+            'url'         => 'admin/monitor',
             'icon'        => 'dashboard',
         ],
 

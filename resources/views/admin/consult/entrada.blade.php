@@ -9,13 +9,13 @@
     <div class="container">
         <div class="box">
         <div class="box-header">
-            <a href="{{ route('admin.home.solitaçao')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> Solicitação</a>
+            <a href="{{ route('admin.nova')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>TeleConsultoria</a>
         </div>
         </div>
     </div>
     @forelse($sol as $array) 
         @if ( $array->perfil == 'S') 
-        @forelse($posts as $post) 
+        @forelse($consults as $consult) 
         <table>
             <tr>
             <hr>
@@ -26,11 +26,11 @@
             <th>MUNICIPIO </th>
             </tr> 
             <tr>
-            <td>{{ $post->id}} </td>
-            <td>{{ $post->status}} </td>
-            <td>{{ $post->descriçao}} </td>
-            <td>{{$post->user->name}} </td>
-            <td>{{$post->municipio}} </td>
+            <td>{{ $consult->id}} </td>
+            <td>{{ $consult->status}} </td>
+            <td>{{ $consult->descriçao}} </td>
+            <td>{{$consult->user->name}} </td>
+            <td>{{$consult->municipio}} </td>
             </tr>
         @empty
     	@endforelse     
