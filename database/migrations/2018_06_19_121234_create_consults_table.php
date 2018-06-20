@@ -19,7 +19,7 @@ class CreateConsultsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('serviço', 50)->nullable();
-            $table->text('descriçao');
+            $table->text('consulta');
             $table->string('convenio', 20)->nullable();
             $table->string('municipio', 50)->nullable();
             $table->string('ibge', 7)->nullable();
@@ -34,7 +34,11 @@ class CreateConsultsTable extends Migration
             $table->string('solicitaçao', 50)->nullable();
             $table->boolean('ativo')->nullable();
             $table->string('paciente', 50)->nullable();
+            $table->integer('idade')->nullable();
+            $table->string('queixa')->nullable();
+            $table->string('instituiçao')->nullable();
             $table->string('municipio_sol', 50)->nullable();
+            $table->string('area', 50)->nullable();
             $table->string('ibge_sol', 7)->nullable();
         });
     }

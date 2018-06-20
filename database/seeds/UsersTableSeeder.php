@@ -53,22 +53,22 @@ class UsersTableSeeder extends Seeder
         Consult::create([
             'user_id'      => '3',
             'status'       => 'R',
-            'descriçao'    => 'Solicitação feita e enviada ao Regulador',
+            'consulta'    => 'Solicitação feita e enviada ao Regulador',
         ]);
         Consult::create([
             'user_id'      => '4',
             'status'       => 'C',
-            'descriçao'    => 'Solicitação regulada e enviada ao Teleconsultor',
+            'consulta'    => 'Solicitação regulada e enviada ao Teleconsultor',
         ]);
         Consult::create([
             'user_id'      => '5',
-            'status'       => 'A',
-            'descriçao'    => 'Consultoria finalizada pelo Teleconsultor e enviada ao solicitante',
+            'status'       => 'S',
+            'consulta'    => 'Consultoria finalizada pelo Teleconsultor e enviada ao solicitante',
         ]);
         Consult::create([
             'user_id'      => '3',
             'status'       => 'F',
-            'descriçao'    => 'Consultoria avaliada pelo solicitante',
+            'consulta'    => 'Consultoria avaliada pelo solicitante',
         ]);
         Perfil::create([
             'user_id'      => '3',

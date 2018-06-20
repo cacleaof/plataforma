@@ -23,7 +23,9 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 
 	$this->get('entrada', 'ConsultController@entrada')->name('consult.entrada');
 
-	$this->post('nova', 'ConsultController@nova')->name('admin.nova');
+	$this->get('/nova', 'ConsultController@nova')->name('consult.nova');
+
+	$this->post('store', 'ConsultController@store')->name('consult.store');
 
 });
      //o certo é colocar o post, saida, fim dentro do 'middleware' => ['auth'] pois o

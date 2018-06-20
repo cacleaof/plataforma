@@ -9,7 +9,7 @@
     <div class="container">
         <div class="box">
         <div class="box-header">
-            <a href="{{ route('admin.nova')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>TeleConsultoria</a>
+            <a href="{{ route('consult.nova')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>TeleConsultoria</a>
         </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
             <tr>
             <td>{{ $consult->id}} </td>
             <td>{{ $consult->status}} </td>
-            <td>{{ $consult->descriçao}} </td>
+            <td>{{ $consult->consulta}} </td>
             <td>{{$consult->user->name}} </td>
             <td>{{$consult->municipio}} </td>
             </tr>

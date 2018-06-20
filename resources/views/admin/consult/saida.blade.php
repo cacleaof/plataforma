@@ -1,5 +1,11 @@
 @extends('adminlte::page')
 
+@section('content_header')
+<div class="box">
+    <p><strong>Usuário Logado: </strong>{{auth()->user()->name }}</p>
+</div>
+@stop
+
 @section('content')
     <div class="container">
         <div class="box">
@@ -21,7 +27,7 @@
             <tr>
             <td>{{ $consult->id}} </td>
             <td>{{ $consult->status}} </td>
-            <td>{{ $consult->descriçao}} </td>
+            <td>{{ $consult->consulta}} </td>
             <td>{{$consult->user->name}} </td>
             <td>{{$consult->municipio}} </td>
             </tr>

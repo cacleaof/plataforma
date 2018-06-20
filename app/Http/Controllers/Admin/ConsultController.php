@@ -34,15 +34,33 @@ class ConsultController extends Controller
 
         return view('admin.consult.finalizada', compact('consults'));
     }
-    public function nova(Request $request)
+    public function nova(Consult $consult)
     {
+        $consults = $consult->all();
 
-        return view('admin.consult.nova');
+        return view('admin.consult.nova', compact('consults'));
     } 
     public function store(Request $request)
     {
-        $dataForm = $request->all();
+        $dataForm = new Consult;
+        //$dataForm = $request->except('_token');
 
-        return 'criando';
+        $dataForm->consulta = $request->consulta;
+        $dataForm->serviço = $request->serviço;
+        $dataForm->ativo = $request->ativo;
+        $dataForm->paciente = $request->paciente;
+        $dataForm->idade = $request->idade;
+        $dataForm->queixa = $request->queixa;
+        $dataForm->instituiçao = $request->instituiçao;
+        $dataForm->municipio_sol = $request->municipio_sol;
+        $dataForm->area = $request->area;
+        $dataForm->status = 'S';
+        //dd($dataForm);
+        $dataForm->user_id = auth()->user()->id;
+        //dd($dataForm);
+        
+        $dataForm->save();
+
+        return redirect('/admin');
     } 
 }
