@@ -13,6 +13,9 @@
         </div>
         </div>
     </div>
+    @forelse($sol as $array) 
+        @if ( $array->perfil == 'S') 
+        @forelse($consults as $consult) 
         <table>
             <tr>
             <hr>
@@ -23,15 +26,18 @@
             <th>MUNICIPIO </th>
             </tr> 
             <tr>
-         @forelse($consults as $consult)         
             <td>{{ $consult->id}} </td>
             <td>{{ $consult->status}} </td>
             <td>{{ $consult->consulta}} </td>
             <td>{{$consult->user->name}} </td>
             <td>{{$consult->municipio}} </td>
-            </tr>    
+            </tr>
         @empty
-        <p>Você não tem consultas na sua caixa de entrada</p>
+    	@endforelse     
+        </table>
+        @else
+        <p>Não encontrado</p>
+        @endif
+        @empty
         @endforelse
-         </table>
 @endsection

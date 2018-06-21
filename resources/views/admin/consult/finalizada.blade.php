@@ -7,9 +7,6 @@
 @stop
 
 @section('content')
-            <div class="box">
-            <h3><strong>Usuário Logado: </strong>{{auth()->user()->name }}</h3>
-            </div>
             <table>
             <tr>
             <hr>
