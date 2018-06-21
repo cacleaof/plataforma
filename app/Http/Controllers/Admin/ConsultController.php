@@ -13,31 +13,30 @@ class ConsultController extends Controller
    public function entrada(Consult $consult, Perfil $perfil, User $user)
     {
 
-    $solS = $perfil->where('perfil', 'S')->where('user_id', auth()->user()->id)->get();
-    //dd($sol);
+    $solS = $perfil->where('perfil', 'S')->where('user_id', auth()->user()->id)->get()->isEmpty();
+    //dd($solS);
 
-    if ($solS) {
-
-	$consults = $consult->where('status', 'S')->get();
+    if (!$solS) {
+    
+	$consults = $consult->where('status', 'S')->where('user_id', auth()->user()->id)->get();
+    
     }
+    else{$consults=null;}
+    //dd($consults);
 
-    $solR = $perfil->where('perfil', 'R')->where('user_id', auth()->user()->id);
+    $solR = $perfil->where('perfil', 'R')->where('user_id', auth()->user()->id)->get()->isEmpty();
     
     //dd($solR);
 
-    if ($solR) {
+    if (!$solR) {
 
         //dd($solR);
-    $consults = $consult->where('status', 'R')->get();
-
-    dd($consults);
-
+    $consreg = $consult->where('status', 'R')->get();
+    //dd($consreg);
     }
+    else{$consreg=null;}
 
-    //else {$consults=='null';}
-
-
-    	return view('admin.consult.entrada', compact('consults', 'sol'));
+    	return view('admin.consult.entrada', compact('consults', 'consreg', 'sol'));
 
     }
     public function saida(Consult $consult)
