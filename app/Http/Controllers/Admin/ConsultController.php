@@ -81,5 +81,19 @@ class ConsultController extends Controller
         $dataForm->save();
 
         return redirect('/admin');
+    }
+    public function regular(consult $consult, Request $request, Perfil $perfil, User $user)
+    {
+        //fazer find consult com o $request->sid
+        
+        $consults = $consult->where('id', $request->sid)->get();
+        $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
+        //dd($solRs['Perfil']);
+            //->perfil->user_id);
+        $users = $user->all();
+        //$users = $user->where('id', $solR->user_id)->get();
+        
+        //dd($users);
+        return view('admin.consult.regular', compact('consults', 'solRs', 'users'));
     } 
 }

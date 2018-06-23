@@ -32,7 +32,7 @@
           <p>PERFIL:SOLICITANTE</p>     
          @forelse($consults as $consult)
 
-            <td><a href=""> {{ $consult->id}}</a></td>
+            <td><a href="{{ route('consult.regular')}}"> {{ $consult->id}}</a></td>
             <td>{{ $consult->status}} </td>
             <td>{{ $consult->serviço}} </td>
             <td>{{ $consult->consulta}} </td>
@@ -49,8 +49,9 @@
         @endif
         @if ($consreg!=null)
         <p>PERFIL:REGULADOR</p> 
-        @forelse($consreg as $reg)         
-            <td><a href="">{{ $reg->id}}</a> </td>
+        @forelse($consreg as $reg)  
+        <form>      
+            <td><a href="{{ route('consult.regular', ['sid' => $reg->id]) }}">{{ $reg->id}}</a> </td>
             <td>{{ $reg->status}} </td>
             <td>{{ $reg->serviço}} </td>
             <td>{{ $reg->consulta}} </td>
@@ -60,7 +61,8 @@
             <td>{{$reg->cons_id}} </td>
             <td>{{$reg->tempo}} </td>
             <td>{{$reg->paciente}} </td>
-            </tr>    
+            </tr>   
+        </form>    
         @empty
         <p>Você não tem regulações na sua caixa de entrada</p>
         @endforelse
