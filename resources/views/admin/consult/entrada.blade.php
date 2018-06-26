@@ -67,5 +67,25 @@
         <p>Você não tem regulações na sua caixa de entrada</p>
         @endforelse
         @endif
+        @if ($conscons!=null)
+        <p>PERFIL:CONSULTOR</p> 
+        @forelse($conscons as $con)  
+        <form>      
+            <td><a href="{{ route('consult.entrada')}}">{{ $con->id}}</a> </td>
+            <td>{{ $con->status}} </td>
+            <td>{{ $con->serviço}} </td>
+            <td>{{ $con->consulta}} </td>
+            <td>{{ $con->municipio}} </td>
+            <td>{{ $con->uf}} </td>
+            <td>{{$con->user->name}} </td>
+            <td>{{$con->cons_id}} </td>
+            <td>{{$con->tempo}} </td>
+            <td>{{$con->paciente}} </td>
+            </tr>   
+        </form>    
+        @empty
+        <p>Você não tem Consultorias na sua caixa de entrada</p>
+        @endforelse
+        @endif
          </table>
 @endsection

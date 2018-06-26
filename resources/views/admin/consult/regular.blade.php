@@ -1,10 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Teleconsultoria')
+@section('title', 'Regulação da Teleconsultoria')
 
 @section('content_header')
-    <h1>Teleconsultoria</h1>
-
+    <h1>Regulação da Teleconsultoria</h1>
     <ol class='breadcrumb'>
     	<li><a ref="">Dashboard</a></li>
     	<li><a ref="">Consult</a></li>
@@ -12,6 +11,14 @@
     </ol>
 @stop
 @section('content')
+<div class="container">
+        <div class="box">
+        <div class="box-header">
+            <a href="{{ route('consult.nova')}}" class="btn btn-danger"><i class="fas fa-shopping-cart"></i>Devolver</a>
+            <a href="{{ route('consult.nova')}}" class="btn btn-success"><i class="fas fa-shopping-cart"></i>Encaminhar</a>
+        </div>
+        </div>
+    </div>
 	<table class="table table-striped">
             <tr>
             <hr>
@@ -28,7 +35,7 @@
             </tr> 
             <tr>
       @if ($consults!=null)  
-          <h4>Consultoria Selecionada</h4>     
+          <h4>Dados da TeleConsultoria Selecionada</h4>    
          @forelse($consults as $consult)
             <td>{{ $consult->id}}</a></td>
             <td>{{ $consult->status}} </td>
@@ -46,7 +53,7 @@
          @endforelse
       @endif
     </table>  
-    <h4>SELECIONE O TELECONSULTOR CONFORME ESPECIALIDADE</h4>      
+    <h4>Regulador Selecione o Teleconsultor que irá atender a Solicitação</h4>      
     <table class="table table-striped">
     	<tr>
             <hr>
@@ -59,7 +66,7 @@
             @if ($user->id == $solR->user_id)	
         	<tr>
             <td>{{ $user->id}}</a></td>
-            <td><a href="{{ route('consult.regular', ['sid' => $user->id]) }}">{{ $user->name}}</a></td>
+            <td><a href="{{ route('consult.consultor', ['cid' => $user->id, 'sid' => $sid]) }}">{{ $user->name}}</a></td>
             <td>{{ $user->email}} </td>
         	</tr>
         	@endif

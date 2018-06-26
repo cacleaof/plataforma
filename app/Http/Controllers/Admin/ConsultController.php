@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\Consult;
 use App\Models\Perfil;
+use DB;
+
 
 class ConsultController extends Controller
 {
@@ -36,7 +38,20 @@ class ConsultController extends Controller
     }
     else{$consreg=null;}
 
-    	return view('admin.consult.entrada', compact('consults', 'consreg', 'sol'));
+    $solC = $perfil->where('perfil', 'C')->where('user_id', auth()->user()->id)->get()->isEmpty();
+    
+    //dd($solR);
+
+    if (!$solC) {
+
+        //dd($solR);
+    $conscons = $consult->where('cons_id', auth()->user()->id)->get();
+    //dd($consreg);
+    }
+    else{$conscons=null;}
+
+
+    	return view('admin.consult.entrada', compact('consults', 'consreg', 'sol', 'conscons'));
 
     }
     public function saida(Consult $consult)
@@ -84,16 +99,29 @@ class ConsultController extends Controller
     }
     public function regular(consult $consult, Request $request, Perfil $perfil, User $user)
     {
-        //fazer find consult com o $request->sid
+        
         
         $consults = $consult->where('id', $request->sid)->get();
-        $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
-        //dd($solRs['Perfil']);
-            //->perfil->user_id);
-        $users = $user->all();
-        //$users = $user->where('id', $solR->user_id)->get();
         
-        //dd($users);
-        return view('admin.consult.regular', compact('consults', 'solRs', 'users'));
+        $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
+        
+        $sid = $request->sid;
+        $users = $user->all();
+        
+        return view('admin.consult.regular', compact('consults', 'solRs', 'users', 'sid'));
     } 
+    public function consultor(Consult $consult, Request $request, User $user)
+    {
+        
+        $cid = $request->cid;
+        $sid = $request->sid;
+        $nome = $user->where('id', $cid)->get($user->name);
+        //dd($nome);
+        DB::table('consults')
+                    ->where('id', $request->sid)
+                    ->update(['cons_id' => $request->cid, 'status' => 'C','reg_id' => auth()->user()->id ,'reg_name' => auth()->user()->name ]);
+        //dd($dataForm);
+        //return view('admin.consult.entrada');
+         return redirect('/admin');           
+    }
 }
