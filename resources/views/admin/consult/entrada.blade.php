@@ -34,9 +34,8 @@
          @if ($consults!=null)  
           <p>PERFIL:SOLICITANTE</p>     
          @forelse($consults as $consult)
-
             <td><a href="{{ route('consult.regular')}}"> {{ $consult->id}}</a></td>
-            <td>{{ $consult->status}} </td>
+            <td>{{ showstat($consult->status) }} </td>
             <td>{{ $consult->serviço}} </td>
             <td>{{ $consult->consulta}} </td>
             <td>{{ $consult->municipio}} </td>
@@ -56,7 +55,7 @@
         @forelse($consreg as $reg)  
         <form>      
             <td><a href="{{ route('consult.regular', ['sid' => $reg->id]) }}">{{ $reg->id}}</a> </td>
-            <td>{{ $reg->status}} </td>
+            <td>{{ showstat($reg->status) }} </td>
             <td>{{ $reg->serviço}} </td>
             <td>{{ $reg->consulta}} </td>
             <td>{{ $reg->municipio}} </td>

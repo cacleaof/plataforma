@@ -154,4 +154,15 @@ class ConsultController extends Controller
 
          return redirect('/admin');           
     }
+    public function devolver(consult $consult, Request $request, Perfil $perfil, User $user)
+    {  
+        $consults = $consult->where('id', $request->sid)->get();
+        
+        $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
+        
+        $sid = $request->sid;
+        $users = $user->all();
+        
+        return view('admin.consult.devolver', compact('consults', 'solRs', 'users', 'sid'));
+    } 
 }
