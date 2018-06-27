@@ -38,6 +38,12 @@ class User extends Authenticatable
         return $this->hasMany(Historic::class);
     }
 
+    public function consults()
+    {
+        return $this->hasMany(consults::class);
+    }
+
+
     public function getSender($sender)
     {
         return $this->where('name', 'LIKE', "%$sender%")

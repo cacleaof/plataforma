@@ -34,7 +34,7 @@ class CreateConsultsTable extends Migration
             $table->string('solicitaçao', 50)->nullable();
             $table->boolean('ativo')->nullable();
             $table->string('paciente', 50)->nullable();
-            $table->integer('idade')->nullable();
+            $table->string('idade')->nullable();
             $table->string('queixa')->nullable();
             $table->string('instituiçao')->nullable();
             $table->string('municipio_sol', 50)->nullable();

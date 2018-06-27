@@ -23,6 +23,7 @@
 				<div class="form-row">
 						<div class="form-group">
 						<textarea type="text" name="consulta" rows="5" cols="80" placeholder="Descreva sua dúvida ou questionamento" class="form-control"></textarea>
+						<label>Caso seja relavante informe dados do paciente como nome, idade indicando unidade(Anos, Meses, dias), Queixa, Instituiçao e Município</label>
 						</div>
 						<div class="form-group col-xs-9" >
 							<input type="text" class="form-control" name="paciente" placeholder="Nome do Paciente">
@@ -32,11 +33,12 @@
 						</div>
 				<div class="form-row">		
 						<div class="form-group">
-							<textarea type="text" name="queixa" rows="2" placeholder="Queixa principal/Observação" class="form-control">Queixa principal
+							<label>Queixa principal/Observação</label>
+							<textarea type="text" name="queixa" rows="2" cols="80" placeholder="Queixa principal/Observação" class="form-control">
 							</textarea>
 						</div>
 						<div class="form-group col-xs-5">
-							<input type="text" name="instituiçao" placeholder="instituiçao do paciente" class="form-control">
+							<input type="text" name="instituiçao" placeholder="Instituiçao onde está o paciente" class="form-control">
 						</div>
 						<div class="form-group col-xs-5">
 							<input type="text" name="municipio_sol" placeholder="Municipio do paciente" class="form-control">
@@ -50,7 +52,7 @@
     						</select>
     					</div>
     					<div class="form-group">
-							<input type="text" name="area" placeholder="Área da Teleconsultoria" class="form-control">
+							<input type="text" name="area" placeholder="Área de Saúde da Teleconsultoria" class="form-control">
 						</div>
 						<div class="form-group">
 						<button type="submit" class="btn btn-success">Enviar</button> 

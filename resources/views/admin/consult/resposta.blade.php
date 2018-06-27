@@ -1,25 +1,27 @@
 @extends('adminlte::page')
 
-@section('title', 'Regulação da Teleconsultoria')
+@section('title', 'Teleconsultoria')
 
 @section('content_header')
-    <h1>Regulação da Teleconsultoria</h1>
+    <h1>Teleconsultoria</h1>
+
     <ol class='breadcrumb'>
     	<li><a ref="">Dashboard</a></li>
     	<li><a ref="">Consult</a></li>
     	<li><a ref="">Entrada</a></li>
     </ol>
 @stop
+
 @section('content')
-<div class="container">
+	<div class="container">
         <div class="box">
         <div class="box-header">
-            <a href="{{ route('consult.nova')}}" class="btn btn-danger"><i class="fas fa-shopping-cart"></i>Devolver</a>
-            <a href="{{ route('consult.encaminhar', ['sid' => $sid]) }}" class="btn btn-success"><i class="fas fa-shopping-cart"></i>Encaminhar</a>
+            <a href="{{ route('consult.entrada')}}" class="btn btn-danger"><i class="fas fa-shopping-cart"></i>Devolver ao Solicitante</a>
+            <a href="{{ route('consult.encaminhar', ['sid' => $sid]) }}" class="btn btn-success"><i class="fas fa-shopping-cart"></i>Encaminhar Resposta</a>
         </div>
         </div>
     </div>
-	<table class="table table-striped">
+    <table class="table table-striped">
             <tr>
             <hr>
             <th>ID </th>
@@ -54,28 +56,5 @@
          <p>Você não tem consultas na sua caixa de entrada</p>
          @endforelse
       @endif
-    </table>  
-    <h4>Regulador Selecione o Teleconsultor que irá atender a Solicitação</h4>      
-    <table class="table table-striped">
-    	<tr>
-            <hr>
-            <th>ID </th>
-            <th>NOME </th>
-            <th>EMAIL </th>
-        </tr>
-        @forelse($solRs as $solR)        
-          @forelse($users as $user)
-            @if ($user->id == $solR->user_id)	
-        	<tr>
-            <td>{{ $user->id}}</a></td>
-            <td><a href="{{ route('consult.consultor', ['cid' => $user->id, 'sid' => $sid]) }}">{{ $user->name}}</a></td>
-            <td>{{ $user->email}} </td>
-        	</tr>
-        	@endif
-            @empty
-          @endforelse
-        @empty
-        <p>A plataforma Não tem Teleconsultor cadastrado!</p>
-        @endforelse
-    </table>
-@endsection
+    </table>  	
+@stop

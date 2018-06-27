@@ -6,6 +6,7 @@
 </div>
 @stop
 @section('content')
+    @if ( !$solS )
     <div class="container">
         <div class="box">
         <div class="box-header">
@@ -13,6 +14,7 @@
         </div>
         </div>
     </div>
+    @endif
         <table class="table table-striped">
             <tr>
             <hr>
@@ -23,6 +25,7 @@
             <th>MUNICIPIO </th>
             <th>UF</th>
             <th>NOME SOLICITANTE </th>
+            <th>ID</th>
             <th>TELECONSULTOR </th>
             <th>TEMPO </th>
             <th>PACIENTE </th>
@@ -40,6 +43,7 @@
             <td>{{ $consult->uf}} </td>
             <td>{{$consult->user->name}} </td>
             <td>{{$consult->cons_id}} </td>
+            <td>{{$consult->cons_name}} </td>
             <td>{{$consult->tempo}} </td>
             <td>{{$consult->paciente}} </td>
             </tr>    
@@ -59,6 +63,7 @@
             <td>{{ $reg->uf}} </td>
             <td>{{$reg->user->name}} </td>
             <td>{{$reg->cons_id}} </td>
+            <td>{{$reg->cons_name}} </td>
             <td>{{$reg->tempo}} </td>
             <td>{{$reg->paciente}} </td>
             </tr>   
@@ -71,7 +76,7 @@
         <p>PERFIL:CONSULTOR</p> 
         @forelse($conscons as $con)  
         <form>      
-            <td><a href="{{ route('consult.entrada')}}">{{ $con->id}}</a> </td>
+            <td><a href="{{ route('consult.selecresp', ['sid' => $con->id]) }}">{{ $con->id }}</a> </td>
             <td>{{ $con->status}} </td>
             <td>{{ $con->serviço}} </td>
             <td>{{ $con->consulta}} </td>
@@ -79,6 +84,7 @@
             <td>{{ $con->uf}} </td>
             <td>{{$con->user->name}} </td>
             <td>{{$con->cons_id}} </td>
+             <td>{{$con->cons_name}} </td>
             <td>{{$con->tempo}} </td>
             <td>{{$con->paciente}} </td>
             </tr>   

@@ -51,7 +51,8 @@ class ConsultController extends Controller
     else{$conscons=null;}
 
 
-    	return view('admin.consult.entrada', compact('consults', 'consreg', 'sol', 'conscons'));
+
+    	return view('admin.consult.entrada', compact('consults', 'consreg', 'solS', 'conscons'));
 
     }
     public function saida(Consult $consult)
@@ -115,13 +116,42 @@ class ConsultController extends Controller
         
         $cid = $request->cid;
         $sid = $request->sid;
-        $nome = $user->where('id', $cid)->get($user->name);
-        //dd($nome);
+        
+        $user = User::find($cid);
         DB::table('consults')
                     ->where('id', $request->sid)
-                    ->update(['cons_id' => $request->cid, 'status' => 'C','reg_id' => auth()->user()->id ,'reg_name' => auth()->user()->name ]);
-        //dd($dataForm);
-        //return view('admin.consult.entrada');
+                    ->update(['cons_id' => $request->cid, 'cons_name' => $user->name ]);
+         return redirect()->back();           
+    }
+    public function encaminhar(Consult $consult, Request $request, User $user)
+    {
+        DB::table('consults')
+                    ->where('id', $request->sid)
+                    ->update(['status' => 'C','reg_id' => auth()->user()->id ,'reg_name' => auth()->user()->name ]);
+         return redirect('/admin');           
+    }
+    public function selecresp(consult $consult, Request $request, Perfil $perfil, User $user)
+    {
+        
+        
+        $consults = $consult->where('id', $request->sid)->get();
+        
+        $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
+        
+        $sid = $request->sid;
+        $users = $user->all();
+        
+        return view('admin.consult.resposta', compact('consults', 'solRs', 'users', 'sid'));
+    }
+
+    public function resposta(Consult $consult, Request $request, User $user)
+    {
+        dd($request->sid);
+
+        DB::table('consults')
+                    ->where('id', $request->sid)
+                    ->update(['status' => 'C','reg_id' => auth()->user()->id ,'reg_name' => auth()->user()->name ]);
+
          return redirect('/admin');           
     }
 }
