@@ -92,6 +92,19 @@ class ConsultController extends Controller
         $dataForm->status = 'R';
         //dd($dataForm);
         $dataForm->user_id = auth()->user()->id;
+        //$name = $user->id.$request->image;
+        //dd($name);
+        //$extension = $request->image->extension();
+        //$namefile = "{$name}.{$extension}";
+
+        $dataForm->image = $request->image;
+
+        //ver o tamanho da imagem: fazer um if para so gravar se for menor que 8 mega
+        //$tamanho = $request->image->getClientSize();
+        //dd($tamanho);
+        //$data = $request->all();
+        //$data['image'] = $consult->image;
+        $upload = $request->image->store('consulta');
         //dd($dataForm);
         
         $dataForm->save();
@@ -100,7 +113,6 @@ class ConsultController extends Controller
     }
     public function regular(consult $consult, Request $request, Perfil $perfil, User $user)
     {
-        
         
         $consults = $consult->where('id', $request->sid)->get();
         
@@ -125,15 +137,23 @@ class ConsultController extends Controller
     }
     public function encaminhar(Consult $consult, Request $request, User $user)
     {
+        $consults = $consult->where('id', $request->sid)->get();
+        //dd($consults);
+        if ($consults) {
+
         DB::table('consults')
                     ->where('id', $request->sid)
                     ->update(['status' => 'C','reg_id' => auth()->user()->id ,'reg_name' => auth()->user()->name ]);
+                }
+        else {
+
+        }
+
          return redirect('/admin');           
     }
     public function selecresp(consult $consult, Request $request, Perfil $perfil, User $user)
     {
-        
-        
+         
         $consults = $consult->where('id', $request->sid)->get();
         
         $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
@@ -165,4 +185,24 @@ class ConsultController extends Controller
         
         return view('admin.consult.devolver', compact('consults', 'solRs', 'users', 'sid'));
     } 
+    public function devstore(Consult $consult, Request $request, User $user)
+    {
+       
+        $cid = $request->cid;
+        $sid = $request->sid;
+
+         //dd($sid);
+        
+        //$consults = Consult::find($sid);
+        //dd($dataform);
+        DB::table('consults')
+                    ->where('id', $request->sid)
+                    ->update(['devolutiva' => $request->devolutiva, 'status' => 'D' ]);
+
+        //$dataForm->devolutiva = $request->devolutiva;
+        //$dataForm->status = 'D';
+        //$dataForm->update();
+
+         return redirect(route('consult.entrada'));   
+    }
 }

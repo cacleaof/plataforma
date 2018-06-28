@@ -22,6 +22,7 @@
             <th>STATUS </th>
             <th>SERVIÇO </th>
             <th>DESCRIÇÃO </th>
+            <th>ARQUIVO </th>
             <th>MUNICIPIO </th>
             <th>UF</th>
             <th>NOME SOLICITANTE </th>
@@ -38,6 +39,7 @@
             <td>{{ showstat($consult->status) }} </td>
             <td>{{ $consult->serviço}} </td>
             <td>{{ $consult->consulta}} </td>
+            <td>{{ $consult->image}} </td>
             <td>{{ $consult->municipio}} </td>
             <td>{{ $consult->uf}} </td>
             <td>{{$consult->user->name}} </td>
@@ -58,6 +60,7 @@
             <td>{{ showstat($reg->status) }} </td>
             <td>{{ $reg->serviço}} </td>
             <td>{{ $reg->consulta}} </td>
+            <td>{{ $reg->image}} </td>
             <td>{{ $reg->municipio}} </td>
             <td>{{ $reg->uf}} </td>
             <td>{{$reg->user->name}} </td>
@@ -76,9 +79,10 @@
         @forelse($conscons as $con)  
         <form>      
             <td><a href="{{ route('consult.selecresp', ['sid' => $con->id]) }}">{{ $con->id }}</a> </td>
-            <td>{{ showstrat($con->status) }} </td>
+            <td>{{ showstat($con->status) }} </td>
             <td>{{ $con->serviço}} </td>
             <td>{{ $con->consulta}} </td>
+            <td>{{ $con->image}} </td>
             <td>{{ $con->municipio}} </td>
             <td>{{ $con->uf}} </td>
             <td>{{$con->user->name}} </td>

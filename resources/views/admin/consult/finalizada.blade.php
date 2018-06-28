@@ -25,7 +25,7 @@
         @if($consult->status == 'F')
             <tr>
             <td>{{ $consult->id}} </td>
-            <td>{{ $consult->status}} </td>
+            <td>{{ showstat($consult->status) }} </td>
             <td>{{ $consult->serviço}} </td>
             <td>{{ $consult->consulta}} </td>
             <td>{{ $consult->municipio}} </td>

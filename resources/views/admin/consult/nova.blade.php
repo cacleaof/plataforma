@@ -18,16 +18,17 @@
 			<h3>Digite os dados da sua consultoria</h3>
 		</div>
 		<div class="box-body">
-			<form method="POST" action="{{ route('consult.store')}}">
+			<form method="POST" action="{{ route('consult.store')}}" enctype="multipart/form-data">
 					{!! csrf_field() !!}
 				<div class="form-row">
 						<div class="form-group">
 						<textarea type="text" name="consulta" rows="5" cols="80" placeholder="Descreva sua dúvida ou questionamento" class="form-control"></textarea>
-						<div class="form-control">
-							<label for="image">Imagem:</label>
+						<div class="form-row">
+							<label for="image">Arquivos Anexos:</label>
 							<input type="file" name="image">
 						</div>
-						<label>Caso seja relavante informe dados do paciente como nome, idade indicando unidade(Anos, Meses, dias), Queixa, Instituiçao e Município</label>
+						<div class="form-row" >
+							<label>Caso seja relavante informe dados do paciente como nome, idade indicando unidade(Anos, Meses, dias), Queixa, Instituiçao e Município</label>
 						</div>
 						<div class="form-group col-xs-9" >
 							<input type="text" class="form-control" name="paciente" placeholder="Nome do Paciente">

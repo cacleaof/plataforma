@@ -14,6 +14,7 @@
             <th>STATUS </th>
             <th>SERVIÇO </th>
             <th>DESCRIÇÃO </th>
+            <th>ARQUIVO </th>
             <th>MUNICIPIO </th>
             <th>UF</th>
             <th>NOME SOLICITANTE </th>
@@ -24,9 +25,10 @@
         @forelse($consults as $consult)
             <tr>
             <td>{{ $consult->id}} </td>
-            <td>{{ $consult->status}} </td>
+            <td>{{ showstat($consult->status) }} </td>
             <td>{{ $consult->serviço}} </td>
             <td>{{ $consult->consulta}} </td>
+            <td>{{ $consult->image}} </td>
             <td>{{ $consult->municipio}} </td>
             <td>{{ $consult->uf}} </td>
             <td>{{$consult->user->name}} </td>

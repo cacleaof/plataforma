@@ -14,7 +14,7 @@
 <div class="container">
         <div class="box">
         <div class="box-header">
-            <a href="{{ route('consult.devolver')}}" class="btn btn-danger"><i class="fas fa-shopping-cart"></i>Devolver</a>
+            <a href="{{ route('consult.devolver', ['sid' => $sid]) }}" class="btn btn-danger"><i class="fas fa-shopping-cart"></i>Devolver</a>
             <a href="{{ route('consult.encaminhar', ['sid' => $sid]) }}" class="btn btn-success"><i class="fas fa-shopping-cart"></i>Encaminhar</a>
         </div>
         </div>
