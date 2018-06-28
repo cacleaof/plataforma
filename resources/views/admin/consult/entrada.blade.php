@@ -76,7 +76,7 @@
         @forelse($conscons as $con)  
         <form>      
             <td><a href="{{ route('consult.selecresp', ['sid' => $con->id]) }}">{{ $con->id }}</a> </td>
-            <td>{{ $con->status}} </td>
+            <td>{{ showstrat($con->status) }} </td>
             <td>{{ $con->serviço}} </td>
             <td>{{ $con->consulta}} </td>
             <td>{{ $con->municipio}} </td>

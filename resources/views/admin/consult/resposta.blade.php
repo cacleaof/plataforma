@@ -41,7 +41,7 @@
           <h4>Dados da TeleConsultoria Selecionada</h4>    
          @forelse($consults as $consult)
             <td>{{ $consult->id}}</a></td>
-            <td>{{ $consult->status}} </td>
+            <td>{{ showstat($consult->status) }} </td>
             <td>{{ $consult->serviço}} </td>
             <td>{{ $consult->consulta}} </td>
             <td>{{ $consult->municipio}} </td>

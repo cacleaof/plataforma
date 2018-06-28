@@ -23,6 +23,10 @@
 				<div class="form-row">
 						<div class="form-group">
 						<textarea type="text" name="consulta" rows="5" cols="80" placeholder="Descreva sua dúvida ou questionamento" class="form-control"></textarea>
+						<div class="form-control">
+							<label for="image">Imagem:</label>
+							<input type="file" name="image">
+						</div>
 						<label>Caso seja relavante informe dados do paciente como nome, idade indicando unidade(Anos, Meses, dias), Queixa, Instituiçao e Município</label>
 						</div>
 						<div class="form-group col-xs-9" >
