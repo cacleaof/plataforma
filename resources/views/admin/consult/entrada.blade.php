@@ -78,7 +78,7 @@
         <p>PERFIL:CONSULTOR</p> 
         @forelse($conscons as $con)  
         <form>      
-            <td><a href="{{ route('consult.selecresp', ['sid' => $con->id]) }}">{{ $con->id }}</a> </td>
+            <td><a href="{{ route('consult.selecresp', ['sid' => $con->id, 'cid' => $con->user_id]) }}">{{ $con->id }}</a> </td>
             <td>{{ showstat($con->status) }} </td>
             <td>{{ $con->serviço}} </td>
             <td>{{ $con->consulta}} </td>

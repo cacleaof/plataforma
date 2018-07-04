@@ -12,7 +12,7 @@ function showstat($status)
     case 'F' :
         return "Finalizada";
     case 'D' :
-        return "Devolvida";
+        return "Devolvida e Finalizada";
 }
 }
 ?>

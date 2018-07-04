@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\Consult;
 use App\Models\Perfil;
+use App\Models\file;
 use DB;
 
 
@@ -77,9 +79,8 @@ class ConsultController extends Controller
     } 
     public function store(Request $request)
     {
+        $arquivos = $request->file('arquivo');
         $dataForm = new Consult;
-        //$dataForm = $request->except('_token');
-
         $dataForm->consulta = $request->consulta;
         $dataForm->serviço = $request->serviço;
         $dataForm->ativo = $request->ativo;
@@ -89,25 +90,35 @@ class ConsultController extends Controller
         $dataForm->instituiçao = $request->instituiçao;
         $dataForm->municipio_sol = $request->municipio_sol;
         $dataForm->area = $request->area;
+        $nome = $request->file;
         $dataForm->status = 'R';
-        //dd($dataForm);
         $dataForm->user_id = auth()->user()->id;
-        //$name = $user->id.$request->image;
-        //dd($name);
-        //$extension = $request->image->extension();
-        //$namefile = "{$name}.{$extension}";
-
-        $dataForm->image = $request->image;
-
-        //ver o tamanho da imagem: fazer um if para so gravar se for menor que 8 mega
-        //$tamanho = $request->image->getClientSize();
-        //dd($tamanho);
-        //$data = $request->all();
-        //$data['image'] = $consult->image;
-        $upload = $request->image->store('consulta');
-        //dd($dataForm);
-        
         $dataForm->save();
+        $idc = $dataForm->id;
+        //dd($arquivos);
+        if(!empty($arquivos)):
+                $dataForm->anexos = '1';
+                $dataForm->update();
+            foreach ($arquivos as $arquivo):
+
+                $data = new file;
+                $data->consult_id = $idc;
+                //dd($dataForm->file);
+                //$file_ext = $arquivo->getClientOriginalExtension();
+                //$destination_path = public_path('/consulta');
+
+                //$newname = rand(123456,999999).".".$file_ext;
+                //$arquivo->move($destination_path, $newname);
+                $data->size = $arquivo->getClientSize();
+                //$arquivo->filename = $newname;
+                //dd($arquivo);
+                $nome = $arquivo->getClientOriginalName();
+                $nome = $idc.$nome;
+                $data->file = $nome;
+                $data->save();
+                Storage::putfileAs($dataForm->user_id, $arquivo, $nome);
+            endforeach;
+        endif;
 
         return redirect('/admin');
     }
@@ -151,17 +162,32 @@ class ConsultController extends Controller
 
          return redirect('/admin');           
     }
-    public function selecresp(consult $consult, Request $request, Perfil $perfil, User $user)
+    public function selecresp(consult $consult, Request $request, Perfil $perfil, User $user, File $file)
     {
-         
+        $sid = $request->sid;
+        $files = $file->where('consult_id', $sid)->get();
         $consults = $consult->where('id', $request->sid)->get();
         
         $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
         
-        $sid = $request->sid;
         $users = $user->all();
+
+        $downloads=DB::table('files')->get();
         
-        return view('admin.consult.resposta', compact('consults', 'solRs', 'users', 'sid'));
+        return view('admin.consult.resposta', compact('consults', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
+    }
+
+    public function show(File $file, Consult $consult, Request $request, User $user)
+    {
+        $sid = $request->sid;
+        $cid = $request->cid;
+        //dd($cid);
+        $dl = File::find($sid);
+        $dl = $dl->file;
+        //$resource = fopen('C:\xampp\htdocs\Plataforma\storage\app\public\3\40download (1).jpg', 'r');
+        return Storage::download('/3/', $dl);
+        //return Storage::download($dl->pah, $dl->file);
+       // return redirect()->back();
     }
 
     public function resposta(Consult $consult, Request $request, User $user)

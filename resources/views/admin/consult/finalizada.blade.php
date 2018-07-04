@@ -22,7 +22,7 @@
             <th>PACIENTE </th>
             </tr>
         @forelse($consults as $consult)
-        @if($consult->status == 'F')
+        @if($consult->status == 'F' || $consult->status == 'D')
             <tr>
             <td>{{ $consult->id}} </td>
             <td>{{ showstat($consult->status) }} </td>

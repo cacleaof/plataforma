@@ -40,7 +40,7 @@ class CreateConsultsTable extends Migration
             $table->string('municipio_sol', 50)->nullable();
             $table->string('area', 50)->nullable();
             $table->string('ibge_sol', 7)->nullable();
-            $table->string('image', 100)->nullable();
+            $table->boolean('anexos')->nullable();
             $table->text('devolutiva')->nullable();
         });
     }

@@ -24,8 +24,9 @@
 						<div class="form-group">
 						<textarea type="text" name="consulta" rows="5" cols="80" placeholder="Descreva sua dúvida ou questionamento" class="form-control"></textarea>
 						<div class="form-row">
-							<label for="image">Arquivos Anexos:</label>
-							<input type="file" name="image">
+							<label for="file">Arquivos Anexos:</label>
+							<input type="file" name="arquivo[]" id="file" multiple>
+							<input type="hidden" value="{{ csrf_token() }}" name="_token">
 						</div>
 						<div class="form-row" >
 							<label>Caso seja relavante informe dados do paciente como nome, idade indicando unidade(Anos, Meses, dias), Queixa, Instituiçao e Município</label>
