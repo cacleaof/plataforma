@@ -71,13 +71,13 @@
             <td>
             <div class="form-group">
                 <img src="{{ url('storage/3/'.$file->file) }}" alt="{{ $file->file }}" style="max-width: 50px;">
-            </div>
-            <a href="{{ route('consult.show', ['sid' => $file->id, 'cid' => $consult->user_id]) }}">
+            <a href="{{ route('consult.download', ['sid' => $file->id, 'cid' => $consult->user_id]) }}">
                 <button type="button" class="btn btn-primary">
                     <i class="glyphicon glyphicon-download">
                         Download
                     </i></button>
             </a>  
+            </div>
             </td>
             </tr>
         @empty

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\Consult;
@@ -149,14 +150,15 @@ class ConsultController extends Controller
     public function encaminhar(Consult $consult, Request $request, User $user)
     {
         $consults = $consult->where('id', $request->sid)->get();
-        //dd($consults);
-        if ($consults) {
+        $cn = $consult->cons_name;
+        //dd($cn);
+        if ($cn != 'null') {
 
         DB::table('consults')
                     ->where('id', $request->sid)
                     ->update(['status' => 'C','reg_id' => auth()->user()->id ,'reg_name' => auth()->user()->name ]);
                 }
-        else {
+        else { 
 
         }
 
@@ -177,18 +179,31 @@ class ConsultController extends Controller
         return view('admin.consult.resposta', compact('consults', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
     }
 
-    public function show(File $file, Consult $consult, Request $request, User $user)
+    public function download(File $file, Consult $consult, Request $request, User $user)
     {
         $sid = $request->sid;
         $cid = $request->cid;
         //dd($cid);
         $dl = File::find($sid);
         $dl = $dl->file;
-        //$resource = fopen('C:\xampp\htdocs\Plataforma\storage\app\public\3\40download (1).jpg', 'r');
-        return Storage::download('/3/', $dl);
-        //return Storage::download($dl->pah, $dl->file);
-       // return redirect()->back();
+        $file= storage_path()."/app/public/".$cid."/".$dl;
+
+        return Response::download($file, $dl);
+        
     }
+    public function show()
+{
+    //PDF file is stored under project/public/download/info.pdf
+    //dd(storage_path());
+
+    $file= storage_path()."/app/public/3/"."5filhos.jpg";
+
+    $headers = array(
+              'Content-Type: image/jpg',
+            );
+
+    return Response::download($file, '5filhos.jpg', $headers);
+}
 
     public function resposta(Consult $consult, Request $request, User $user)
     {
