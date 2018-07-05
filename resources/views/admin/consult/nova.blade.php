@@ -21,6 +21,7 @@
 			<form method="POST" action="{{ route('consult.store')}}" enctype="multipart/form-data">
 					{!! csrf_field() !!}
 				<div class="form-row">
+					@include('admin.includes.alerts')
 						<div class="form-group">
 						<textarea type="text" name="consulta" rows="5" cols="80" placeholder="Descreva sua dúvida ou questionamento" class="form-control"></textarea>
 						<div class="form-row">

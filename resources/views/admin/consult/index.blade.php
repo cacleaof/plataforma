@@ -5,6 +5,7 @@
 @section('content_header')
 <div class="box">
     <h3><strong>Usuário Logado: </strong>{{auth()->user()->name }}</h3>
+    @include('admin.includes.alerts')
 </div>
 @stop
 

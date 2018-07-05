@@ -6,6 +6,7 @@
 </div>
 @stop
 @section('content')
+    @include('admin.includes.alerts')
     @if ( !$solS )
     <div class="container">
         <div class="box">

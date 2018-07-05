@@ -58,10 +58,16 @@ class ConsultController extends Controller
     	return view('admin.consult.entrada', compact('consults', 'consreg', 'solS', 'conscons'));
 
     }
-    public function saida(Consult $consult)
+    public function saida(Consult $consult, Perfil $perfil, User $user)
     {
+        $solSs = $perfil->where('perfil', 'S')->get($perfil->user_id)->isEmpty();
 
-    $consults = $consult->where('user_id', auth()->user()->id)->get();
+        if (!$solS) {  
+        $consults = $consult->where('user_id', auth()->user()->id)->get();
+        }
+        else {
+        $consults = $consult->where('reg_id', auth()->user()->id, or 'cons_id' ,auth()->user()->id)->get();
+        }
 
         return view('admin.consult.saida', compact('consults'));
     }
@@ -80,6 +86,7 @@ class ConsultController extends Controller
     } 
     public function store(Request $request)
     {
+    if(!empty($request->consulta)) {
         $arquivos = $request->file('arquivo');
         $dataForm = new Consult;
         $dataForm->consulta = $request->consulta;
@@ -121,7 +128,15 @@ class ConsultController extends Controller
             endforeach;
         endif;
 
-        return redirect('/admin');
+        return redirect()
+                    ->route('consult.entrada')
+                    ->with('success', 'TeleConsultoria enviada com sucesso - Prazo Máximo de Retorno 72 horas');
+    }
+    else {
+        return redirect()
+                    ->back()
+                    ->with('error', 'O campo descreva sua dúvida ou questionamento deve ser preenchido para envio da consultoria');
+    }
     }
     public function regular(consult $consult, Request $request, Perfil $perfil, User $user)
     {
@@ -149,20 +164,23 @@ class ConsultController extends Controller
     }
     public function encaminhar(Consult $consult, Request $request, User $user)
     {
-        $consults = $consult->where('id', $request->sid)->get();
+        $consult = consult::find($request->sid);
         $cn = $consult->cons_name;
         //dd($cn);
-        if ($cn != 'null') {
+        if (!empty($cn)) {
 
         DB::table('consults')
                     ->where('id', $request->sid)
                     ->update(['status' => 'C','reg_id' => auth()->user()->id ,'reg_name' => auth()->user()->name ]);
+
+        return redirect(route('consult.entrada'))
+                    ->with('success', 'Teleconsultoria regulada com sucesso');  
                 }
         else { 
-
-        }
-
-         return redirect('/admin');           
+            return redirect()
+                    ->back()
+                    ->with('error', 'Você tem que escolher um Teleconsultor para atender esta solicitação antes de enviá-la');
+        }          
     }
     public function selecresp(consult $consult, Request $request, Perfil $perfil, User $user, File $file)
     {

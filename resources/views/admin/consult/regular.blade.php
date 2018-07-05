@@ -17,6 +17,7 @@
             <a href="{{ route('consult.devolver', ['sid' => $sid]) }}" class="btn btn-danger"><i class="fas fa-shopping-cart"></i>Devolver</a>
             <a href="{{ route('consult.encaminhar', ['sid' => $sid]) }}" class="btn btn-success"><i class="fas fa-shopping-cart"></i>Encaminhar</a>
         </div>
+        @include('admin.includes.alerts')
         </div>
     </div>
 	<table class="table table-striped">
