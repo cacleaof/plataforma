@@ -126,7 +126,7 @@ return [
         ],
         [
             'text'        => 'Cadastros',
-            'url'         => 'admin/adm',
+            'url'         => 'admin/getindex',
             'icon'        => 'dashboard',
         ],
         [

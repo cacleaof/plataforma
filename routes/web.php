@@ -43,8 +43,11 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 
 	$this->get('show', 'ConsultController@show')->name('consult.show');
 
+	$this->get('showS', 'ConsultController@showS')->name('consult.showS');
+
 	$this->get('download', 'ConsultController@download')->name('consult.download');
 
+	$this->get('getindex', 'importar@getindex')->name('importar.getindex');
 });
      //o certo é colocar o post, saida, fim dentro do 'middleware' => ['auth'] pois o
 	//usuario tem que estar logado para que ele possar ver os posts

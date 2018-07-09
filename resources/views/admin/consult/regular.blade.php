@@ -55,7 +55,34 @@
          <p>Você não tem consultas na sua caixa de entrada</p>
          @endforelse
       @endif
-    </table>  
+    </table> 
+    <h4>Arquivos Anexados a Teleconsultoria</h4>      
+    <table class="table table-striped">
+        <tr>
+            <hr>
+            <th>ID </th>
+            <th>arquivo </th>
+        </tr>       
+          @forelse($files as $file)  
+            <tr>
+            <td>{{ $file->id}}</td>
+            <td>{{ $file->file}}</td>
+            <td>
+            <div class="form-group">
+                <img src="{{ url('storage/3/'.$file->file) }}" alt="{{ $file->file }}" style="max-width: 50px;">
+            <a href="{{ route('consult.download', ['sid' => $file->id, 'cid' => $consult->user_id]) }}">
+                <button type="button" class="btn btn-primary">
+                    <i class="glyphicon glyphicon-download">
+                        Download
+                    </i></button>
+            </a>  
+            </div>
+            </td>
+            </tr>
+        @empty
+        <p>A plataforma Não tem Arquivo cadastrado!</p>
+        @endforelse
+    </table> 
     <h4>Regulador Selecione o Teleconsultor que irá atender a Solicitação</h4>      
     <table class="table table-striped">
     	<tr>

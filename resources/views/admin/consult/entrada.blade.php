@@ -36,7 +36,7 @@
          @if ($consults!=null)  
           <p>PERFIL:SOLICITANTE</p>     
          @forelse($consults as $consult)
-            <td><a href="{{ route('consult.regular')}}"> {{ $consult->id}}</a></td>
+            <td><a href="{{ route('consult.showS', ['sid' => $consult->id]) }}"> {{ $consult->id}}</a></td>
             <td>{{ showstat($consult->status) }} </td>
             <td>{{ $consult->serviço}} </td>
             <td>{{ $consult->consulta}} </td>

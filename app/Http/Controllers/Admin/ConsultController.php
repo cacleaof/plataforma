@@ -23,7 +23,9 @@ class ConsultController extends Controller
 
     if (!$solS) {
     
-	$consults = $consult->where('status', 'S')->where('user_id', auth()->user()->id)->get();
+	$consults = $consult->where('status', 'S')
+                        ->orwhere('status', 'D')
+                        ->where('user_id', auth()->user()->id)->get();
     
     }
     else{$consults=null;}
@@ -60,16 +62,29 @@ class ConsultController extends Controller
     }
     public function saida(Consult $consult, Perfil $perfil, User $user)
     {
-        $solSs = $perfil->where('perfil', 'S')->get($perfil->user_id)->isEmpty();
-
-        if (!$solS) {  
+        
+        $solS = $perfil->where('perfil', 'S')->where('user_id', auth()->user()->id)->get()->isEmpty();
+ 
+        if (!$solS) 
+        {  
         $consults = $consult->where('user_id', auth()->user()->id)->get();
+
+        //dd($consults);
+         
+         return view('admin.consult.saida', compact('consults'));
+
         }
-        else {
-        $consults = $consult->where('reg_id', auth()->user()->id, or 'cons_id' ,auth()->user()->id)->get();
-        }
+        else 
+        {
+        $id = auth()->user()->id;
+        //dd($consult);
+        $consults = Consult::where('cons_id' , $id)
+                                    ->where( 'status', '!=', 'C')
+                                    ->orWhere('reg_id', $id)
+                                    ->get();
 
         return view('admin.consult.saida', compact('consults'));
+        }
     }
     public function finalizada(Consult $consult)
     {
@@ -138,17 +153,34 @@ class ConsultController extends Controller
                     ->with('error', 'O campo descreva sua dúvida ou questionamento deve ser preenchido para envio da consultoria');
     }
     }
-    public function regular(consult $consult, Request $request, Perfil $perfil, User $user)
+    public function regular(consult $consult, Request $request, Perfil $perfil, User $user, file $file)
     {
-        
+        $sid = $request->sid;
+        $files = $file->where('consult_id', $sid)->get();
         $consults = $consult->where('id', $request->sid)->get();
         
         $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
         
-        $sid = $request->sid;
         $users = $user->all();
+
+        $downloads=DB::table('files')->get();
         
-        return view('admin.consult.regular', compact('consults', 'solRs', 'users', 'sid'));
+        return view('admin.consult.regular', compact('consults', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
+    } 
+
+    public function showS(consult $consult, Request $request, Perfil $perfil, User $user, file $file)
+    {
+        $sid = $request->sid;
+        $files = $file->where('consult_id', $sid)->get();
+        $consults = $consult->where('id', $request->sid)->get();
+        
+        $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
+        
+        $users = $user->all();
+
+        $downloads=DB::table('files')->get();
+        
+        return view('admin.consult.showS', compact('consults', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
     } 
     public function consultor(Consult $consult, Request $request, User $user)
     {
@@ -210,7 +242,7 @@ class ConsultController extends Controller
         
     }
     public function show()
-{
+    {
     //PDF file is stored under project/public/download/info.pdf
     //dd(storage_path());
 
@@ -221,7 +253,7 @@ class ConsultController extends Controller
             );
 
     return Response::download($file, '5filhos.jpg', $headers);
-}
+    }
 
     public function resposta(Consult $consult, Request $request, User $user)
     {
@@ -250,17 +282,9 @@ class ConsultController extends Controller
         $cid = $request->cid;
         $sid = $request->sid;
 
-         //dd($sid);
-        
-        //$consults = Consult::find($sid);
-        //dd($dataform);
         DB::table('consults')
                     ->where('id', $request->sid)
                     ->update(['devolutiva' => $request->devolutiva, 'status' => 'D' ]);
-
-        //$dataForm->devolutiva = $request->devolutiva;
-        //$dataForm->status = 'D';
-        //$dataForm->update();
 
          return redirect(route('consult.entrada'));   
     }
