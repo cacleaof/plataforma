@@ -57,7 +57,7 @@ class UsersTableSeeder extends Seeder
         ]);
         Consult::create([
             'user_id'      => '4',
-            'status'       => 'C',
+            'status'       => 'R',
             'consulta'    => 'Solicitação regulada e enviada ao Teleconsultor',
         ]);
         Consult::create([

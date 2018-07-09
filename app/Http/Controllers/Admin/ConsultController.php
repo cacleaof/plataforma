@@ -24,6 +24,7 @@ class ConsultController extends Controller
     if (!$solS) {
     
 	$consults = $consult->where('status', 'S')
+                        ->orwhere('status', 'A')
                         ->orwhere('status', 'D')
                         ->where('user_id', auth()->user()->id)->get();
     
@@ -37,21 +38,19 @@ class ConsultController extends Controller
 
     if (!$solR) {
 
-        //dd($solR);
+        
     $consreg = $consult->where('status', 'R')->get();
-    //dd($consreg);
+    
     }
     else{$consreg=null;}
 
     $solC = $perfil->where('perfil', 'C')->where('user_id', auth()->user()->id)->get()->isEmpty();
     
-    //dd($solR);
 
     if (!$solC) {
 
-        //dd($solR);
     $conscons = $consult->where('cons_id', auth()->user()->id)->get();
-    //dd($consreg);
+
     }
     else{$conscons=null;}
 
@@ -69,7 +68,6 @@ class ConsultController extends Controller
         {  
         $consults = $consult->where('user_id', auth()->user()->id)->get();
 
-        //dd($consults);
          
          return view('admin.consult.saida', compact('consults'));
 
@@ -77,7 +75,6 @@ class ConsultController extends Controller
         else 
         {
         $id = auth()->user()->id;
-        //dd($consult);
         $consults = Consult::where('cons_id' , $id)
                                     ->where( 'status', '!=', 'C')
                                     ->orWhere('reg_id', $id)
@@ -118,7 +115,6 @@ class ConsultController extends Controller
         $dataForm->user_id = auth()->user()->id;
         $dataForm->save();
         $idc = $dataForm->id;
-        //dd($arquivos);
         if(!empty($arquivos)):
                 $dataForm->anexos = '1';
                 $dataForm->update();
@@ -126,15 +122,7 @@ class ConsultController extends Controller
 
                 $data = new file;
                 $data->consult_id = $idc;
-                //dd($dataForm->file);
-                //$file_ext = $arquivo->getClientOriginalExtension();
-                //$destination_path = public_path('/consulta');
-
-                //$newname = rand(123456,999999).".".$file_ext;
-                //$arquivo->move($destination_path, $newname);
                 $data->size = $arquivo->getClientSize();
-                //$arquivo->filename = $newname;
-                //dd($arquivo);
                 $nome = $arquivo->getClientOriginalName();
                 $nome = $idc.$nome;
                 $data->file = $nome;
@@ -218,7 +206,8 @@ class ConsultController extends Controller
     {
         $sid = $request->sid;
         $files = $file->where('consult_id', $sid)->get();
-        $consults = $consult->where('id', $request->sid)->get();
+        //$consults = $consult->where('id', $request->sid)->get();
+        $consult = Consult::find($request->sid);
         
         $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
         
@@ -226,9 +215,64 @@ class ConsultController extends Controller
 
         $downloads=DB::table('files')->get();
         
-        return view('admin.consult.resposta', compact('consults', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
+        return view('admin.consult.resposta', compact('consult', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
     }
 
+    public function respcons(File $file, Consult $consult, Request $request, User $user)
+    {
+        $sid = $request->sid;
+        $consult = Consult::find($request->sid);//dd($cid);
+        $dl = File::find($sid);
+
+        return view('admin.consult.respcons', compact('consult', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
+        
+    }
+        public function storecons(Request $request)
+        {
+        if(!empty($request->resposta)) {
+            $arquivos = $request->file('arquivo');
+            $sid = $request->sid;
+            $dataForm = Consult::find($request->sid);
+            //$dataForm->consulta = $request->consulta;
+            //$dataForm->serviço = $request->serviço;
+            //$dataForm->ativo = $request->ativo;
+            //$dataForm->paciente = $request->paciente;
+            //$dataForm->idade = $request->idade;
+            //$dataForm->queixa = $request->queixa;
+            //$dataForm->instituiçao = $request->instituiçao;
+            //$dataForm->municipio_sol = $request->municipio_sol;
+            $dataForm->resposta = $request->resposta;
+            $nome = $request->file;
+            $dataForm->status = 'A';
+            //$dataForm->user_id = auth()->user()->id;
+            $dataForm->update();
+            $idc = $dataForm->id;
+            if(!empty($arquivos)):
+                $dataForm->anexos = '1';
+                $dataForm->update();
+            foreach ($arquivos as $arquivo):
+
+                $data = new file;
+                $data->consult_id = $idc;
+                $data->size = $arquivo->getClientSize();
+                $nome = $arquivo->getClientOriginalName();
+                $nome = $idc.$nome;
+                $data->file = $nome;
+                $data->save();
+                Storage::putfileAs($dataForm->user_id, $arquivo, $nome);
+            endforeach;
+            endif;
+
+            return redirect()
+                        ->route('consult.entrada')
+                        ->with('success', 'Resposta da TeleConsultoria enviada com sucesso');
+        }
+        else {
+        return redirect()
+                    ->back()
+                    ->with('error', 'O campo descreva sua dúvida ou questionamento deve ser preenchido para envio da consultoria');
+    }
+    }
     public function download(File $file, Consult $consult, Request $request, User $user)
     {
         $sid = $request->sid;

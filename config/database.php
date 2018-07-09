@@ -52,6 +52,9 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+            'options'   => array(
+                PDO::MYSQL_ATTR_LOCAL_INFILE => true,
+            ),
         ],
 
         'pgsql' => [
