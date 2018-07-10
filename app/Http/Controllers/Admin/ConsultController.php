@@ -11,6 +11,7 @@ use App\Models\Consult;
 use App\Models\Perfil;
 use App\Models\file;
 use DB;
+use App\Library\Curls;
 
 
 class ConsultController extends Controller
@@ -44,12 +45,14 @@ class ConsultController extends Controller
     }
     else{$consreg=null;}
 
-    $solC = $perfil->where('perfil', 'C')->where('user_id', auth()->user()->id)->get()->isEmpty();
+    $solC = $perfil->where('perfil', 'C')
+                   ->where('user_id', auth()->user()->id)->get()->isEmpty();
     
 
     if (!$solC) {
 
-    $conscons = $consult->where('cons_id', auth()->user()->id)->get();
+    $conscons = $consult->where('cons_id', auth()->user()->id)
+                        ->where('status', 'C')->get();
 
     }
     else{$conscons=null;}
@@ -96,6 +99,32 @@ class ConsultController extends Controller
 
         return view('admin.consult.nova', compact('consults'));
     } 
+
+    public function WordsSearch() 
+    {
+    global $BASEURL;
+    $BASEURL = "http://decs.bvsalud.org/cgi-bin/mx/cgi=@vmx/decs/";
+    $lang='pt';
+    $words='apendicite';
+    
+    $params = array('words' => trim($words), 'lang' => trim($lang));
+    
+    $dados = getContent($BASEURL, $params);
+    
+    dd($dados);
+
+     return view('admin.consult.wordssearch', compact('params'));
+    //return getContent($BASEURL, $params);
+
+    }
+    public function get_cep(Request $request)
+{
+    $cep = $request->cep;
+    $url = 'https://viacep.com.br/ws/'.$cep.'/json/';
+    return redirect()
+                    ->back();
+}
+
     public function store(Request $request)
     {
     if(!empty($request->consulta)) {
@@ -206,7 +235,7 @@ class ConsultController extends Controller
     {
         $sid = $request->sid;
         $files = $file->where('consult_id', $sid)->get();
-        //$consults = $consult->where('id', $request->sid)->get();
+        
         $consult = Consult::find($request->sid);
         
         $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);

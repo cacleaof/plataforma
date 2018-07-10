@@ -131,7 +131,7 @@ return [
         ],
         [
             'text'        => 'Monitoramento',
-            'url'         => 'admin/monitor',
+            'url'         => 'admin/wordssearch',
             'icon'        => 'dashboard',
         ],
 

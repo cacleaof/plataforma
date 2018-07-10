@@ -51,6 +51,8 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 
 	$this->post('storecons', 'ConsultController@storecons')->name('consult.storecons');
 
+	$this->get('wordssearch', 'ConsultController@wordssearch')->name('consult.wordssearch');
+
 	$this->get('getindex', 'importar@getindex')->name('importar.getindex');
 });
      //o certo é colocar o post, saida, fim dentro do 'middleware' => ['auth'] pois o

@@ -66,13 +66,13 @@
                             <input type="text" class="form-control" name="l_recom" placeholder="Leitura Recomendada">
                         </div>     
                         <div class="form-group col-xs-4">
-                            <input type="text" name="p_chave1" placeholder="DECs – descritores em ciências da saúde" class="form-control">
+                            <input type="text" name="dec1" placeholder="DECs – descritores em ciências da saúde" class="form-control">
                         </div>
                         <div class="form-group col-xs-4">
-                            <input type="text" name="p_chave2" placeholder="DECs – descritores em ciências da saúde" class="form-control">
+                            <input type="text" name="dec2" placeholder="DECs – descritores em ciências da saúde" class="form-control">
                         </div>
                         <div class="form-group col-xs-4">
-                            <input type="text" name="p_chave3" placeholder="DECs – descritores em ciências da saúde" class="form-control">
+                            <input type="text" name="dec3" placeholder="DECs – descritores em ciências da saúde" class="form-control">
                         </div>
                         <div class="form-row" >
                         <div class="form-group">
