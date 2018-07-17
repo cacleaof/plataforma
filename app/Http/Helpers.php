@@ -17,4 +17,15 @@ function showstat($status)
         return "Aguarda Avaliação";
 }
 }
+function tempo($created_at)
+{
+    $tempo = now()->diffInMinutes($created_at);
+
+    $h = floor($tempo / 60);
+
+        return $h.' hs';
+
+}
+
+
 ?>

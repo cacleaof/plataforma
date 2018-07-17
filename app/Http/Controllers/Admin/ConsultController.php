@@ -12,6 +12,7 @@ use App\Models\Perfil;
 use App\Models\file;
 use DB;
 use App\Library\Curls;
+use GuzzleHttp\Client;
 
 
 class ConsultController extends Controller
@@ -102,20 +103,16 @@ class ConsultController extends Controller
 
     public function WordsSearch() 
     {
-    global $BASEURL;
-    $BASEURL = "http://decs.bvsalud.org/cgi-bin/mx/cgi=@vmx/decs/";
-    $lang='pt';
-    $words='apendicite';
-    
-    $params = array('words' => trim($words), 'lang' => trim($lang));
-    
-    $dados = getContent($BASEURL, $params);
-    
-    dd($dados);
+        $client = new Client([
+            'headers' => ['content-type' => 'application/xml' , 'Accept' => 'application/xml' ],
+            ]);
+        $response = $client->request('POST', 'http://decs.bvsalud.org/cgi-bin/mx/cgi=@vmx/decs/?words=dengue');
+        $data = $response->getBody();
+        $data = simplexml_load_string($data);
+        dd($data);
 
-     return view('admin.consult.wordssearch', compact('params'));
-    //return getContent($BASEURL, $params);
-
+    return view('admin.consult.wordssearch', compact('data'));
+    //return $content;
     }
     public function get_cep(Request $request)
 {
@@ -188,17 +185,37 @@ class ConsultController extends Controller
     public function showS(consult $consult, Request $request, Perfil $perfil, User $user, file $file)
     {
         $sid = $request->sid;
+        $consult = Consult::find($request->sid);
         $files = $file->where('consult_id', $sid)->get();
-        $consults = $consult->where('id', $request->sid)->get();
-        
         $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
         
-        $users = $user->all();
+        $users = $user->all();    
 
         $downloads=DB::table('files')->get();
         
-        return view('admin.consult.showS', compact('consults', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
+        return view('admin.consult.showS', compact('consult', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads', 'today'));
     } 
+    public function show_store(Request $request)
+    {
+
+    if(!empty($request->sid)) {
+        $dataForm = Consult::find($request->sid);
+        $dataForm->av_duvida = $request->av_duvida;
+        $dataForm->avaliaçao = $request->avaliaçao;
+        $dataForm->av_comment = $request->av_comment;
+        $dataForm->status = 'F';
+        $dataForm->update();
+
+        return redirect()
+                    ->route('consult.entrada')
+                    ->with('success', 'TeleConsultoria Avaliada pelo Solicitante e Finalizada');
+    }
+    else {
+        return redirect()
+                    ->back()
+                    ->with('error', 'Problemas na avaliaçao');
+    }
+    }
     public function consultor(Consult $consult, Request $request, User $user)
     {
         
@@ -210,6 +227,14 @@ class ConsultController extends Controller
                     ->where('id', $request->sid)
                     ->update(['cons_id' => $request->cid, 'cons_name' => $user->name ]);
          return redirect()->back();           
+    }
+    public function modelo(Consult $consult, Request $request)
+    {
+        $sid = $request->sid;
+        
+        $consult = Consult::find($sid);
+        
+         return view('admin.consult.modelo', compact('consult'));          
     }
     public function encaminhar(Consult $consult, Request $request, User $user)
     {

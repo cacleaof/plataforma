@@ -17,7 +17,7 @@ class Importar extends Controller
         //$pdo = new PDO('mysql:host=localhost;dbname=Telessaude-sespe','root','',[ PDO::MYSQL_ATTR_LOCAL_INFILE => true ]);
         $pdo = DB::connection()->getPdo();
         $pdo->exec("
-            LOAD DATA LOCAL INFILE 'E:/xampp/htdocs/plataforma/storage/app/public/Import/usuarios.csv'
+            LOAD DATA LOCAL INFILE 'C:/xampp/htdocs/plataforma/storage/app/public/Import/usuarios.csv'
             INTO TABLE imports
             FIELDS TERMINATED BY ';'
             IGNORE 1 ROWS

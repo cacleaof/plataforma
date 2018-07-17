@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Regulação da Teleconsultoria')
+@section('title', 'Pesquisa de Satisfação')
 
 @section('content_header')
-    <h1>Regulação da Teleconsultoria</h1>
+    <h1>Pesquisa de Satisfação</h1>
     <ol class='breadcrumb'>
     	<li><a ref="">Dashboard</a></li>
     	<li><a ref="">Consult</a></li>
@@ -11,57 +11,32 @@
     </ol>
 @stop
 @section('content')
-<div class="container">
-        <div class="box">
-        <div class="box-header">
-            <a href="{{ route('consult.entrada', ['sid' => $sid]) }}" class="btn btn-danger"><i class="fas fa-shopping-cart"></i>entrada</a>
-            <a href="{{ route('admin.consult.saida', ['sid' => $sid]) }}" class="btn btn-success"><i class="fas fa-shopping-cart"></i>saida</a>
-        </div>
+<div class="container">       
         @include('admin.includes.alerts')
-        </div>
     </div>
 	<table class="table table-striped">
-            <tr>
-            <hr>
             <th>ID </th>
             <th>STATUS </th>
-            <th>SERVIÇO </th>
             <th>DESCRIÇÃO </th>
-            <th>MUNICIPIO </th>
-            <th>UF</th>
-            <th>NOME SOLICITANTE </th>
-            <th>ID</th>
             <th>TELECONSULTOR </th>
             <th>TEMPO </th>
             <th>PACIENTE </th>
             <th>DEVOLUÇÃO </th>
             </tr> 
-            <tr>
-      @if ($consults!=null)  
-          <h4>Dados da TeleConsultoria Selecionada</h4>    
-         @forelse($consults as $consult)
+            <tr>   
             <td>{{ $consult->id}}</a></td>
             <td>{{ showstat($consult->status) }} </td>
-            <td>{{ $consult->serviço}} </td>
             <td>{{ $consult->consulta}} </td>
-            <td>{{ $consult->municipio}} </td>
-            <td>{{ $consult->uf}} </td>
-            <td>{{$consult->user->name}} </td>
-            <td>{{$consult->cons_id}} </td>
             <td>{{$consult->cons_name}} </td>
-            <td>{{$consult->tempo}} </td>
+            <td>{{ tempo($consult->created_at) }} </td>
             <td>{{$consult->paciente}} </td>
             <td>{{$consult->devolutiva}} </td>
             </tr>    
-         @empty
-         <p>Você não tem consultas na sua caixa de entrada</p>
-         @endforelse
-      @endif
     </table> 
-    <h4>Arquivos Anexados a Teleconsultoria</h4>      
+    <h4>Arquivos Anexados a Teleconsultoria</h4>   
+    @if($consult->anexos!=null)    
     <table class="table table-striped">
         <tr>
-            <hr>
             <th>ID </th>
             <th>arquivo </th>
         </tr>       
@@ -82,7 +57,48 @@
             </td>
             </tr>
         @empty
-        <p>A plataforma Não tem Arquivo cadastrado!</p>
+        <p>A Consultoria não tem Arquivo anexado!</p>
         @endforelse
     </table> 
+    @endif
+        <div class="box box-solid box-info">
+        <div class="box-header" with-border>
+            <h3>Avaliação da Satisfação</h3>
+        </div>
+        <div class="box-body">
+            <form method="POST" action="{{ route('consult.show_store', ['sid' => $consult->id]) }}" enctype="multipart/form-data">
+                    {!! csrf_field() !!}
+                <div class="form-row">
+                    @include('admin.includes.alerts')
+                    <div class="form-group col-xs-7">
+                            <label>Sua dúvida foi esclarecida?</label>
+                            <select type="text" class="form-control" name="av_duvida">
+                            <option value="">Selecione</option>
+                            <option value="Sim, totalmente">Sim, totalmente</option>
+                            <option value="Sim, parcialmente">Sim, parcialmente</option>
+                            <option value="Não foi esclarecida">Não foi esclarecida</option>
+                            </select>
+                    </div> 
+                </div> 
+                <div class="form-row"> 
+                    <div class="form-group col-xs-7">
+                            <label>Gostaríamos de saber sua opinião sobre o serviço?</label>
+                            <select type="text" class="form-control" name="avaliaçao">
+                            <option value="">Selecione</option>    
+                            <option value="5">Muito Satisfeito</option>
+                            <option value="4">Satisfeito</option>
+                            <option value="3">Indiferente</option>
+                            <option value="2">Insatisfeito</option>
+                            <option value="1">Muito Insatisfeito</option>
+                            </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea type="text" name="av_comment" rows="5" cols="80" placeholder="Você gostaria de fazer algum comentário, crítica, elogio, sugestão ou reclamação? Caso negativo escreva não!" class="form-control" required></textarea>
+                    </div>
+                        <div class="form-group">
+                        <button type="submit" class="btn btn-success">Enviar</button> 
+                        </div>
+                </div>
+            </form>
+        </div>  
 @endsection

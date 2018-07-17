@@ -45,6 +45,10 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 
 	$this->get('showS', 'ConsultController@showS')->name('consult.showS');
 
+	$this->get('modelo', 'ConsultController@modelo')->name('consult.modelo');
+
+	$this->post('show_store', 'ConsultController@show_store')->name('consult.show_store');
+
 	$this->get('download', 'ConsultController@download')->name('consult.download');
 
 	$this->get('respcons', 'ConsultController@respcons')->name('consult.respcons');
@@ -52,6 +56,8 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 	$this->post('storecons', 'ConsultController@storecons')->name('consult.storecons');
 
 	$this->get('wordssearch', 'ConsultController@wordssearch')->name('consult.wordssearch');
+
+	$this->get('getcontent', 'ConsultController@getcontent')->name('consult.getcontent');
 
 	$this->get('getindex', 'importar@getindex')->name('importar.getindex');
 });

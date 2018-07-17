@@ -18,6 +18,7 @@
         <div class="box-header">
             <a href="{{ route('consult.entrada')}}" class="btn btn-danger"><i class="fas fa-shopping-cart"></i>Devolver ao Regulador</a>
             <a href="{{ route('consult.respcons', ['sid' => $sid]) }}" class="btn btn-success"><i class="fas fa-shopping-cart"></i>Preparar a Resposta</a>
+            <a href="{{ route('consult.modelo', ['sid' => $sid]) }}" class="btn btn-success"><i class="fas fa-shopping-cart"></i>Detalhar a Teleconsultoria</a>
         </div>
         </div>
     </div>

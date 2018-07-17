@@ -49,6 +49,9 @@ class CreateConsultsTable extends Migration
             $table->string('dec1', 50)->nullable();
             $table->string('dec2', 50)->nullable();
             $table->string('dec3', 50)->nullable();
+            $table->string('av_duvida', 20)->nullable();
+            $table->string('avaliaçao', 1)->nullable();
+            $table->text('av_comment')->nullable();
         });
     }
 

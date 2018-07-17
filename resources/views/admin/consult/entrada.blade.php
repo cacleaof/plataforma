@@ -46,7 +46,7 @@
             <td>{{$consult->user->name}} </td>
             <td>{{$consult->cons_id}} </td>
             <td>{{$consult->cons_name}} </td>
-            <td>{{$consult->tempo}} </td>
+            <td>{{ tempo($consult->created_at) }} </td>
             <td>{{$consult->paciente}} </td>
             </tr>    
         @empty
@@ -67,7 +67,7 @@
             <td>{{$reg->user->name}} </td>
             <td>{{$reg->cons_id}} </td>
             <td>{{$reg->cons_name}} </td>
-            <td>{{$reg->tempo}} </td>
+            <td>{{ tempo($reg->created_at) }} </td>
             <td>{{$reg->paciente}} </td>
             </tr>   
         </form>    
@@ -88,8 +88,8 @@
             <td>{{ $con->uf}} </td>
             <td>{{$con->user->name}} </td>
             <td>{{$con->cons_id}} </td>
-             <td>{{$con->cons_name}} </td>
-            <td>{{$con->tempo}} </td>
+            <td>{{$con->cons_name}} </td>
+            <td>{{ tempo($con->created_at) }} </td>
             <td>{{$con->paciente}} </td>
             </tr>   
         </form>    
