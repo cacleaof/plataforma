@@ -42,6 +42,7 @@ class CreateConsultsTable extends Migration
             $table->string('ibge_sol', 7)->nullable();
             $table->boolean('anexos')->nullable();
             $table->text('devolutiva')->nullable();
+            $table->text('devolutiva_cons')->nullable();
             $table->text('dev_reg')->nullable();
             $table->text('resposta')->nullable();
             $table->text('l_recom')->nullable();

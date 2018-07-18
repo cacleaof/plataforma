@@ -39,6 +39,10 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 
 	$this->get('devolver', 'ConsultController@devolver')->name('consult.devolver');
 
+	$this->get('dev_cons', 'ConsultController@dev_cons')->name('consult.dev_cons');
+
+	$this->post('dev_con_store', 'ConsultController@dev_con_store')->name('consult.dev_con_store');
+
 	$this->post('devstore', 'ConsultController@devstore')->name('consult.devstore');
 
 	$this->get('show', 'ConsultController@show')->name('consult.show');

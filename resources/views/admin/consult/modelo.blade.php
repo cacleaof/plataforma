@@ -4,14 +4,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row">
-  <div class="col-md-12">
-    <h1>Detalhamento</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="table table-responsive">
-    <table class="table table-bordered" id="table">
+<div class="modal fade" id="modalshow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-red">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-footer">
+        <div class="form-group">
+          <br>
+          <table class="table table-bordered" id="table">
         <tr>
             <hr>
             <th width="150px">ID </th>
@@ -79,73 +82,17 @@
             <td>{{$consult->av_commen}} </td>
         </tr>
     </table>
-  </div>
-<div id="create" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"></h4>
-      </div>
-      <div class="modal-body">
-        <form class="form-horizontal" role="form">
-          <div class="form-group row add">
-            <label class="control-label col-sm-2" for="title">Title :</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="title" name="title"
-              placeholder="Your Title Here" required>
-              <p class="error text-center alert alert-danger hidden"></p>
-            </div>
+                    <button type="submit" class="btn btn-block">Confirmar</button>
+                </div>
           </div>
-          <div class="form-group">
-            <label class="control-label col-sm-2" for="body">Body :</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="body" name="body"
-              placeholder="Your Body Here" required>
-              <p class="error text-center alert alert-danger hidden"></p>
-            </div>
-          </div>
-        </form>
-      </div>
-          <div class="modal-footer">
-            <button class="btn btn-warning" type="submit" id="add">
-              <span class="glyphicon glyphicon-plus"></span>Save Post
-            </button>
-            <button class="btn btn-warning" type="button" data-dismiss="modal">
-              <span class="glyphicon glyphicon-remobe"></span>Close
-            </button>
-          </div>
+        </div>
     </div>
-  </div>
-</div></div>
-{{-- Modal Form Show POST --}}
-<div id="show" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"></h4>
-                  </div>
-                    <div class="modal-body">
-                    <div class="form-group">
-                      <label for="">ID :</label>
-                      <b id="i"/>
-                    </div>
-                    <div class="form-group">
-                      <label for="">Title :</label>
-                      <b id="ti"/>
-                    </div>
-                    <div class="form-group">
-                      <label for="">Body :</label>
-                      <b id="by"/>
-                    </div>
-                    </div>
-                    </div>
-                  </div>
-</div>
-      </div>
-      
-    </div>
-  </div>
 </div>
 @endsection
+@push('script')
+<script type="text/javascript">
+  function modalQuantidadeParticipantes($evento){
+      $("#modalshow").modal();
+    }
+    </script>
+    @endpush

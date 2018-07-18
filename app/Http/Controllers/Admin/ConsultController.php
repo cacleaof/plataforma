@@ -331,7 +331,6 @@ class ConsultController extends Controller
     {
         $sid = $request->sid;
         $cid = $request->cid;
-        //dd($cid);
         $dl = File::find($sid);
         $dl = $dl->file;
         $file= storage_path()."/app/public/".$cid."/".$dl;
@@ -374,6 +373,13 @@ class ConsultController extends Controller
         
         return view('admin.consult.devolver', compact('consults', 'solRs', 'users', 'sid'));
     } 
+    public function dev_cons(consult $consult, Request $request, Perfil $perfil, User $user)
+    {  
+        $sid = $request->sid;
+        $consult = Consult::find($request->sid);
+        
+        return view('admin.consult.dev_cons', compact('consult', 'sid'));
+    }
     public function devstore(Consult $consult, Request $request, User $user)
     {
        
@@ -383,6 +389,15 @@ class ConsultController extends Controller
         DB::table('consults')
                     ->where('id', $request->sid)
                     ->update(['devolutiva' => $request->devolutiva, 'status' => 'D' ]);
+
+         return redirect(route('consult.entrada'));   
+    }
+    public function dev_con_store(Consult $consult, Request $request)
+    {
+        $sid = $request->sid;
+        DB::table('consults')
+                    ->where('id', $request->sid)
+                    ->update(['devolutiva_cons' => $request->devolutiva, 'status' => 'R' ]);
 
          return redirect(route('consult.entrada'));   
     }
