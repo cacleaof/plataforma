@@ -30,7 +30,7 @@ class CreateConsultsTable extends Migration
             $table->integer('reg_id')->nullable();
             $table->string('cons_name', 50)->nullable();
             $table->integer('cons_id')->nullable();
-            $table->date('tempo')->nullable();
+            $table->string('tempo', 20)->nullable();
             $table->string('solicitaçao', 50)->nullable();
             $table->boolean('ativo')->nullable();
             $table->string('paciente', 50)->nullable();

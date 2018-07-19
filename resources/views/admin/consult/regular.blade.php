@@ -56,6 +56,9 @@
          @endforelse
       @endif
     </table> 
+    <div class="box-tools pull-right">
+                    <a href="#" class="btn btn-success" onClick="modalshow({{$consult}})"><i class="fa fa-pencil" aria-hidden="true"></i>Detalhar a Teleconsultoria</a>
+    </div>
     <h4>Arquivos Anexados a Teleconsultoria</h4>      
     <table class="table table-striped">
         <tr>
@@ -106,4 +109,10 @@
         <p>A plataforma Não tem Teleconsultor cadastrado!</p>
         @endforelse
     </table>
+@include('admin.includes.modelo')    
 @endsection
+<script type="text/javascript">
+  function modalshow($consult){
+      $("#modalshow").modal();
+    }
+</script>

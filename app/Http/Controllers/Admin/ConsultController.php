@@ -287,18 +287,10 @@ class ConsultController extends Controller
             $arquivos = $request->file('arquivo');
             $sid = $request->sid;
             $dataForm = Consult::find($request->sid);
-            //$dataForm->consulta = $request->consulta;
-            //$dataForm->serviço = $request->serviço;
-            //$dataForm->ativo = $request->ativo;
-            //$dataForm->paciente = $request->paciente;
-            //$dataForm->idade = $request->idade;
-            //$dataForm->queixa = $request->queixa;
-            //$dataForm->instituiçao = $request->instituiçao;
-            //$dataForm->municipio_sol = $request->municipio_sol;
             $dataForm->resposta = $request->resposta;
             $nome = $request->file;
             $dataForm->status = 'A';
-            //$dataForm->user_id = auth()->user()->id;
+            $dataForm->tempo = tempo($dataForm->created_at);
             $dataForm->update();
             $idc = $dataForm->id;
             if(!empty($arquivos)):
