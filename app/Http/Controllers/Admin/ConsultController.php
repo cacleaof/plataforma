@@ -18,12 +18,9 @@ use GuzzleHttp\Client;
 class ConsultController extends Controller
 {
    public function entrada(Consult $consult, Perfil $perfil, User $user)
-    {
+    { 
 
-    $solS = $perfil->where('perfil', 'S')->where('user_id', auth()->user()->id)->get()->isEmpty();
-    //dd($solS);
-
-    if (!$solS) {
+    if (perfil()['solS']) {
     
 	$consults = $consult->where('status', 'S')
                         ->orwhere('status', 'A')
@@ -32,13 +29,8 @@ class ConsultController extends Controller
     
     }
     else{$consults=null;}
-    //dd($consults);
 
-    $solR = $perfil->where('perfil', 'R')->where('user_id', auth()->user()->id)->get()->isEmpty();
-    
-    //dd($solR);
-
-    if (!$solR) {
+    if (perfil()['solR']) {
 
         
     $consreg = $consult->where('status', 'R')->get();
@@ -46,11 +38,7 @@ class ConsultController extends Controller
     }
     else{$consreg=null;}
 
-    $solC = $perfil->where('perfil', 'C')
-                   ->where('user_id', auth()->user()->id)->get()->isEmpty();
-    
-
-    if (!$solC) {
+    if (perfil()['solC']) {
 
     $conscons = $consult->where('cons_id', auth()->user()->id)
                         ->where('status', 'C')->get();
@@ -65,10 +53,8 @@ class ConsultController extends Controller
     }
     public function saida(Consult $consult, Perfil $perfil, User $user)
     {
-        
-        $solS = $perfil->where('perfil', 'S')->where('user_id', auth()->user()->id)->get()->isEmpty();
  
-        if (!$solS) 
+        if (perfil()['solS']) 
         {  
         $consults = $consult->where('user_id', auth()->user()->id)->get();
 
@@ -186,6 +172,8 @@ class ConsultController extends Controller
     {
         $sid = $request->sid;
         $consult = Consult::find($request->sid);
+        if($consult->user_id == auth()->user()->id)
+        {
         $files = $file->where('consult_id', $sid)->get();
         $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
         
@@ -193,7 +181,14 @@ class ConsultController extends Controller
 
         $downloads=DB::table('files')->get();
         
-        return view('admin.consult.showS', compact('consult', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads', 'today'));
+        return view('admin.consult.showS', compact('consult', 'solRs', 'users', 'sid', 'files', 'downloads'));
+        }
+        else
+        {
+         return redirect()
+                    ->route('consult.entrada')
+                    ->with('error', 'Você não tem autorização para ver essa TeleConsultoria');   
+        }
     } 
     public function show_store(Request $request)
     {
@@ -240,7 +235,7 @@ class ConsultController extends Controller
     {
         $consult = consult::find($request->sid);
         $cn = $consult->cons_name;
-        //dd($cn);
+
         if (!empty($cn)) {
 
         DB::table('consults')
@@ -275,7 +270,7 @@ class ConsultController extends Controller
     public function respcons(File $file, Consult $consult, Request $request, User $user)
     {
         $sid = $request->sid;
-        $consult = Consult::find($request->sid);//dd($cid);
+        $consult = Consult::find($request->sid);
         $dl = File::find($sid);
 
         return view('admin.consult.respcons', compact('consult', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));

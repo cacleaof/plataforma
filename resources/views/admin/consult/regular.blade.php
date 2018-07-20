@@ -48,7 +48,7 @@
             <td>{{$consult->user->name}} </td>
             <td>{{$consult->cons_id}} </td>
             <td>{{$consult->cons_name}} </td>
-            <td>{{$consult->tempo}} </td>
+            <td>{{ tempo($consult->created_at) }} </td>
             <td>{{$consult->paciente}} </td>
             </tr>    
          @empty

@@ -1,4 +1,5 @@
 <?php 
+use App\Models\Perfil;
 
 function showstat($status)
 {
@@ -26,6 +27,17 @@ function tempo($created_at)
         return $h.' hs';
 
 }
+function perfil()
+{
+    $sol['solS'] = Perfil::where('perfil', 'S')
+                    ->where('user_id', auth()->user()->id)->get()->isNotEmpty();
+    $sol['solR'] = Perfil::where('perfil', 'R')
+                    ->where('user_id', auth()->user()->id)->get()->isNotEmpty();
+    $sol['solC'] = Perfil::where('perfil', 'C')
+                    ->where('user_id', auth()->user()->id)->get()->isNotEmpty();
 
+    //$sid = Consults::Find($sid);
 
+        return $sol; 
+}
 ?>

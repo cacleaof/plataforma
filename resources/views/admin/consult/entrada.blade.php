@@ -7,7 +7,7 @@
 @stop
 @section('content')
     @include('admin.includes.alerts')
-    @if ( !$solS )
+    @if ( perfil()['solS'] )
     <div class="container">
         <div class="box">
         <div class="box-header">

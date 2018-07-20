@@ -67,6 +67,7 @@
             <table class="table table-condensed table table-striped">
             <tr>
             <th>AREA INFORMADA </th>
+            @role([''])
             <th>DEVOLUTIVA DO CONSULTOR </th>
             <th>DEVOLUTIVA DO REGULADOR </th>
             </tr>
