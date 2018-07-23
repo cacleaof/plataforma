@@ -13,6 +13,9 @@
         <div class="box-header">
             <a href="{{ route('consult.nova')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>TeleConsultoria</a>
         </div>
+        <div class="box-header">
+            <a href="{{ route('consult.wordssearch')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Procurar Palavra</a>
+        </div>
         </div>
     </div>
     @endif

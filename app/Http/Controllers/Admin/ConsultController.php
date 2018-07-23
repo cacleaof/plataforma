@@ -90,9 +90,8 @@ class ConsultController extends Controller
     public function WordsSearch() 
     {
         $client = new Client([
-            'headers' => ['content-type' => 'application/xml' , 'Accept' => 'application/xml' ],
-            ]);
-        $response = $client->request('POST', 'http://decs.bvsalud.org/cgi-bin/mx/cgi=@vmx/decs/?words=dengue');
+            'headers' => ['content-type' => 'application/xml' , 'Accept' => 'application/xml' ]]);
+        $response = $client->request('GET', 'http://decs.bvsalud.org/cgi-bin/mx/cgi=@vmx/decs/?words=dengue');
         $data = $response->getBody();
         $data = simplexml_load_string($data);
         dd($data);
