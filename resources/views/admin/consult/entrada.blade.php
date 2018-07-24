@@ -13,9 +13,6 @@
         <div class="box-header">
             <a href="{{ route('consult.nova')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>TeleConsultoria</a>
         </div>
-        <div class="box-header">
-            <a href="{{ route('consult.wordssearch')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Procurar Palavra</a>
-        </div>
         </div>
     </div>
     @endif
@@ -30,7 +27,6 @@
             <th>MUNICIPIO </th>
             <th>UF</th>
             <th>NOME SOLICITANTE </th>
-            <th>ID</th>
             <th>TELECONSULTOR </th>
             <th>TEMPO </th>
             <th>PACIENTE </th>
@@ -47,7 +43,6 @@
             <td>{{ $consult->municipio}} </td>
             <td>{{ $consult->uf}} </td>
             <td>{{$consult->user->name}} </td>
-            <td>{{$consult->cons_id}} </td>
             <td>{{$consult->cons_name}} </td>
             <td>{{ tempo($consult->created_at) }} </td>
             <td>{{$consult->paciente}} </td>

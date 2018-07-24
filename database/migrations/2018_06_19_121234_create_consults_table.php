@@ -20,6 +20,8 @@ class CreateConsultsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('serviço', 50)->nullable();
             $table->text('consulta');
+            $table->text('cons_replica')->nullable();
+            $table->text('cons_treplica')->nullable();
             $table->string('convenio', 20)->nullable();
             $table->string('municipio', 50)->nullable();
             $table->string('ibge', 7)->nullable();
@@ -45,6 +47,8 @@ class CreateConsultsTable extends Migration
             $table->text('devolutiva_cons')->nullable();
             $table->text('dev_reg')->nullable();
             $table->text('resposta')->nullable();
+            $table->text('replica')->nullable();
+            $table->text('treplica')->nullable();
             $table->text('l_recom')->nullable();
             $table->string('ciap', 50)->nullable();
             $table->string('dec1', 50)->nullable();

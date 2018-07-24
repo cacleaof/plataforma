@@ -18,7 +18,6 @@
             <th>MUNICIPIO </th>
             <th>UF</th>
             <th>NOME SOLICITANTE </th>
-            <th>TELECONSULTOR </th>
             <th>TEMPO </th>
             <th>PACIENTE </th>
             </tr>
@@ -31,8 +30,6 @@
             <td>{{ $consult->image}} </td>
             <td>{{ $consult->municipio}} </td>
             <td>{{ $consult->uf}} </td>
-            <td>{{$consult->user->name}} </td>
-            <td>{{$consult->cons_id}} </td>
             <td>{{ tempo($consult->created_at) }} </td>
             <td>{{$consult->paciente}} </td>
             </tr>

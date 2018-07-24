@@ -10,6 +10,8 @@ use App\User;
 use App\Models\Consult;
 use App\Models\Perfil;
 use App\Models\file;
+use App\Models\Profissoe;
+use App\Models\Especialidade;
 use DB;
 use App\Library\Curls;
 use GuzzleHttp\Client;
@@ -152,7 +154,7 @@ class ConsultController extends Controller
                     ->with('error', 'O campo descreva sua dúvida ou questionamento deve ser preenchido para envio da consultoria');
     }
     }
-    public function regular(consult $consult, Request $request, Perfil $perfil, User $user, file $file)
+    public function regular(consult $consult, Request $request, Perfil $perfil, User $user, file $file, Especialidade $especialidade, Profissoe $profissoe)
     {
         $sid = $request->sid;
         $files = $file->where('consult_id', $sid)->get();
@@ -161,10 +163,12 @@ class ConsultController extends Controller
         $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
         
         $users = $user->all();
+        $especialidades = $especialidade->all();
+        $profissoes = $profissoe->all();
 
         $downloads=DB::table('files')->get();
         
-        return view('admin.consult.regular', compact('consults', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
+        return view('admin.consult.regular', compact('consults', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads', 'especialidades', 'profissoes'));
     } 
 
     public function showS(consult $consult, Request $request, Perfil $perfil, User $user, file $file)

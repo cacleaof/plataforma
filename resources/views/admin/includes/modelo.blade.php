@@ -67,7 +67,6 @@
             <table class="table table-condensed table table-striped">
             <tr>
             <th>AREA INFORMADA </th>
-            @role([''])
             <th>DEVOLUTIVA DO CONSULTOR </th>
             <th>DEVOLUTIVA DO REGULADOR </th>
             </tr>
@@ -87,6 +86,22 @@
             <td>{{$consult->resposta}} </td>
             <td>{{$consult->l_recom}} </td>
             <td>{{$consult->ciap}} </td>
+            </tr>
+            </table>
+            </div>
+            <div class="table-responsive">
+            <table class="table table-condensed table table-striped">
+            <tr>
+            <th>REPLICA </th>
+            <th>DUVIDA/RESPOSTA </th>
+            <th>TREPLICA </th>
+            <th>DUVIDA/RESPOSTA </th>
+            </tr>
+            <tr>
+            <td>{{$consult->cons_replica}} </td>
+            <td>{{$consult->replica}} </td>
+            <td>{{$consult->cons_treplica}} </td>
+            <td>{{$consult->treplica}} </td>
             </tr>
             </table>
             </div>

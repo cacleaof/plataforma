@@ -4,6 +4,8 @@ use Illuminate\Database\Seeder;
 use App\User;
 use App\Models\Consult;
 use App\Models\Perfil;
+use App\Models\Profissoe;
+use App\Models\Especialidade;
 
 class UsersTableSeeder extends Seeder
 {
@@ -85,6 +87,19 @@ class UsersTableSeeder extends Seeder
         Perfil::create([
             'user_id'      => '6',
             'perfil'       => 'M',
+        ]);
+        Profissoe::create([
+            'user_id'      => '5',
+            'profissao'       => 'Médico',
+        ]);
+        Profissoe::create([
+            'user_id'      => '4',
+            'profissao'       => 'Enfermeiro',
+        ]);
+        Especialidade::create([
+            'user_id'      => '5',
+            'prof_id'      => '1',
+            'especialidade'  => 'Radiologista',
         ]);
     }
 }

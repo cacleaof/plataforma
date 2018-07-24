@@ -19,9 +19,9 @@ class CreateProfissoesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('profissao', 100);
-            $table->string('reg_prof', 20);
-            $table->string('ano_concl', 4);
-            $table->string('uf_reg', 2);
+            $table->string('reg_prof', 20)->nullable();
+            $table->string('ano_concl', 4)->nullable();
+            $table->string('uf_reg', 2)->nullable();
         });
     }
 

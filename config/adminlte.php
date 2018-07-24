@@ -130,14 +130,14 @@ return [
             'icon'        => 'dashboard',
         ],
         [
-            'text'        => 'Monitoramento',
-            'url'         => 'admin/wordssearch',
-            'icon'        => 'dashboard',
+            'text'        => '',
+            'url'         => '',
+            'icon'        => '',
         ],
 
         [
-           'text' => 'SMART',
-           'icon' => 'money',
+           'text' => '',
+           'icon' => '',
            'submenu'  =>  [
                 [
                     'text'        => 'Teleconsultoria',

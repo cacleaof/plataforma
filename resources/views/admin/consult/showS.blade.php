@@ -14,7 +14,8 @@
 <div class="container">       
         @include('admin.includes.alerts')
     </div>
-	<table class="table table-striped">
+	<div class="table-responsive">
+            <table class="table table-condensed table table-striped">
             <th>ID </th>
             <th>STATUS </th>
             <th>DESCRIÇÃO </th>
@@ -31,8 +32,21 @@
             <td>{{ tempo($consult->created_at) }} </td>
             <td>{{$consult->paciente}} </td>
             <td>{{$consult->devolutiva}} </td>
-            </tr>    
-    </table> 
+            </tr>  
+    </table>
+            <div class="table-responsive">
+            <table class="table table-condensed table table-striped">
+            <tr>
+            <th>RESPOSTA DO TELECONSULTOR</th>
+            <th>LEITURA RECOMENDADA </th>
+            <th>CIAP </th>
+            </tr>
+            <tr>
+            <td>{{$consult->resposta}} </td>
+            <td>{{$consult->l_recom}} </td>
+            <td>{{$consult->ciap}} </td>
+            </tr>
+            </table> 
     <h4>Arquivos Anexados a Teleconsultoria</h4>   
     @if($consult->anexos!=null)    
     <table class="table table-striped">

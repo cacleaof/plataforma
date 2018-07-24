@@ -86,13 +86,16 @@
         <p>A plataforma Não tem Arquivo cadastrado!</p>
         @endforelse
     </table> 
-    <h4>Regulador Selecione o Teleconsultor que irá atender a Solicitação</h4>      
+    <h4>Regulador Selecione o Teleconsultor que irá atender a Solicitação(Tecle no Nome)</h4>      
     <table class="table table-striped">
     	<tr>
             <hr>
             <th>ID </th>
             <th>NOME </th>
             <th>EMAIL </th>
+            <th>TELEFONE </th>
+            <th>PROFISSÃO </th>
+            <th>ESPECIALIDADE </th>
         </tr>
         @forelse($solRs as $solR)        
           @forelse($users as $user)
@@ -101,6 +104,24 @@
             <td>{{ $user->id}}</a></td>
             <td><a href="{{ route('consult.consultor', ['cid' => $user->id, 'sid' => $sid]) }}">{{ $user->name}}</a></td>
             <td>{{ $user->email}} </td>
+            <td>{{ $user->fone}} </td>
+
+            <td>
+                @forelse($profissoes as $profissoe)
+                @if ($profissoe->user_id == $solR->user_id) 
+                <a>{{ $profissoe->profissao}} </a>
+                @endif
+                @empty
+                @endforelse
+            </td>
+            <td>
+                @forelse($especialidades as $especialidade)
+                @if ($especialidade->user_id == $solR->user_id) 
+                <a>{{ $especialidade->especialidade}} </a>
+                @endif
+                @empty
+                @endforelse
+            </td>
         	</tr>
         	@endif
             @empty
