@@ -128,6 +128,7 @@ return [
             'text'        => 'Cadastros',
             'url'         => 'admin/getindex',
             'icon'        => 'dashboard',
+            'can'         => 'administrador',
         ],
         [
             'text'        => '',
