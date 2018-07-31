@@ -125,29 +125,37 @@ return [
             'icon'        => 'envelope',
         ],
         [
-            'text'        => 'Cadastros',
-            'url'         => 'admin/getindex',
+            'text'        => 'Palavra BVS',
+            'url'         => 'admin/wordssearch',
             'icon'        => 'dashboard',
             'can'         => 'administrador',
         ],
         [
-            'text'        => '',
+            'text'        => 'Monitorar',
             'url'         => '',
-            'icon'        => '',
+            'icon'        => 'dashboard',
+            'can'         => 'administrador',
+        ],
+        [
+            'text'        => 'Exportar Dados',
+            'url'         => '',
+            'icon'        => 'envelope',
+            'can'         => 'administrador',
         ],
 
         [
-           'text' => '',
-           'icon' => '',
+           'text' => 'Importar Cadastros',
+           'icon' => 'dashboard',
+           'can'         => 'administrador',
            'submenu'  =>  [
                 [
-                    'text'        => 'Teleconsultoria',
-                    'url'         => 'admin/balance',
+                    'text'        => 'Selecionar Arquivos',
+                    'url'         => '',
                     'icon'        => 'credit-card-alt'
                 ],
                 [
-                    'text'        => 'Histórico',
-                    'url'         => 'admin/historic',
+                    'text'        => 'Importar Arquivo',
+                    'url'         => 'admin/getindex',
                     'icon'        => 'history'
                 ],
            ]
