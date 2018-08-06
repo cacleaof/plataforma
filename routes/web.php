@@ -63,7 +63,7 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 
 	$this->get('getcontent', 'ConsultController@getcontent')->name('consult.getcontent');
 
-	$this->get('getindex', 'importar@getindex')->name('importar.getindex');
+	$this->post('save_usuarios', 'importar@save_usuarios')->name('importar.save_usuarios');
 
 	$this->get('usuarios', 'importar@usuarios')->name('importar.usuarios');
 

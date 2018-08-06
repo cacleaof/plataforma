@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 //use App\Http\Controllers\Excel;
 use DB;
@@ -28,43 +29,30 @@ class Importar extends Controller
             				->back()
             				->with('success', 'Usuarios Adicionados com Sucesso.');
     }
-    public function usuarios(Consult $consult)
+    public function usuarios()
     {
-        $consults = $consult->all();
+        //$consults = $consult->all();
 
-        return view('admin.import.usuarios', compact('consults'));
+        return view('admin.importar.usuarios');
     } 
     public function save_usuarios(Request $request)
     {
-    if(!empty($request->consulta)) {
-        $arquivos = $request->file('arquivo');
-        
-        $dataForm->save();
-        $idc = $dataForm->id;
-        if(!empty($arquivos)):
-                $dataForm->anexos = '1';
-                $dataForm->update();
-            foreach ($arquivos as $arquivo):
+      $arquivo = $request->file('arquivo');
+         
+    if(!empty($arquivo)) {
 
-                $data = new file;
-                $data->consult_id = $idc;
-                $data->size = $arquivo->getClientSize();
-                $nome = $arquivo->getClientOriginalName();
-                $nome = $idc.$nome;
-                $data->file = $nome;
-                $data->save();
-                Storage::putfileAs($dataForm->user_id, $arquivo, $nome);
-            endforeach;
-        endif;
+        //$dataForm->save();
+        
+        Storage::putfileAs('Import', $arquivo, 'usuarios.csv');
 
         return redirect()
                     ->route('consult.entrada')
-                    ->with('success', 'TeleConsultoria enviada com sucesso - Prazo Máximo de Retorno 72 horas');
+                    ->with('success', 'Arquivo de usuários salvo! Você precisa agora importar os dados');
     }
     else {
         return redirect()
                     ->back()
-                    ->with('error', 'O campo descreva sua dúvida ou questionamento deve ser preenchido para envio da consultoria');
+                    ->with('error', 'Não anexou o arquivo');
     }
     }
     public function regular(consult $consult, Request $request, Perfil $perfil, User $user, file $file, Especialidade $especialidade, Profissoe $profissoe)

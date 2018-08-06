@@ -137,10 +137,22 @@ return [
             'can'         => 'administrador',
         ],
         [
-            'text'        => 'Exportar Dados',
+            'text'        => 'Exportar Consultorias',
             'url'         => '',
             'icon'        => 'envelope',
             'can'         => 'administrador',
+            'submenu'  =>  [
+                [
+                    'text'        => 'Exportar Dados ',
+                    'url'         => '/admin/usuarios',
+                    'icon'        => 'credit-card-alt'
+                ],
+                [
+                    'text'        => 'Copiar Arquivo',
+                    'url'         => 'admin/getindex',
+                    'icon'        => 'history'
+                ],
+           ]
         ],
 
         [
@@ -150,7 +162,7 @@ return [
            'submenu'  =>  [
                 [
                     'text'        => 'Selecionar Arquivos',
-                    'url'         => '',
+                    'url'         => '/admin/usuarios',
                     'icon'        => 'credit-card-alt'
                 ],
                 [

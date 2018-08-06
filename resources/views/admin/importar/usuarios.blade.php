@@ -18,14 +18,14 @@
 			<h3>Selecione o Arquivo de Usuários a ser Importado</h3>
 		</div>
 		<div class="box-body">
-			<form method="POST" action="{{ route('consult.store')}}" enctype="multipart/form-data">
+			<form method="POST" action="{{ route('importar.save_usuarios')}}" enctype="multipart/form-data">
 					{!! csrf_field() !!}
 				<div class="form-row">
 					@include('admin.includes.alerts')
 						<div class="form-group">
 						<div class="form-row">
-							<label for="file">Arquivos Anexos:</label>
-							<input type="file" name="arquivo[]" id="file" multiple>
+							<label for="file">Arquivo de Usuários Anexo:</label>
+							<input type="file" name="arquivo" id="file">
 							<input type="hidden" value="{{ csrf_token() }}" name="_token">
 						</div>
 						<div class="form-group">
