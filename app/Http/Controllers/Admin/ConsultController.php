@@ -21,6 +21,7 @@ class ConsultController extends Controller
 {
    public function entrada(Consult $consult, Perfil $perfil, User $user)
     { 
+        $solS=null;
 
     if (perfil()['solS']) {
     
@@ -157,11 +158,16 @@ class ConsultController extends Controller
     public function regular(consult $consult, Request $request, Perfil $perfil, User $user, file $file, Especialidade $especialidade, Profissoe $profissoe)
     {
         $sid = $request->sid;
+        $cid = $request->cid;
         $files = $file->where('consult_id', $sid)->get();
         $consults = $consult->where('id', $request->sid)->get();
         
         $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
+
+        //dd($perfil->select('perfil')->where( 'user_id' , auth()->user()->id)->first()->perfil);
         
+        if($perfil->select('perfil')->where( 'user_id' , auth()->user()->id)->first()->perfil == 'R')
+        {
         $users = $user->all();
         $especialidades = $especialidade->all();
         $profissoes = $profissoe->all();
@@ -169,6 +175,13 @@ class ConsultController extends Controller
         $downloads=DB::table('files')->get();
         
         return view('admin.consult.regular', compact('consults', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads', 'especialidades', 'profissoes'));
+        }
+        else
+        {
+         return redirect()
+                    ->route('consult.entrada')
+                    ->with('error', 'Você não tem autorização para ver essa TeleConsultoria');   
+        }
     } 
 
     public function showS(consult $consult, Request $request, Perfil $perfil, User $user, file $file)
@@ -257,6 +270,7 @@ class ConsultController extends Controller
     public function selecresp(consult $consult, Request $request, Perfil $perfil, User $user, File $file)
     {
         $sid = $request->sid;
+        $cid = $request->cid;
         $files = $file->where('consult_id', $sid)->get();
         
         $consult = Consult::find($request->sid);
@@ -270,13 +284,27 @@ class ConsultController extends Controller
         return view('admin.consult.resposta', compact('consult', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
     }
 
-    public function respcons(File $file, Consult $consult, Request $request, User $user)
+    public function respcons(File $file, Consult $consult, Request $request, Perfil $perfil, User $user)
     {
+        if($consult->cons_id == auth()->user()->id)
+        {
         $sid = $request->sid;
+        $cid = $request->cid;
+        $files = $file->where('consult_id', $sid)->get();
         $consult = Consult::find($request->sid);
+        $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
+        $users = $user->all();
+        $downloads=DB::table('files')->get();
         $dl = File::find($sid);
 
         return view('admin.consult.respcons', compact('consult', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
+        }
+        else
+        {
+         return redirect()
+                    ->route('consult.entrada')
+                    ->with('error', 'Você não tem autorização para ver essa TeleConsultoria');   
+        }
         
     }
         public function storecons(Request $request)
