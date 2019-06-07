@@ -29,7 +29,6 @@ return array(
     'App\\Http\\Requests\\MoneyValidationFormRequest' => $baseDir . '/app/Http/Requests/MoneyValidationFormRequest.php',
     'App\\Http\\Requests\\UpdateProfileFormRequest' => $baseDir . '/app/Http/Requests/UpdateProfileFormRequest.php',
     'App\\Jobs\\ImportCSV' => $baseDir . '/app/Jobs/ImportCSV.php',
-    'App\\Models\\Balance' => $baseDir . '/app/Models/Balance.php',
     'App\\Models\\Consult' => $baseDir . '/app/Models/Consult.php',
     'App\\Models\\Especialidade' => $baseDir . '/app/Models/Especialidade.php',
     'App\\Models\\File' => $baseDir . '/app/Models/file.php',

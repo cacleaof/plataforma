@@ -394,7 +394,6 @@ class ComposerStaticInitbe0d8b3471b34b6b4d44852f23aba0a1
         'App\\Http\\Requests\\MoneyValidationFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/MoneyValidationFormRequest.php',
         'App\\Http\\Requests\\UpdateProfileFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateProfileFormRequest.php',
         'App\\Jobs\\ImportCSV' => __DIR__ . '/../..' . '/app/Jobs/ImportCSV.php',
-        'App\\Models\\Balance' => __DIR__ . '/../..' . '/app/Models/Balance.php',
         'App\\Models\\Consult' => __DIR__ . '/../..' . '/app/Models/Consult.php',
         'App\\Models\\Especialidade' => __DIR__ . '/../..' . '/app/Models/Especialidade.php',
         'App\\Models\\File' => __DIR__ . '/../..' . '/app/Models/file.php',

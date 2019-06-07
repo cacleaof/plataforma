@@ -16,15 +16,18 @@ class Importar extends Controller
 
 		//\DB::connection()->getPdo()
         //$pdo = new PDO('mysql:host=localhost;dbname=Telessaude-sespe','root','',[ PDO::MYSQL_ATTR_LOCAL_INFILE => true ]);
+        //dd(storage_path()); "email","cns","nacionalidade","data_nascimento","sexo","telefone_residencial","telefone_celular","conselho","num_conselho","razao_social","nome_fantasia","cnes","cnpj","cep","logradouro","uf","cidade","cbo_codigo","especialidade","ocupacao","cargo","ine"
+        $url_storage = str_replace("\\","/",storage_path());
         $pdo = DB::connection()->getPdo();
-        $pdo->exec("
-            LOAD DATA LOCAL INFILE 'C:/xampp/htdocs/plataforma/storage/app/public/Import/usuarios.csv'
+        $pdo->exec('
+            LOAD DATA LOCAL INFILE "'.$url_storage.'/app/public/Import/usuarios.csv"
             INTO TABLE imports
-            FIELDS TERMINATED BY ';'
+            FIELDS TERMINATED BY ","
+            ENCLOSED BY ""
             IGNORE 1 ROWS
-            (`cpf`, `name`); 
+            ("cpf", "nome"); 
             SET created_at = now(), 
-                updated_at = now()");
+                updated_at = now()');
             return redirect()
             				->back()
             				->with('success', 'Usuarios Adicionados com Sucesso.');

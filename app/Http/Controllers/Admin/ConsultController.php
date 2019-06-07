@@ -286,8 +286,8 @@ class ConsultController extends Controller
 
     public function respcons(File $file, Consult $consult, Request $request, Perfil $perfil, User $user)
     {
-        if($consult->cons_id == auth()->user()->id)
-        {
+        //dd($consult->cons_id);
+        
         $sid = $request->sid;
         $cid = $request->cid;
         $files = $file->where('consult_id', $sid)->get();
@@ -296,6 +296,8 @@ class ConsultController extends Controller
         $users = $user->all();
         $downloads=DB::table('files')->get();
         $dl = File::find($sid);
+        if($consult->cons_id == auth()->user()->id)
+        {
 
         return view('admin.consult.respcons', compact('consult', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
         }
