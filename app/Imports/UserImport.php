@@ -5,7 +5,7 @@ namespace App\Imports;
 use App\User;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class UsersImport implements ToModel
+class UserImport implements ToModel
 {
     /**
     * @param array $row

@@ -12,13 +12,19 @@ use DB;
 
 class Importar extends Controller
 {
-    public function getIndex(){ 
+    public function getIndex(){
 
-        Excel::import(new GecadImport, 'usuarios.csv');
-        
-        return redirect('/')->with('success', 'All good!');
+		
+        $url_storage = str_replace("\\","/",storage_path());
+        $url = "'$url_storage/app/public/Import/usuarios.csv'";
+        $NOVO = "LOAD DATA LOCAL INFILE ".$url." INTO TABLE imports FIELDS TERMINATED BY ',' ENCLOSED BY ".'"'.' IGNORE 1 ROWS (cpf, nome, email, cns, nacionalidade, data_nascimento, sexo, telefone_residencial, telefone_celular, conselho, num_conselho, razao_social, nome_fantasia, cnes, cnpj, cep, logradouro, uf, cidade, cbo_codigo, especialidade, ocupacao, nome_cargo, ine); SET created_at = now(), updated_at = now()';
+        //DD($NOVO);
+        $pdo = DB::connection()->getPdo();
+        $pdo->exec($NOVO);
+            return redirect()
+            				->back()
+            				->with('success', 'Usuarios Adicionados com Sucesso.');
     }
-
     public function usuarios()
     {
         //$consults = $consult->all();

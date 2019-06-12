@@ -2,16 +2,15 @@
 
 namespace App\Exports;
 
-use App\User;
+use App\Models\Consult;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ConsultExport implements FromCollection
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
+    
     public function collection()
     {
-        return User::all();
+    	//dd(Consult::all());
+        return Consult::all();
     }
 }
