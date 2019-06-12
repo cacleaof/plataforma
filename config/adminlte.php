@@ -144,7 +144,7 @@ return [
             'submenu'  =>  [
                 [
                     'text'        => 'Exportar Dados ',
-                    'url'         => '/admin/usuarios',
+                    'url'         => 'admin/export_excel',
                     'icon'        => 'credit-card-alt'
                 ],
                 [

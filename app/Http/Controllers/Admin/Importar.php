@@ -14,13 +14,10 @@ class Importar extends Controller
 {
     public function getIndex(){
 
-		//\DB::connection()->getPdo()
-        //$pdo = new PDO('mysql:host=localhost;dbname=Telessaude-sespe','root','',[ PDO::MYSQL_ATTR_LOCAL_INFILE => true ]);
-        //dd(storage_path()); 
-        //"email","cns","nacionalidade","data_nascimento","sexo","telefone_residencial","telefone_celular","conselho","num_conselho","razao_social","nome_fantasia","cnes","cnpj","cep","logradouro","uf","cidade","cbo_codigo","especialidade","ocupacao","cargo","ine" LOAD DATA LOCAL INFILE "'.$url_storage.'/app/public/Import/usuarios.csv"
+		
         $url_storage = str_replace("\\","/",storage_path());
         $url = "'$url_storage/app/public/Import/usuarios.csv'";
-        $NOVO = ("LOAD DATA LOCAL INFILE ".$url." INTO TABLE imports FIELDS TERMINATED BY ',' ENCLOSED BY '".'"'."'".' IGNORE 1 ROWS (cpf, nome, email, cns, nacionalidade, data_nascimento, sexo, telefone_residencial, telefone_celular, conselho, num_conselho, razao_social, nome_fantasia, cnes, cnpj, cep, logradouro, uf, cidade, cbo_codigo, especialidade, ocupacao, nome_cargo, ine); SET created_at = now(), updated_at = now()'.'"');
+        $NOVO = "LOAD DATA LOCAL INFILE ".$url." INTO TABLE imports FIELDS TERMINATED BY ',' ENCLOSED BY ".'"'.' IGNORE 1 ROWS (cpf, nome, email, cns, nacionalidade, data_nascimento, sexo, telefone_residencial, telefone_celular, conselho, num_conselho, razao_social, nome_fantasia, cnes, cnpj, cep, logradouro, uf, cidade, cbo_codigo, especialidade, ocupacao, nome_cargo, ine); SET created_at = now(), updated_at = now()';
         //DD($NOVO);
         $pdo = DB::connection()->getPdo();
         $pdo->exec($NOVO);

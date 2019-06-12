@@ -68,6 +68,10 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 	$this->get('usuarios', 'importar@usuarios')->name('importar.usuarios');
 
 	$this->get('getindex', 'importar@getindex')->name('importar.getindex');
+
+	$this->get('/export_excel', 'ExportExcelController@index');
+
+	$this->get('/export_excel/excel', 'ExportExcelController@excel')->name('export_excel.excel');
 });
      //o certo é colocar o post, saida, fim dentro do 'middleware' => ['auth'] pois o
 	//usuario tem que estar logado para que ele possar ver os posts
