@@ -6,6 +6,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 //use App\Http\Controllers\Excel;
 use DB;
 //use PDO;
