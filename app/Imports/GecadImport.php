@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\import;
+use App\Models\import;
 use Maatwebsite\Excel\Concerns\ToModel;
 
 class GecadImport implements ToModel
@@ -16,7 +16,7 @@ class GecadImport implements ToModel
     {
         return new import([
            'cpf'     => $row[0],
-           'nome'    => $row[1], 
+           //'nome'    => $row[1], 
         ]);
     }
 }

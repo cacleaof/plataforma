@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
-//use App\Http\Controllers\Excel;
+use App\Imports\GecadImport;
+//use storage\app\public\Import\usuarios;
 use DB;
 //use PDO;
 
@@ -15,7 +16,7 @@ class Importar extends Controller
 {
     public function getIndex(){ 
 
-        Excel::import(new GecadImport, 'usuarios.csv');
+        Excel::import(new GecadImport, 'import\usuarios.csv', null, \Maatwebsite\Excel\Excel::CSV);
         
         return redirect('/')->with('success', 'All good!');
     }
