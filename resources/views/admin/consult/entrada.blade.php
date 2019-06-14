@@ -63,7 +63,6 @@
             <td>{{ $reg->municipio}} </td>
             <td>{{ $reg->uf}} </td>
             <td>{{$reg->user->name}} </td>
-            <td>{{$reg->cons_id}} </td>
             <td>{{$reg->cons_name}} </td>
             <td>{{ tempo($reg->created_at) }} </td>
             <td>{{$reg->paciente}} </td>
@@ -85,7 +84,6 @@
             <td>{{ $con->municipio}} </td>
             <td>{{ $con->uf}} </td>
             <td>{{$con->user->name}} </td>
-            <td>{{$con->cons_id}} </td>
             <td>{{$con->cons_name}} </td>
             <td>{{ tempo($con->created_at) }} </td>
             <td>{{$con->paciente}} </td>

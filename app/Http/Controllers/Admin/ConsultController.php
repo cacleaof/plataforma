@@ -256,7 +256,7 @@ class ConsultController extends Controller
 
         DB::table('consults')
                     ->where('id', $request->sid)
-                    ->update(['status' => 'C','reg_id' => auth()->user()->id ,'reg_name' => auth()->user()->name ]);
+                    ->update(['status' => 'C','reg_id' => auth()->user()->id ,'reg_name' => auth()->user()->nome ]);
 
         return redirect(route('consult.entrada'))
                     ->with('success', 'Teleconsultoria regulada com sucesso');  
@@ -378,7 +378,7 @@ class ConsultController extends Controller
 
         DB::table('consults')
                     ->where('id', $request->sid)
-                    ->update(['status' => 'C','reg_id' => auth()->user()->id ,'reg_name' => auth()->user()->name ]);
+                    ->update(['status' => 'C','reg_id' => auth()->user()->id ,'reg_name' => auth()->user()->nome ]);
 
          return redirect('/admin');           
     }
