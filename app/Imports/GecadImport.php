@@ -2,21 +2,19 @@
 
 namespace App\Imports;
 
-use App\Models\import;
+use App\Models\imports;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class GecadImport implements ToModel
+class GecadImport implements ToModel, WithHeadingRow
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+    
     public function model(array $row)
     {
-        return new import([
+        dd(new import);
+        return new imports([
            'cpf'     => $row[0],
-           //'nome'    => $row[1], 
+           //'nome'    => $row['nome'], 
         ]);
     }
 }

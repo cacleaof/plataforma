@@ -9,8 +9,12 @@ class Consult extends Model
 {
 	protected $fillable = ['reg_id'];
 
-    public function user()
+    //public function user()
+    //{
+    //	return $this->belongsTo(User::class);
+    //}
+    public function consult()
     {
-    	return $this->belongsTo(User::class);
-    }
+    	return $this->belongsTo(consult::class);
+    }//
 }

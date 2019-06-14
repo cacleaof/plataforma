@@ -16,7 +16,9 @@ class Importar extends Controller
 {
     public function getIndex(){ 
 
-        Excel::import(new GecadImport, 'import\usuarios.csv', null, \Maatwebsite\Excel\Excel::CSV);
+        //DD("oi");
+
+    Excel::import(new GecadImport, 'import\usuarios.csv', null, \Maatwebsite\Excel\Excel::CSV);
         
         return redirect('/')->with('success', 'All good!');
     }
