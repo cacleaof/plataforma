@@ -269,6 +269,7 @@ class ConsultController extends Controller
     }
     public function selecresp(consult $consult, Request $request, Perfil $perfil, User $user, File $file)
     {
+        
         $sid = $request->sid;
         $cid = $request->cid;
         $files = $file->where('consult_id', $sid)->get();
@@ -280,8 +281,18 @@ class ConsultController extends Controller
         $users = $user->all();
 
         $downloads=DB::table('files')->get();
+
+        if($consult->cons_id == auth()->user()->id)
+        {
         
         return view('admin.consult.resposta', compact('consult', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
+        }
+        else
+        {
+         return redirect()
+                    ->route('consult.entrada')
+                    ->with('error', 'Você não tem autorização para ver essa TeleConsultoria');   
+        }
     }
 
     public function respcons(File $file, Consult $consult, Request $request, Perfil $perfil, User $user)
@@ -316,6 +327,10 @@ class ConsultController extends Controller
             $sid = $request->sid;
             $dataForm = Consult::find($request->sid);
             $dataForm->resposta = $request->resposta;
+            $dataForm->l_recom = $request->l_recom;
+            $dataForm->dec1 = $request->dec1;
+            $dataForm->dec2 = $request->dec2;
+            $dataForm->dec3 = $request->dec3;
             $nome = $request->file;
             $dataForm->status = 'A';
             $dataForm->tempo = tempo($dataForm->created_at);
@@ -397,8 +412,20 @@ class ConsultController extends Controller
     {  
         $sid = $request->sid;
         $consult = Consult::find($request->sid);
+
+        if($consult->cons_id == auth()->user()->id)
+        {
         
         return view('admin.consult.dev_cons', compact('consult', 'sid'));
+
+        }
+        else
+        {
+         return redirect()
+                    ->route('consult.entrada')
+                    ->with('error', 'Você não tem autorização para ver essa TeleConsultoria');   
+        }
+
     }
     public function devstore(Consult $consult, Request $request, User $user)
     {
