@@ -17,10 +17,33 @@ class Importar extends Controller
     public function getIndex(){ 
 
         //DD("oi");
-
+        try{   
     Excel::import(new GecadImport, 'import\usuarios.csv', null, \Maatwebsite\Excel\Excel::CSV);
-        
-        return redirect('/')->with('success', 'All good!');
+     }
+     catch(\Exception $e){
+     $ec == $e->getCode();
+
+     switch ($ec) {
+    case label1:
+        code to be executed if n=label1;
+        break;
+    case label2:
+        code to be executed if n=label2;
+        break;
+    case label3:
+        code to be executed if n=label3;
+        break;
+    ...
+    default:
+        code to be executed if n is different from all labels;
+}
+        //[0]['code']);   
+        return redirect('/admin')
+            ->with('error', 'Arquivo não foi Importado'.$e);
+
+     }
+        return redirect('/admin')
+            ->with('success', 'Arquivo de Usuários foi Importado');
     }
 
     public function usuarios()
