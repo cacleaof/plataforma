@@ -2,17 +2,20 @@
 
 namespace App\Imports;
 
-use App\Models\imports;
+use App\User;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class GecadImport implements ToModel, WithHeadingRow
+class UsersImport implements ToModel, WithHeadingRow
 {
-    
+    /**
+    * @param array $row
+    *
+    * @return \Illuminate\Database\Eloquent\Model|null
+    */
     public function model(array $row)
     {
-        //dd(new import);
-        return new imports([
+        return new User([
            'cpf'     => $row['cpf'],
            'name'    => $row['nome'], 
            'email'   => $row['email'],
@@ -36,7 +39,8 @@ class GecadImport implements ToModel, WithHeadingRow
            'especialidade'   => $row['especialidade'], 
            'ocupacao'   => $row['ocupacao'], 
            'nome_cargo'   => $row['cargo'], 
-           'ine'   => $row['ine']
+           'ine'   => $row['ine'],
+           'password'   => bcrypt('123')
         ]);
     }
 }

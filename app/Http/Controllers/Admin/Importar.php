@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\GecadImport;
+use App\Imports\UsersImport;
+use App\User;
 //use storage\app\public\Import\usuarios;
 use DB;
 //use PDO;
@@ -18,33 +19,26 @@ class Importar extends Controller
 
         //DD("oi");
         try{   
-    Excel::import(new GecadImport, 'import\usuarios.csv', null, \Maatwebsite\Excel\Excel::CSV);
-     }
+    Excel::import(new UsersImport, 'import\usuarios.csv', null, \Maatwebsite\Excel\Excel::CSV);
+
+    return redirect('/admin')
+            ->with('success', 'Arquivo de Usuários foi Importado');
+            }
      catch(\Exception $e){
-     $ec == $e->getCode();
+     $ec = $e->getCode();
 
      switch ($ec) {
-    case label1:
-        code to be executed if n=label1;
-        break;
-    case label2:
-        code to be executed if n=label2;
-        break;
-    case label3:
-        code to be executed if n=label3;
-        break;
-    ...
-    default:
-        code to be executed if n is different from all labels;
-}
-        //[0]['code']);   
+    case "23000":
         return redirect('/admin')
-            ->with('error', 'Arquivo não foi Importado'.$e);
-
-     }
+            ->with('error', 'O Arquivo não foi importado, pois tem usuário que já está cadastrado ou com o mesmo CPF. Tipo de erro número: '.$ec);
+        break;
+    
+    default:  
         return redirect('/admin')
-            ->with('success', 'Arquivo de Usuários foi Importado');
-    }
+            ->with('error', 'Arquivo não foi Importado, pois está fora do padrão aceito.  Erro número: '.$ec);
+                    }    
+                        }
+                            }
 
     public function usuarios()
     {
