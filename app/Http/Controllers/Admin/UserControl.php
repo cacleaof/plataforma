@@ -5,9 +5,36 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProfileFormRequest;
+use App\user;
 
 class UserControl extends Controller
 {
+	public function lista(User $user)
+	    { 
+    		$users = $user->all();
+
+          	return view('admin.cadastro.lista', compact('users'));
+          }
+    public function usuario(User $user, Request $request)
+	    { 
+	    	$cid = $request->cid;
+	    	dd($cid);
+	    	$users = User::find($request->cid);
+
+
+          	return view('admin.cadastro.usuario', compact('users'));
+          }
+    public function store(Request $request)
+    {
+    	DD('oi');
+            $dataForm->name = $request->name;
+        	$dataForm->cpf = $request->cpf;
+        
+              return redirect()
+                    ->route('cadastro.lista')
+                    ->with('success', 'Cadastro Alterado');
+    }
+
     public function profile()
     {
     	return view('site.profile.profile');

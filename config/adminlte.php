@@ -125,14 +125,14 @@ return [
             'icon'        => 'envelope',
         ],
         [
-            'text'        => 'Palavra BVS',
-            'url'         => 'admin/wordssearch',
+            'text'        => 'Cadastrar Perfil',
+            'url'         => 'lista',
             'icon'        => 'dashboard',
             'can'         => 'administrador',
         ],
         [
             'text'        => 'Monitorar',
-            'url'         => '',
+            'url'         => 'lista',
             'icon'        => 'dashboard',
             'can'         => 'administrador',
         ],

@@ -88,6 +88,12 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 	//$this->get('/post', 'Site\SiteController@post')->name('post')->middleware('auth');
 
 	$this->post('/duvida', 'Site\SiteController@duvida')->name('admin.home.duvida')->middleware('auth');
+
+	$this->get('lista', 'admin\UserControl@lista')->name('admin.cadastro.lista')->middleware('auth');
+
+	$this->get('usuario', 'admin\UserControl@usuario')->name('admin.cadastro.usuario')->middleware('auth');
+
+	$this->post('store', 'admin\UserControl@store')->name('admin.cadastro.store')->middleware('auth');
 	//Route::get('/post', function(){
 	//	return view('post');});
 
