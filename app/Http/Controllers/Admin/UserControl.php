@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProfileFormRequest;
 use App\user;
+use DB;
 
 class UserControl extends Controller
 {
@@ -18,20 +19,24 @@ class UserControl extends Controller
     public function usuario(User $user, Request $request)
 	    { 
 	    	$cid = $request->cid;
-	    	dd($cid);
-	    	$users = User::find($request->cid);
+	    	//dd($cid);
+	    	$users = User::find($cid);
+	    	//dd($users);
 
-
-          	return view('admin.cadastro.usuario', compact('users'));
+          	return view('admin.cadastro.usuario', compact('users', 'cid'));
           }
     public function store(Request $request)
     {
-    	DD('oi');
-            $dataForm->name = $request->name;
-        	$dataForm->cpf = $request->cpf;
-        
+    		$cid = $request->cid;
+    
+            $dataForm = user::find($request->cid);
+            
+            $dataForm->name = $request->nome;
+            $dataForm->email = $request->email;
+        	$dataForm->update();
+
               return redirect()
-                    ->route('cadastro.lista')
+                    ->route('admin.cadastro.lista')
                     ->with('success', 'Cadastro Alterado');
     }
 
