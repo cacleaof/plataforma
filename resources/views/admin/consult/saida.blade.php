@@ -30,6 +30,7 @@
             <td>{{ $consult->image}} </td>
             <td>{{ $consult->municipio}} </td>
             <td>{{ $consult->uf}} </td>
+            <td>{{ $consult->sol_name}} </td>
             <td>{{ tempo($consult->created_at) }} </td>
             <td>{{$consult->paciente}} </td>
             </tr>

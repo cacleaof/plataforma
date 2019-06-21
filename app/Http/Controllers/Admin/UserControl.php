@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProfileFormRequest;
 use App\user;
+use App\Models\Perfil;
 use DB;
 
 class UserControl extends Controller
@@ -21,11 +22,19 @@ class UserControl extends Controller
 	    	$cid = $request->cid;
 	    	//dd($cid);
 	    	$users = User::find($cid);
-	    	//dd($users);
+            $perfils = Perfil::where('user_id', $cid)->get()->first();
+            
 
-          	return view('admin.cadastro.usuario', compact('users', 'cid'));
+            if (is_null($perfils)) {
+                $perfils = new perfil;
+                $perfils->user_id = $cid;
+                $perfils->perfil = 'S';
+                $perfils->save();
+            }
+            //dd($perfils->perfil);
+          	return view('admin.cadastro.usuario', compact('users', 'cid', 'perfils' ));
           }
-    public function store(Request $request)
+    public function store(Request $request, Perfil $perfil)
     {
     		$cid = $request->cid;
     
@@ -35,11 +44,36 @@ class UserControl extends Controller
             $dataForm->email = $request->email;
         	$dataForm->update();
 
+            $data = Perfil::where('user_id', $cid)->get()->first();
+            //dd($request->userperfil);
+            $data->perfil = $request->userperfil;
+            $data->update();
+
               return redirect()
                     ->route('admin.cadastro.lista')
                     ->with('success', 'Cadastro Alterado');
     }
+    public function deletar(Request $request)
+    {
+    		$cid = $request->cid;
 
+    		if ($cid!='1') {
+    			# code...
+    		
+            $user = user::find($cid);
+
+            $user->delete();
+
+              return redirect()
+                    ->route('admin.cadastro.lista')
+                    ->with('success', 'Usuário Deletado');
+            }
+            else{
+            	return redirect()
+                    ->route('admin.cadastro.lista')
+                    ->with('error', 'Este Usuário é administrador e não pode ser Deletado');
+            }
+    }
     public function profile()
     {
     	return view('site.profile.profile');

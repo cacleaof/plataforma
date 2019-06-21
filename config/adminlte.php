@@ -125,7 +125,7 @@ return [
             'icon'        => 'envelope',
         ],
         [
-            'text'        => 'Cadastrar Perfil',
+            'text'        => 'Editar Usuários',
             'url'         => 'lista',
             'icon'        => 'dashboard',
             'can'         => 'administrador',

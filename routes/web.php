@@ -94,6 +94,8 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'admin', 'prefix' => 'adm
 	$this->get('usuario', 'admin\UserControl@usuario')->name('admin.cadastro.usuario')->middleware('auth');
 
 	$this->post('store', 'admin\UserControl@store')->name('admin.cadastro.store')->middleware('auth');
+
+	$this->get('deletar', 'admin\UserControl@deletar')->name('admin.cadastro.deletar')->middleware('auth');
 	//Route::get('/post', function(){
 	//	return view('post');});
 
