@@ -65,7 +65,7 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->post('save_usuarios', 'importar@save_usuarios')->name('importar.save_usuarios');
 
-	$this->get('usuarios', 'importar@usuarios')->name('importar.usuarios');
+	$this->get('usuarios', 'Importar@usuarios')->name('importar.usuarios');
 
 	$this->get('getindex', 'importar@getindex')->name('importar.getindex');
 
