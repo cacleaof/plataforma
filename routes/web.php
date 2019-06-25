@@ -71,6 +71,8 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->get('/export_excel', 'ExportExcelController@index');
 
+	$this->get('/export_users', 'ExportUserController@index');
+
 	$this->get('/export_excel/excel', 'ExportExcelController@excel')->name('export_excel.excel');
 });
      //o certo é colocar o post, saida, fim dentro do 'middleware' => ['auth'] pois o
@@ -89,13 +91,13 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->post('/duvida', 'Site\SiteController@duvida')->name('admin.home.duvida')->middleware('auth');
 
-	$this->get('lista', 'admin\UserControl@lista')->name('admin.cadastro.lista')->middleware('auth');
+	$this->get('lista', 'Admin\UserControl@lista')->name('admin.cadastro.lista')->middleware('auth');
 
-	$this->get('usuario', 'admin\UserControl@usuario')->name('admin.cadastro.usuario')->middleware('auth');
+	$this->get('usuario', 'Admin\UserControl@usuario')->name('admin.cadastro.usuario')->middleware('auth');
 
-	$this->post('store', 'admin\UserControl@store')->name('admin.cadastro.store')->middleware('auth');
+	$this->post('store', 'Admin\UserControl@store')->name('admin.cadastro.store')->middleware('auth');
 
-	$this->get('deletar', 'admin\UserControl@deletar')->name('admin.cadastro.deletar')->middleware('auth');
+	$this->get('deletar', 'Admin\UserControl@deletar')->name('admin.cadastro.deletar')->middleware('auth');
 	//Route::get('/post', function(){
 	//	return view('post');});
 

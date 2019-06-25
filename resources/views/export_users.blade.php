@@ -28,19 +28,19 @@
    <div class="table-responsive">
     <table class="table table-striped table-bordered">
      <tr>
-      <td>Consulta</td>
-      <td>Data</td>
-      <td>Cidade</td>
-      <td>Solicitante</td>
-      <td>Paciente</td>
+      <td>Id</td>
+      <td>Nome</td>
+      <td>CPF</td>
+      <td>Email</td>
+      <td>Celular</td>
      </tr>
-     @foreach($consults_data as $consults)
+     @foreach($users_data as $users)
      <tr>
-      <td>{{ $consults->consulta }}</td>
-      <td>{{ $consults->created_at }}</td>
-      <td>{{ $consults->municipio }}</td>
-      <td>{{ $consults->sol_name }}</td>
-      <td>{{ $consults->paciente }}</td>
+      <td>{{ $users->id }}</td>
+      <td>{{ $users->name }}</td>
+      <td>{{ $users->cpf }}</td>
+      <td>{{ $users->email }}</td>
+      <td>{{ $users->telefone_celular }}</td>
      </tr>
      @endforeach
     </table>

@@ -143,7 +143,7 @@ return [
             'can'         => 'administrador',
             'submenu'  =>  [
                 [
-                    'text'        => 'Exportar Dados ',
+                    'text'        => 'Exportar Dados',
                     'url'         => 'admin/export_excel',
                     'icon'        => 'credit-card-alt'
                 ],
@@ -154,7 +154,24 @@ return [
                 ],
            ]
         ],
-
+        [
+            'text'        => 'Exportar Usuários',
+            'url'         => '',
+            'icon'        => 'envelope',
+            'can'         => 'administrador',
+            'submenu'  =>  [
+                [
+                    'text'        => 'Exportar Dados ',
+                    'url'         => 'admin/export_users',
+                    'icon'        => 'credit-card-alt'
+                ],
+                [
+                    'text'        => 'Copiar Arquivo',
+                    'url'         => 'admin/getindex',
+                    'icon'        => 'history'
+                ],
+           ]
+        ],
         [
            'text' => 'Importar Cadastros',
            'icon' => 'dashboard',
