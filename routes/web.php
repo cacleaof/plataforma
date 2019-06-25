@@ -1,6 +1,6 @@
 <?php
 
-$this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'Admin'], function(){
+$this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function(){
 
 	$this->any('historic-search', 'BalanceController@searchHistoric')->name('historic.search');
 	$this->get('historic', 'BalanceController@historic')->name('admin.historic');
