@@ -1,6 +1,6 @@
 <?php
 
-$this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function(){
+$this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'Admin'], function(){
 
 	$this->any('historic-search', 'BalanceController@searchHistoric')->name('historic.search');
 	$this->get('historic', 'BalanceController@historic')->name('admin.historic');
@@ -81,9 +81,9 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->get('/', 'Site\SiteController@index')->name('home');
 
-	$this->get('/saida', 'admin\ConsultController@saida')->name('admin.consult.saida')->middleware('auth');
+	$this->get('/saida', 'Admin\ConsultController@saida')->name('admin.consult.saida')->middleware('auth');
 
-	$this->get('/finalizadas', 'admin\ConsultController@finalizada')->name('admin.home.finalizada')->middleware('auth');
+	$this->get('/finalizadas', 'Admin\ConsultController@finalizada')->name('admin.home.finalizada')->middleware('auth');
 
 	//$this->get('/post', 'Site\SiteController@post')->name('post')->middleware('auth');
 
