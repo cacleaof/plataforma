@@ -71,7 +71,7 @@
             <th>DEVOLUTIVA DO REGULADOR </th>
             </tr>
             <td>{{$consult->area}} </td>
-            <td>{{$consult->devolutiva}} </td>
+            <td>{{$consult->devolutiva_cons}} </td>
             <td>{{$consult->dev_reg}} </td>
             </table>
             </div>

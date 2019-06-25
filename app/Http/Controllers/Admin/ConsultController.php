@@ -83,11 +83,20 @@ class ConsultController extends Controller
 
         return view('admin.consult.finalizada', compact('consults'));
     }
-    public function nova(Consult $consult)
+    public function nova(Consult $consult, Perfil $perfil)
     {
+        if($perfil->select('perfil')->where( 'user_id' , auth()->user()->id)->first()->perfil == 'S')
+        {
         $consults = $consult->all();
 
         return view('admin.consult.nova', compact('consults'));
+        }
+        else
+        {
+         return redirect()
+                    ->route('consult.entrada')
+                    ->with('error', 'Você não tem autorização para entrar uma TeleConsultoria');   
+        }
     } 
 
     public function WordsSearch() 
@@ -399,6 +408,8 @@ class ConsultController extends Controller
     }
     public function devolver(consult $consult, Request $request, Perfil $perfil, User $user)
     {  
+        if($perfil->select('perfil')->where( 'user_id' , auth()->user()->id)->first()->perfil == 'R')
+        {
         $consults = $consult->where('id', $request->sid)->get();
         
         $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
@@ -407,6 +418,13 @@ class ConsultController extends Controller
         $users = $user->all();
         
         return view('admin.consult.devolver', compact('consults', 'solRs', 'users', 'sid'));
+        }
+        else
+        {
+         return redirect()
+                    ->route('consult.entrada')
+                    ->with('error', 'Você não tem perfil para Regular esta TeleConsultoria');   
+        }
     } 
     public function dev_cons(consult $consult, Request $request, Perfil $perfil, User $user)
     {  
