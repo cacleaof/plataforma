@@ -210,6 +210,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Helper' => App\Helpers::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Excel'  => Maatwebsite\Excel\Facades\Excel::class,
 
     ],

@@ -32,7 +32,7 @@ class UserControl extends Controller
                 $perfils->save();
             }
             //dd($perfils->perfil);
-          	return view('admin.cadastro.usuario', compact('users', 'cid', 'perfils' ));
+          	return view('admin.cadastro.usuario', compact('users', 'cid', 'perfils' ))->with('success', 'Novo Usuário');
           }
     public function store(Request $request, Perfil $perfil)
     {

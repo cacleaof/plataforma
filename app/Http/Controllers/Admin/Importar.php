@@ -21,7 +21,7 @@ class Importar extends Controller
         try{   
     Excel::import(new UsersImport, 'Import\usuarios.csv', null, \Maatwebsite\Excel\Excel::CSV);
 
-    return redirect('/Admin')
+    return redirect('/admin')
             ->with('success', 'Arquivo de Usuários foi Importado');
             }
      catch(\Exception $e){
@@ -29,12 +29,12 @@ class Importar extends Controller
 
      switch ($ec) {
     case "23000":
-        return redirect('/Admin')
+        return redirect('/admin')
             ->with('error', 'O Arquivo não foi importado, pois tem usuário que já está cadastrado ou com o mesmo CPF. Tipo de erro número: '.$ec);
         break;
     
     default:  
-        return redirect('/Admin')
+        return redirect('/admin')
             ->with('error', 'Arquivo não foi Importado, pois está fora do padrão aceito.  Erro número: '.$ec);
                     }    
                         }
