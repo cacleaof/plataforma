@@ -1,17 +1,25 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
+use App\Traits\EntrustUserWithPermissionsTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Balance;
 use App\Models\Historic;
 use Illuminate\Database\Eloquent\Model;
+use App\Role;
+use App\Models\Permission;
+use Auth;
+use DB;
 
 
 class User extends Authenticatable
 {
     use Notifiable;
+    //use SoftDeletes { SoftDeletes::restore insteadof EntrustUserWithPermissionsTrait; }
+    //use EntrustUserWithPermissionsTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +28,7 @@ class User extends Authenticatable
      */
     protected $fillable = ['cpf', 'name', 'email', 'cns', 'nacionalidade', 'data_nascimento', 'sexo', 'telefone_residencial', 'telefone_celular', 'conselho', 'num_conselho', 'razao_social', 'nome_fantasia', 'cnes', 'cnpj', 'cep', 'logradouro', 'uf', 'cidade', 'cbo_codigo', 'especialidade', 'ocupacao', 'nome_cargo', 'ine', 'password'  
     ];
+
     public function user()
     {
         return $this->belongsTo(user::class);

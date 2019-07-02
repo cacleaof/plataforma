@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UsersImport;
-use App\User;
+use App\Models\User;
 //use storage\app\public\Import\usuarios;
 use DB;
 //use PDO;

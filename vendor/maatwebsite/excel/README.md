@@ -83,7 +83,7 @@ This should have created:
 
 namespace App\Exports;
 
-use App\User;
+use app\models\user;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class UsersExport implements FromCollection
@@ -133,7 +133,7 @@ If you prefer to create the import manually, you can create the following in `Ap
 
 namespace App\Imports;
 
-use App\User;
+use app\models\user;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 

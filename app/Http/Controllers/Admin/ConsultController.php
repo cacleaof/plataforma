@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\Controller;
-use App\User;
+use app\models\user;
 use App\Models\Consult;
 use App\Models\Perfil;
 use App\Models\file;

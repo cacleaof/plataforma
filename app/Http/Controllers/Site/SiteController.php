@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\post;
 use App\Models\Perfil;
-use App\User;
+use app\models\user;
 
 class SiteController extends Controller
 {
