@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
-use App\Traits\EntrustUserWithPermissionsTrait;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Balance;
@@ -20,7 +20,7 @@ class User extends Authenticatable
     use Notifiable;
     //use SoftDeletes { SoftDeletes::restore insteadof EntrustUserWithPermissionsTrait; }
     //use EntrustUserWithPermissionsTrait;
-
+    use EntrustUserTrait;
     /**
      * The attributes that are mass assignable.
      *

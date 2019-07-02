@@ -3,6 +3,7 @@
 $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function(){
 
 	$this->any('historic-search', 'BalanceController@searchHistoric')->name('historic.search');
+	
 	$this->get('historic', 'BalanceController@historic')->name('admin.historic');
 
 	$this->post('transfer', 'BalanceController@TransferStore')->name('transfer.store');
@@ -12,16 +13,20 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 	$this->get('transfer', 'BalanceController@transfer')->name('balance.transfer');
 
 	$this->post('withdraw', 'BalanceController@withdrawStore')->name('withdraw.store');
+	
 	$this->get('withdraw', 'BalanceController@withdraw')->name('balance.withdraw');
 
 	$this->post('deposit', 'BalanceController@DepositStore')->name('deposit.store');
+	
 	$this->get('deposit', 'BalanceController@deposit')->name('balance.deposit');
+	
 	$this->get('balance', 'BalanceController@index')->name('admin.balance');
-
 
 	$this->get('/', 'AdminController@index')->name('admin.consult');
 
 	$this->get('entrada', 'ConsultController@entrada')->name('consult.entrada');
+
+	$this->get('/saida', 'ConsultController@saida')->name('consult.saida');
 
 	$this->get('/nova', 'ConsultController@nova')->name('consult.nova');
 
@@ -74,16 +79,17 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 	$this->get('/export_users', 'ExportUserController@index');
 
 	$this->get('/export_excel/excel', 'ExportExcelController@excel')->name('export_excel.excel');
+
 });
      //o certo é colocar o post, saida, fim dentro do 'middleware' => ['auth'] pois o
 	//usuario tem que estar logado para que ele possar ver os posts
 	$this->post('atualizar-perfil', 'Admin\UserControl@profileUpdate')->name('profile.update')->middleware('auth');
 
+	//$this->get('/saida', 'Admin\ConsultController@saida')->name('admin.consult.saida')->middleware('auth');
+
 	$this->get('meu-perfil', 'Admin\UserControl@profile')->name('profile')->middleware('auth');
 
 	$this->get('/', 'Site\SiteController@index')->name('home');
-
-	$this->get('/saida', 'Admin\ConsultController@saida')->name('admin.consult.saida')->middleware('auth');
 
 	$this->get('/finalizadas', 'Admin\ConsultController@finalizada')->name('admin.home.finalizada')->middleware('auth');
 
@@ -91,15 +97,18 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->post('/duvida', 'Site\SiteController@duvida')->name('admin.home.duvida')->middleware('auth');
 
-	$this->get('lista', 'Admin\UserControl@lista')->name('admin.cadastro.lista')->middleware('auth');
-
 	$this->get('usuario', 'Admin\UserControl@usuario')->name('admin.cadastro.usuario')->middleware('auth');
 
 	$this->post('store', 'Admin\UserControl@store')->name('admin.cadastro.store')->middleware('auth');
 
 	$this->get('deletar', 'Admin\UserControl@deletar')->name('admin.cadastro.deletar')->middleware('auth');
-	//Route::get('/post', function(){
-	//	return view('post');});
+	
+	Route::group(['middleware' => ['role:admin']], function(){
+
+	$this->get('lista', 'Admin\UserControl@lista')->name('admin.cadastro.lista')->middleware('auth');
+
+	});	
+
 
 	Auth::routes();
 

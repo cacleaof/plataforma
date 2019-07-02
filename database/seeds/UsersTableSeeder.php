@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use app\models\user;
+use App\Models\User;
 use App\Models\Consult;
 use App\Models\Perfil;
 use App\Models\Profissoe;

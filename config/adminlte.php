@@ -116,7 +116,7 @@ return [
         ],
         [
             'text'        => 'Caixa de Saida',
-            'url'         => '/saida',
+            'url'         => '/admin/saida',
             'icon'        => 'envelope',
         ],
         [
