@@ -2,6 +2,19 @@
 
 $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function(){
 
+	$this->group(['middleware' => ['role:admin']], function(){
+
+	$this->get('lista', 'UserControl@lista')->name('admin.cadastro.lista');
+
+	$this->get('usuario', 'UserControl@usuario')->name('admin.cadastro.usuario');
+
+	$this->post('store/{id}', 'UserControl@store')->name('admin.cadastro.store');
+
+	$this->get('deletar', 'UserControl@deletar')->name('admin.cadastro.deletar');
+
+	});	
+
+
 	$this->any('historic-search', 'BalanceController@searchHistoric')->name('historic.search');
 	
 	$this->get('historic', 'BalanceController@historic')->name('admin.historic');
@@ -96,18 +109,7 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 	//$this->get('/post', 'Site\SiteController@post')->name('post')->middleware('auth');
 
 	$this->post('/duvida', 'Site\SiteController@duvida')->name('admin.home.duvida')->middleware('auth');
-
-	$this->get('usuario', 'Admin\UserControl@usuario')->name('admin.cadastro.usuario')->middleware('auth');
-
-	$this->post('store', 'Admin\UserControl@store')->name('admin.cadastro.store')->middleware('auth');
-
-	$this->get('deletar', 'Admin\UserControl@deletar')->name('admin.cadastro.deletar')->middleware('auth');
 	
-	Route::group(['middleware' => ['role:admin']], function(){
-
-	$this->get('lista', 'Admin\UserControl@lista')->name('admin.cadastro.lista')->middleware('auth');
-
-	});	
 
 
 	Auth::routes();

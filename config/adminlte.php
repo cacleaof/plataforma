@@ -126,13 +126,13 @@ return [
         ],
         [
             'text'        => 'Editar Usuários',
-            'url'         => 'lista',
+            'url'         => '/admin/lista',
             'icon'        => 'dashboard',
             'can'         => 'administrador',
         ],
         [
             'text'        => 'Monitorar',
-            'url'         => 'lista',
+            'url'         => '/admin/lista',
             'icon'        => 'dashboard',
             'can'         => 'administrador',
         ],
