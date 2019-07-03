@@ -100,6 +100,14 @@ class UsersTableSeeder extends Seeder
             'user_id'      => '5',
             'prof_id'      => '1',
             'especialidade'  => 'Radiologista',
+        ]);    
+        Roles::create([
+            'name'      => 'admin',
+            'display_name'      => 'Administrador',
+        ]);
+        Role_user::create([
+            'user_id'      => '1',
+            'role_id'      => '1',
         ]);
     }
 }
