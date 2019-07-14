@@ -50,6 +50,7 @@
         @empty
         <p>Você não tem consultas na sua caixa de entrada</p>
         @endforelse
+        {!! $consults->links() !!}
         @endif
         @if ($consreg!=null)
         <p>PERFIL:REGULADOR</p> 
@@ -71,6 +72,7 @@
         @empty
         <p>Você não tem regulações na sua caixa de entrada</p>
         @endforelse
+        {!! $consreg->links() !!}
         @endif
         @if ($conscons!=null)
         <p>PERFIL:CONSULTOR</p> 
@@ -92,6 +94,7 @@
         @empty
         <p>Você não tem Consultorias na sua caixa de entrada</p>
         @endforelse
+        {!! $conscons->links() !!}
         @endif
          </table>
 @endsection

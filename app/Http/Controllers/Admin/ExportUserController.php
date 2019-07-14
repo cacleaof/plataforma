@@ -14,14 +14,16 @@ class ExportUserController extends Controller
 {
    function index()
     {
-     $users_data = DB::table('users')->get();
+
+     $users_data = DB::table('users')->paginate(6);
+
      return view('export_users')->with('users_data', $users_data);
     }
 
     function excel()
     {
      
-     return Excel::download( new UsersExport, 'dados.xlsx');
+     return Excel::download( new UsersExport, 'dados_usuarios.xlsx');
     
          }// //
 }

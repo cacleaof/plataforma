@@ -38,4 +38,5 @@
         <p>Sistema sem usuários</p>
         @endforelse
                  </table>
+                 {!! $users->links() !!}
 @endsection

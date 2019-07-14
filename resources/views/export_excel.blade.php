@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <title>Export Data to Excel in Laravel using Maatwebsite</title>
+  <title>Consultorias</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -20,7 +20,7 @@
  <body>
   <br />
   <div class="container">
-   <h3 align="center">Export Data to Excel in Laravel using Maatwebsite</h3><br />
+   <h3 align="center">Lista Consultorias e Exporta para Excel</h3><br />
    <div align="center">
     <a href="{{ route('export_excel.excel') }}" class="btn btn-success">Exportar para Excel</a>
    </div>
@@ -44,6 +44,7 @@
      </tr>
      @endforeach
     </table>
+    {!! $consults_data->links() !!}
    </div>
    
   </div>

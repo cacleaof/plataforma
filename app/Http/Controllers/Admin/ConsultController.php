@@ -25,10 +25,11 @@ class ConsultController extends Controller
 
     if (perfil()['solS']) {
     
-	$consults = $consult->where('status', 'S')
+
+	$consults = Consult::where('status', 'S')
                         ->orwhere('status', 'A')
                         ->orwhere('status', 'D')
-                        ->where('user_id', auth()->user()->id)->get();
+                        ->where('user_id', auth()->user()->id)->paginate(4);
     
     }
     else{$consults=null;}
@@ -36,15 +37,15 @@ class ConsultController extends Controller
     if (perfil()['solR']) {
 
         
-    $consreg = $consult->where('status', 'R')->get();
+    $consreg = Consult::where('status', 'R')->paginate(4);
     
     }
     else{$consreg=null;}
 
     if (perfil()['solC']) {
 
-    $conscons = $consult->where('cons_id', auth()->user()->id)
-                        ->where('status', 'C')->get();
+    $conscons = Consult::where('cons_id', auth()->user()->id)
+                        ->where('status', 'C')->paginate(4);
 
     }
     else{$conscons=null;}
@@ -59,7 +60,7 @@ class ConsultController extends Controller
  
         if (perfil()['solS']) 
         {  
-        $consults = $consult->where('user_id', auth()->user()->id)->get();
+        $consults = Consult::where('user_id', auth()->user()->id)->paginate(5);
 
          
          return view('admin.consult.saida', compact('consults'));
@@ -71,7 +72,7 @@ class ConsultController extends Controller
         $consults = Consult::where('cons_id' , $id)
                                     ->where( 'status', '!=', 'C')
                                     ->orWhere('reg_id', $id)
-                                    ->get();
+                                    ->paginate(5);
 
         return view('admin.consult.saida', compact('consults'));
         }

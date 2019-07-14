@@ -14,14 +14,15 @@ class ExportExcelController extends Controller
 {
    function index()
     {
-     $consults_data = DB::table('consults')->get();
+     $consults_data = DB::table('consults')->paginate(6);
+     
      return view('export_excel')->with('consults_data', $consults_data);
     }
 
     function excel()
     {
      
-     return Excel::download( new ConsultExport, 'dados.xlsx');
+     return Excel::download( new ConsultExport, 'dados_consultorias.xlsx');
     
          }// //
 }

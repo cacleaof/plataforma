@@ -13,7 +13,9 @@ class UserControl extends Controller
 {
 	public function lista(User $user)
 	    { 
-    		$users = $user->all();
+    		//$users = $user->all()->paginate(2);
+
+            $users = DB::table('users')->paginate(4);
 
           	return view('admin.cadastro.lista', compact('users'));
           }

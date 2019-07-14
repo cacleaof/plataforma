@@ -38,4 +38,7 @@
     	<p>Nenhum solicitação realizada</p>
     	@endforelse
         </table>
+        @if ($consults!=null) 
+        {!! $consults->links() !!}
+        @endif
 @endsection

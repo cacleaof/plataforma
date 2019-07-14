@@ -92,6 +92,7 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 	$this->get('/export_users', 'ExportUserController@index');
 
 	$this->get('/export_excel/excel', 'ExportExcelController@excel')->name('export_excel.excel');
+	$this->get('/export_users/excel', 'ExportUserController@excel')->name('export_users.excel');
 
 });
      //o certo é colocar o post, saida, fim dentro do 'middleware' => ['auth'] pois o
