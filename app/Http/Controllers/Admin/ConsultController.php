@@ -178,7 +178,13 @@ class ConsultController extends Controller
         
         if($perfil->select('perfil')->where( 'user_id' , auth()->user()->id)->first()->perfil == 'R')
         {
+
         $users = $user->all();
+
+        //$users = User::all()->paginate(3);
+        //$users = $tusers::paginate(3);
+        //$users = DB::table('users');
+        
         $especialidades = $especialidade->all();
         $profissoes = $profissoe->all();
 

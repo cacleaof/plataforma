@@ -22,7 +22,6 @@
     </div>
 	<table class="table table-striped">
             <tr>
-            <hr>
             <th>ID </th>
             <th>STATUS </th>
             <th>SERVIÇO </th>
@@ -97,6 +96,8 @@
             <th>PROFISSÃO </th>
             <th>ESPECIALIDADE </th>
         </tr>
+    <div class="box">
+        <div class="box-header">
         @forelse($solRs as $solR)        
           @forelse($users as $user)
             @if ($user->id == $solR->user_id)	
@@ -129,6 +130,8 @@
         @empty
         <p>A plataforma Não tem Teleconsultor cadastrado!</p>
         @endforelse
+        </div>
+    </div>
     </table>
 @include('admin.includes.modelo')    
 @endsection
