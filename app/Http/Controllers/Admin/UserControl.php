@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProfileFormRequest;
-use app\models\user;
+use app\models\User;
 use App\Models\Perfil;
 use DB;
 
@@ -22,7 +22,7 @@ class UserControl extends Controller
     public function usuario(User $user, Request $request)
 	    { 
 	    	$cid = $request->cid;
-	    	//dd($cid);
+	    	
 	    	$users = User::find($cid);
             $perfils = Perfil::where('user_id', $cid)->get()->first();
             
@@ -36,18 +36,22 @@ class UserControl extends Controller
             //dd($perfils->perfil);
           	return view('admin.cadastro.usuario', compact('users', 'cid', 'perfils' ))->with('success', 'Novo Usuário');
           }
-    public function store(Request $request, Perfil $perfil)
+    public function store(User $user, Request $request, Perfil $perfil)
     {
-    		$cid = $request->cid;
-    
-            $dataForm = user::find($request->cid);
+    		
+            $dataForm = User::where('cpf', $request->cpf)->get()->first();
             
             $dataForm->name = $request->nome;
             $dataForm->email = $request->email;
+            $dataForm->cns = $request->cns;
+            $dataForm->nacionalidade = $request->nacionalidade;
+            $dataForm->data_nascimento = $request->data_nascimento;
+            $dataForm->sexo = $request->sexo;
+            $dataForm->cnes = $request->cnes;
         	$dataForm->update();
 
-            $data = Perfil::where('user_id', $cid)->get()->first();
-            //dd($request->userperfil);
+            $data = Perfil::where('user_id', $dataForm->id)->get()->first();
+            
             $data->perfil = $request->userperfil;
             $data->update();
 

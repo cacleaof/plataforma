@@ -98,9 +98,13 @@
         </tr>
     <div class="box">
         <div class="box-header">
-        @forelse($solRs as $solR)        
-          @forelse($users as $user)
-            @if ($user->id == $solR->user_id)	
+            <form action="" method="POST" class="form form-inline">
+                <input type="text" name="{{ $users }}" class="form-control" placeholder="{{ $users }}">
+                <button type="submit" class="btn btn-primary">Pesquisar</button>
+            </form>
+        @forelse($solRs as $solR)
+            @forelse($users as $user)
+            @if ($user->id == $solR->user_id)           
         	<tr>
             <td>{{ $user->id}}</a></td>
             <td><a href="{{ route('consult.consultor', ['cid' => $user->id, 'sid' => $sid]) }}">{{ $user->name}}</a></td>
@@ -124,11 +128,10 @@
                 @endforelse
             </td>
         	</tr>
-        	@endif
+            @endif
             @empty
-          @endforelse
+        @endforelse
         @empty
-        <p>A plataforma Não tem Teleconsultor cadastrado!</p>
         @endforelse
         </div>
     </div>

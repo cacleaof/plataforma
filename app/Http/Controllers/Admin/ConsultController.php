@@ -172,14 +172,20 @@ class ConsultController extends Controller
         $files = $file->where('consult_id', $sid)->get();
         $consults = $consult->where('id', $request->sid)->get();
         
-        $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
+        //$solRs = Perfil::where('perfil', 'C')->get($perfil->user_id);
+        $solRs = $perfil->where('perfil', 'C')->get();
 
-        //dd($perfil->select('perfil')->where( 'user_id' , auth()->user()->id)->first()->perfil);
+        //$perfils = $perfil->where('perfil', 'C')->get();
+        
+        //dd($perfils[]->id);
         
         if($perfil->select('perfil')->where( 'user_id' , auth()->user()->id)->first()->perfil == 'R')
         {
 
+
         $users = $user->all();
+
+        //dd($users);
 
         //$users = User::all()->paginate(3);
         //$users = $tusers::paginate(3);
