@@ -19,9 +19,11 @@ use GuzzleHttp\Client;
 
 class ConsultController extends Controller
 {
+
    public function entrada(Consult $consult, Perfil $perfil, User $user)
     { 
         $solS=null;
+        $nomeconsultor=null;
 
     if (perfil()['solS']) {
     
@@ -52,7 +54,7 @@ class ConsultController extends Controller
 
 
 
-    	return view('admin.consult.entrada', compact('consults', 'consreg', 'solS', 'conscons'));
+    	return view('admin.consult.entrada', compact('consults', 'consreg', 'solS', 'conscons', 'nomeconsultor'));
 
     }
     public function saida(Consult $consult, Perfil $perfil, User $user)
@@ -165,44 +167,40 @@ class ConsultController extends Controller
                     ->with('error', 'O campo descreva sua dúvida ou questionamento deve ser preenchido para envio da consultoria');
     }
     }
-    public function regular(consult $consult, Request $request, Perfil $perfil, User $user, file $file, Especialidade $especialidade, Profissoe $profissoe)
+    public function regular(consult $consult, Request $request, Perfil $perfil, User $user, file $file, Especialidade $especialidade, Profissoe $profissoe )
     {
         $sid = $request->sid;
         $cid = $request->cid;
         $files = $file->where('consult_id', $sid)->get();
         $consults = $consult->where('id', $request->sid)->get();
         
-        //$solRs = Perfil::where('perfil', 'C')->get($perfil->user_id);
-        $solRs = $perfil->where('perfil', 'C')->get();
+        //$solRs = Perfil::Select('user_id')->where('perfil', 'C')->get($perfil->user_id)->toArray();
+        //dd($solRs);
 
-        //$perfils = $perfil->where('perfil', 'C')->get();
-        
-        //dd($perfils[]->id);
-        
+        if(isset($request)&&isset($request->nomeconsultor))
+        {
+            dd($request->nomeconsultor);
+        }
+            else
+        {
+
+        $solRs = Perfil::select('perfils.user_id', 'users.name', 'users.email' , 'users.telefone_celular', 'profissoes.profissao', 'especialidades.especialidade')->join('users', 'users.id', 'perfils.user_id' )->leftJoin('profissoes', 'profissoes.user_id', 'perfils.user_id' )->leftJoin('especialidades', 'especialidades.user_id', 'perfils.user_id' )->where('perfil', 'C')->paginate(4);        
+        //dd($solRs);
+
         if($perfil->select('perfil')->where( 'user_id' , auth()->user()->id)->first()->perfil == 'R')
         {
 
 
-        $users = $user->all();
-
-        //dd($users);
-
-        //$users = User::all()->paginate(3);
-        //$users = $tusers::paginate(3);
-        //$users = DB::table('users');
-        
-        $especialidades = $especialidade->all();
-        $profissoes = $profissoe->all();
-
         $downloads=DB::table('files')->get();
         
-        return view('admin.consult.regular', compact('consults', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads', 'especialidades', 'profissoes'));
+        return view('admin.consult.regular', compact('consults', 'solRs',  'sid', 'cid', 'files', 'downloads'));
         }
         else
         {
          return redirect()
                     ->route('consult.entrada')
                     ->with('error', 'Você não tem autorização para ver essa TeleConsultoria');   
+        }
         }
     } 
 

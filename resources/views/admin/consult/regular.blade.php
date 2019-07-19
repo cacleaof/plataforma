@@ -98,39 +98,23 @@
         </tr>
     <div class="box">
         <div class="box-header">
-            <form action="" method="POST" class="form form-inline">
-                <input type="text" name="{{ $users }}" class="form-control" placeholder="{{ $users }}">
-                <button type="submit" class="btn btn-primary">Pesquisar</button>
+            <form action="{{ route('consult.regular', ['sid' => $reg->id] ) }}" method="POST" class="form form-inline">
+                <input type="text" name="nomeconsultor" style="max-width:200px;float: left;" class="form-control" placeholder="Nome do Consultor">
+                <button type="submit" class="btn btn-primary" style="float: left;">Pesquisar</button>
             </form>
-        @forelse($solRs as $solR)
-            @forelse($users as $user)
-            @if ($user->id == $solR->user_id)           
+        @forelse($solRs as $solR)          
         	<tr>
-            <td>{{ $user->id}}</a></td>
-            <td><a href="{{ route('consult.consultor', ['cid' => $user->id, 'sid' => $sid]) }}">{{ $user->name}}</a></td>
-            <td>{{ $user->email}} </td>
-            <td>{{ $user->fone}} </td>
-
+            <td>{{ $solR->user_id }}</a></td>
+            <td><a href="{{ route('consult.consultor', ['cid' => $solR->user_id, 'sid' => $sid]) }}">{{ $solR->name}}</a></td>
+            <td>{{ $solR->email}} </td>
+            <td>{{ $solR->telefone_celular}} </td>
             <td>
-                @forelse($profissoes as $profissoe)
-                @if ($profissoe->user_id == $solR->user_id) 
-                <a>{{ $profissoe->profissao}} </a>
-                @endif
-                @empty
-                @endforelse
+                <a>{{ $solR->profissao}} </a>
             </td>
             <td>
-                @forelse($especialidades as $especialidade)
-                @if ($especialidade->user_id == $solR->user_id) 
-                <a>{{ $especialidade->especialidade}} </a>
-                @endif
-                @empty
-                @endforelse
+                <a>{{ $solR->especialidade}} </a>
             </td>
         	</tr>
-            @endif
-            @empty
-        @endforelse
         @empty
         @endforelse
         </div>

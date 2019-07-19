@@ -56,7 +56,7 @@
         <p>PERFIL:REGULADOR</p> 
         @forelse($consreg as $reg)  
         <form>      
-            <td><a href="{{ route('consult.regular', ['sid' => $reg->id]) }}">{{ $reg->id}}</a> </td>
+            <td><a href="{{ route('consult.regular', ['sid' => $reg->id] ) }}">{{ $reg->id}}</a> </td>
             <td>{{ showstat($reg->status) }} </td>
             <td>{{ $reg->serviço}} </td>
             <td>{{ $reg->consulta}} </td>
