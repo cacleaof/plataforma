@@ -45,7 +45,7 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->post('store', 'ConsultController@store')->name('consult.store');
 
-	$this->get('regular', 'ConsultController@regular')->name('consult.regular');
+	$this->post('regular', 'ConsultController@regular')->name('consult.regular');
 
 	$this->get('consultor', 'ConsultController@consultor')->name('consult.consultor');
 

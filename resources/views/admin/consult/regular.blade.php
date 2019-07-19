@@ -98,7 +98,8 @@
         </tr>
     <div class="box">
         <div class="box-header">
-            <form action="{{ route('consult.regular', ['sid' => $reg->id] ) }}" method="POST" class="form form-inline">
+            <form action="{{ route('consult.regular') }}" method="POST" class="form form-inline" enctype="multipart/form-data">
+                {!! csrf_field() !!}
                 <input type="text" name="nomeconsultor" style="max-width:200px;float: left;" class="form-control" placeholder="Nome do Consultor">
                 <button type="submit" class="btn btn-primary" style="float: left;">Pesquisar</button>
             </form>
