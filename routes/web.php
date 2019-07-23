@@ -13,7 +13,7 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 	$this->get('deletar', 'UserControl@deletar')->name('admin.cadastro.deletar');
 
 	});	
-
+	
 
 	$this->any('historic-search', 'BalanceController@searchHistoric')->name('historic.search');
 	
@@ -45,7 +45,7 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->post('store', 'ConsultController@store')->name('consult.store');
 
-	$this->post('regular', 'ConsultController@regular')->name('consult.regular');
+	$this->get('regular', 'ConsultController@regular')->name('consult.regular');
 
 	$this->get('consultor', 'ConsultController@consultor')->name('consult.consultor');
 

@@ -179,13 +179,16 @@ class ConsultController extends Controller
 
         if(isset($request)&&isset($request->nomeconsultor))
         {
-            dd($request->nomeconsultor);
+            $consults = $consult->where('id', $request->sid)->get();
+            $solRs = Perfil::select('perfils.user_id', 'users.name', 'users.email' , 'users.telefone_celular', 'profissoes.profissao', 'especialidades.especialidade')->join('users', 'users.id', 'perfils.user_id' )->leftJoin('profissoes', 'profissoes.user_id', 'perfils.user_id' )->leftJoin('especialidades', 'especialidades.user_id', 'perfils.user_id' )->where('name', 'LIKE' , "%$request->nomeconsultor%")->paginate(4);  
+             //dd($solRs);
         }
             else
         {
 
         $solRs = Perfil::select('perfils.user_id', 'users.name', 'users.email' , 'users.telefone_celular', 'profissoes.profissao', 'especialidades.especialidade')->join('users', 'users.id', 'perfils.user_id' )->leftJoin('profissoes', 'profissoes.user_id', 'perfils.user_id' )->leftJoin('especialidades', 'especialidades.user_id', 'perfils.user_id' )->where('perfil', 'C')->paginate(4);        
         //dd($solRs);
+        }
 
         if($perfil->select('perfil')->where( 'user_id' , auth()->user()->id)->first()->perfil == 'R')
         {
@@ -200,7 +203,6 @@ class ConsultController extends Controller
          return redirect()
                     ->route('consult.entrada')
                     ->with('error', 'Você não tem autorização para ver essa TeleConsultoria');   
-        }
         }
     } 
 

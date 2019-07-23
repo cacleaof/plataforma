@@ -6,6 +6,10 @@ use App\Models\Consult;
 use App\Models\Perfil;
 use App\Models\Profissoe;
 use App\Models\Especialidade;
+use App\Models\Role;
+use App\Models\RoleUser;
+use App\Models\Project;
+use App\Models\Task;
 
 class UsersTableSeeder extends Seeder
 {
@@ -101,13 +105,22 @@ class UsersTableSeeder extends Seeder
             'prof_id'      => '1',
             'especialidade'  => 'Radiologista',
         ]);    
-        Roles::create([
+        Role::create([
             'name'      => 'admin',
             'display_name'      => 'Administrador',
         ]);
-        Role_user::create([
+        RoleUser::create([
             'user_id'      => '1',
             'role_id'      => '1',
+        ]);
+        Project::create([
+            'projeto'      => 'Hospedagem ATI - Moodle',
+            'detalhe'      => 'Desenvolver e hospedar novo Moodle na ATI',
+        ]);
+        task::create([
+            'task'      => 'Definir versão do Moodle',
+            'detalhe'      => 'A versão deve ser estável',
+            'proj_id'      => '1',
         ]);
     }
 }
