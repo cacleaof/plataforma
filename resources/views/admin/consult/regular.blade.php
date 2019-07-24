@@ -101,7 +101,7 @@
             <form action="" method="GET" class="form form-inline" enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 <input type="text" name="nomeconsultor" value="" style="max-width:400px;float: left;" class="form-control" placeholder="Digite qualquer parte do nome ou sobrenome do consultor">
-                <input type="hidden" name="sid" value="12">
+                <input type="hidden" name="sid" value={{ $sid }}>
                 <button type="submit" class="btn btn-primary" value="refresh" style="float: left;">Pesquisar</button>
             </form>
         @forelse($solRs as $solR)          
