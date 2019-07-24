@@ -85,7 +85,7 @@
         <p>A plataforma Não tem Arquivo cadastrado!</p>
         @endforelse
     </table> 
-    <h5>Selecione o Teleconsultor que irá atender a solicitação teclando no seu nome, ou pesquise abaixo:</h5>      
+    <h5>Selecione o Teleconsultor que irá atender, teclando no seu nome, ou pesquise abaixo:</h5>      
     <table class="table table-striped">
     	<tr>
             <hr>
