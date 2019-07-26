@@ -22,12 +22,11 @@
             <th>PACIENTE </th>
             </tr>
         @forelse($consults as $consult)
-        @if($consult->status == 'F' || $consult->status == 'D')
             <tr>
             <td>{{ $consult->id}} </td>
             <td>{{ showstat($consult->status) }} </td>
             <td>{{ $consult->serviço}} </td>
-            <td>{{ $consult->consulta}} </td>
+            <td>{{ $consult->consulta }} </td>
             <td>{{ $consult->municipio}} </td>
             <td>{{ $consult->uf}} </td>
             <td>{{$consult->user->name}} </td>
@@ -35,9 +34,8 @@
             <td>{{$consult->tempo}} </td>
             <td>{{$consult->paciente}} </td>
             </tr>
-        @endif
     	@empty
-    	<p>Nenhum solicitação realizada</p>
+    	<p>Nenhuma solicitação Finalizada</p>
     	@endforelse
         </table>
     </div>

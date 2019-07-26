@@ -53,7 +53,7 @@
                 <div class="form-row">
                     @include('admin.includes.alerts')
                         <div class="form-group">
-                        <textarea type="text" name="resposta" rows="5" cols="80" placeholder="Responda a Teleconsultoria" class="form-control"></textarea>
+                        <textarea type="text" name="resposta" maxlength="256" rows="5" cols="80" placeholder="Responda a Teleconsultoria com até 256 caracteres. Caso seja necessário insira um arquivo." class="form-control"></textarea>
                         <div class="form-row">
                             <label for="file">Arquivos Anexos:</label>
                             <input type="file" name="arquivo[]" id="file" multiple>
@@ -63,16 +63,16 @@
                             <label>Leitura Recomendada & DECs – descritores em ciências da saúde</label>
                         </div>
                         <div class="form-group col-xs-12" >
-                            <input type="text" class="form-control" name="l_recom" placeholder="Leitura Recomendada">
+                            <input type="text" maxlength="256" class="form-control" name="l_recom" placeholder="Leitura Recomendada">
                         </div>     
                         <div class="form-group col-xs-4">
-                            <input type="text" name="dec1" placeholder="DECs – descritores em ciências da saúde" class="form-control">
+                            <input type="text" name="dec1" maxlength="50" placeholder="DECs – descritores em ciências da saúde" class="form-control">
                         </div>
                         <div class="form-group col-xs-4">
-                            <input type="text" name="dec2" placeholder="DECs – descritores em ciências da saúde" class="form-control">
+                            <input type="text" name="dec2" maxlength="50" placeholder="DECs – descritores em ciências da saúde" class="form-control">
                         </div>
                         <div class="form-group col-xs-4">
-                            <input type="text" name="dec3" placeholder="DECs – descritores em ciências da saúde" class="form-control">
+                            <input type="text" name="dec3" maxlength="50" placeholder="DECs – descritores em ciências da saúde" class="form-control">
                         </div>
                         <div class="form-row" >
                         <div class="form-group">

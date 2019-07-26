@@ -12,6 +12,8 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->get('deletar', 'UserControl@deletar')->name('admin.cadastro.deletar');
 
+	$this->get('task', 'ProjControl@task')->name('admin.proj.task');
+
 	});	
 	
 
