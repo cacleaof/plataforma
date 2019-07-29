@@ -25,21 +25,21 @@ class ConsultController extends Controller
         $solS=null;
         $nomeconsultor=null;
 
+        //dd(date("Y-m-d"));
+
     if (perfil()['solS']) {
     
 
-	$consults = Consult::where('status', 'S')
-                        ->orwhere('status', 'A')
-                        ->orwhere('status', 'D')
-                        ->where('user_id', auth()->user()->id)->paginate(12);
+	$consults = Consult::where('user_id', auth()->user()->id)
+                        ->wherein('status', ['S', 'A', 'D'])
+                        ->paginate(12);
     
     }
     else{$consults=null;}
 
     if (perfil()['solR']) {
-
-        
-    $consreg = Consult::where('status', 'R')->paginate(4);
+  
+    $consreg = Consult::where('status', 'R')->paginate(12);
     
     }
     else{$consreg=null;}
@@ -47,7 +47,7 @@ class ConsultController extends Controller
     if (perfil()['solC']) {
 
     $conscons = Consult::where('cons_id', auth()->user()->id)
-                        ->where('status', 'C')->paginate(4);
+                        ->where('status', 'C')->paginate(12);
 
     }
     else{$conscons=null;}
@@ -152,10 +152,11 @@ class ConsultController extends Controller
                 $data->consult_id = $idc;
                 $data->size = $arquivo->getClientSize();
                 $nome = $arquivo->getClientOriginalName();
-                $nome = $idc.$nome;
+                $nome = $idc.'-'.$nome;
                 $data->file = $nome;
+                $data->user_id = auth()->user()->id;
                 $data->save();
-                Storage::putfileAs($dataForm->user_id, $arquivo, $nome);
+                Storage::putfileAs($dataForm->user_id.'/'.$idc, $arquivo, $nome);
             endforeach;
         endif;
 
@@ -391,8 +392,11 @@ class ConsultController extends Controller
         $sid = $request->sid;
         $cid = $request->cid;
         $dl = File::find($sid);
+        $ui = $dl->user_id;
+        $ci = $dl->consult_id;
         $dl = $dl->file;
-        $file= storage_path()."/app/public/".$cid."/".$dl;
+
+        $file= storage_path()."/app/public/".$ui."/".$ci."/".$dl;
 
         return Response::download($file, $dl);
         

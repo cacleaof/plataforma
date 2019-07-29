@@ -52,6 +52,8 @@
         @endforelse
         {!! $consults->links() !!}
         @endif
+    </table>
+    <table class="table table-striped">
         @if ($consreg!=null)
         <p>PERFIL:REGULADOR</p> 
         @forelse($consreg as $reg)  
@@ -74,6 +76,8 @@
         @endforelse
         {!! $consreg->links() !!}
         @endif
+    </table>
+    <table class="table table-striped">
         @if ($conscons!=null)
         <p>PERFIL:CONSULTOR</p> 
         @forelse($conscons as $con)  

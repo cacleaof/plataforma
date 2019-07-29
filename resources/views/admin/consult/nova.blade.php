@@ -30,7 +30,7 @@
 							<input type="hidden" value="{{ csrf_token() }}" name="_token">
 						</div>
 						<div class="form-row" >
-							<label>Caso seja relavante informe dados do paciente como nome, idade indicando unidade(Anos, Meses, dias), Queixa, Instituiçao e Município</label>
+							<label>Caso seja relevante informe dados do paciente como nome, idade indicando unidade(Anos, Meses, dias), Queixa, Instituiçao e Município</label>
 						</div>
 						<div class="form-group col-xs-9" >
 							<input type="text" class="form-control" name="paciente" maxlength="50" placeholder="Nome do Paciente">
