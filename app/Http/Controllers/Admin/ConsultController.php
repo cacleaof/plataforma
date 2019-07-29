@@ -89,7 +89,8 @@ class ConsultController extends Controller
     }
     public function nova(Consult $consult, Perfil $perfil)
     {
-        if($perfil->select('perfil')->where( 'user_id' , auth()->user()->id)->first()->perfil == 'S')
+        //if($perfil->select('perfil')->where( 'user_id' , auth()->user()->id)->first()->perfil == 'S')
+        if(perfil()['solS'])
         {
         $consults = $consult->all();
 

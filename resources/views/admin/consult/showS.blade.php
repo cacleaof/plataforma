@@ -45,7 +45,10 @@
             <td>{{$consult->resposta}} </td>
             <td>{{$consult->l_recom}} </td>
             <td>{{$consult->ciap}} </td>
-            </tr>
+            </tr> 
+            <div class="box-tools pull-right">
+                    <a href="#" class="btn btn-success" onClick="modalshow({{ $consult }})"><i class="fa fa-pencil" aria-hidden="true"></i>Detalhar a Teleconsultoria</a>
+            </div>
             </table> 
     <h4>Arquivos Anexados a Teleconsultoria</h4>   
     @if($consult->anexos!=null)    
@@ -75,7 +78,7 @@
         @endforelse
     </table> 
     @endif
-        <div class="box box-solid box-info">
+    <div class="box box-solid box-info">
         <div class="box-header" with-border>
             <h3>Avaliação da Satisfação</h3>
         </div>
@@ -115,4 +118,11 @@
                 </div>
             </form>
         </div>  
+        </div>  
+    @include('admin.includes.modelo')
 @endsection
+<script type="text/javascript">
+    function modalshow($consult){
+      $("#modalshow").modal();
+    }
+</script>

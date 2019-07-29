@@ -38,7 +38,7 @@
             <td><a href="{{ route('consult.showS', ['sid' => $consult->id]) }}"> {{ $consult->id}}</a></td>
             <td>{{ showstat($consult->status) }} </td>
             <td>{{ $consult->serviço}} </td>
-            <td>{{ $consult->consulta}} </td>
+            <td>{{ substr($consult->consulta, 0, 200) }} </td>
             <td>{{ $consult->image}} </td>
             <td>{{ $consult->municipio}} </td>
             <td>{{ $consult->uf}} </td>
@@ -59,7 +59,7 @@
             <td><a href="{{ route('consult.regular', ['sid' => $reg->id] ) }}">{{ $reg->id}}</a> </td>
             <td>{{ showstat($reg->status) }} </td>
             <td>{{ $reg->serviço}} </td>
-            <td>{{ $reg->consulta}} </td>
+            <td>{{ substr($reg->consulta, 0, 200) }} </td>
             <td>{{ $reg->image}} </td>
             <td>{{ $reg->municipio}} </td>
             <td>{{ $reg->uf}} </td>
