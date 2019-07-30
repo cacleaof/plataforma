@@ -115,7 +115,7 @@ class UsersTableSeeder extends Seeder
         ]);
         Project::create([
             'projeto'      => 'Hospedagem ATI - Moodle',
-            'detalhe'      => 'Desenvolver e hospedar novo Moodle na ATI',
+            'proj_detalhe'      => 'Desenvolver e hospedar novo Moodle na ATI',
         ]);
         task::create([
             'task'      => 'Definir versão do Moodle',

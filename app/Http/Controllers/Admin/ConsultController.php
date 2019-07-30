@@ -117,12 +117,12 @@ class ConsultController extends Controller
     //return $content;
     }
     public function get_cep(Request $request)
-{
+    {
     $cep = $request->cep;
     $url = 'https://viacep.com.br/ws/'.$cep.'/json/';
     return redirect()
                     ->back();
-}
+    }
 
     public function store(Request $request)
     {

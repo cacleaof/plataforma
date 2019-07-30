@@ -131,8 +131,8 @@ return [
             'can'         => 'administrador',
         ],
         [
-            'text'        => 'Monitorar',
-            'url'         => '/admin/lista',
+            'text'        => 'Projeto/Tarefa',
+            'url'         => '/admin/task',
             'icon'        => 'dashboard',
             'can'         => 'administrador',
         ],

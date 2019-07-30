@@ -14,6 +14,12 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->get('task', 'ProjControl@task')->name('admin.proj.task');
 
+	$this->get('n_proj', 'ProjControl@n_proj')->name('admin.proj.n_proj');
+
+	$this->get('n_task', 'ProjControl@n_task')->name('admin.proj.n_task');
+
+	$this->get('store_p', 'ProjControl@store_p')->name('admin.proj.store_p');
+
 	});	
 	
 
