@@ -75,6 +75,9 @@
         @empty
         <p>A Consultoria não tem Arquivo anexado!</p>
         @endforelse
+        <div class="box-tools pull-right">
+            <a href="{{ route('consult.nova')}}" class="btn btn-success"><i class="fas fa-pencil"></i>Replica da Consultoria</a>
+        </div>
     </table> 
     @endif
     <div class="box box-solid box-info">

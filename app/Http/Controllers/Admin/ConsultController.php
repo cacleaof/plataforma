@@ -183,7 +183,7 @@ class ConsultController extends Controller
         if(isset($request)&&isset($request->nomeconsultor))
         {
             $consults = $consult->where('id', $request->sid)->get();
-            $solRs = Perfil::select('perfils.user_id', 'users.name', 'users.email' , 'users.telefone_celular', 'profissoes.profissao', 'especialidades.especialidade')->join('users', 'users.id', 'perfils.user_id' )->leftJoin('profissoes', 'profissoes.user_id', 'perfils.user_id' )->leftJoin('especialidades', 'especialidades.user_id', 'perfils.user_id' )->where('name', 'LIKE' , "%$request->nomeconsultor%")->paginate(4);  
+            $solRs = Perfil::select('perfils.user_id', 'users.name', 'users.email' , 'users.telefone_celular', 'profissoes.profissao', 'especialidades.especialidade')->join('users', 'users.id', 'perfils.user_id' )->leftJoin('profissoes', 'profissoes.user_id', 'perfils.user_id' )->leftJoin('especialidades', 'especialidades.user_id', 'perfils.user_id' )->where('name', 'LIKE' , "%$request->nomeconsultor%")->where('perfil', 'C' )->paginate(4);  
              //dd($solRs);
         }
             else
@@ -370,10 +370,11 @@ class ConsultController extends Controller
                 $data->consult_id = $idc;
                 $data->size = $arquivo->getClientSize();
                 $nome = $arquivo->getClientOriginalName();
-                $nome = $idc.$nome;
+                $nome = $idc.'-'.$nome;
                 $data->file = $nome;
+                $data->user_id = auth()->user()->id;
                 $data->save();
-                Storage::putfileAs($dataForm->user_id, $arquivo, $nome);
+                Storage::putfileAs($dataForm->user_id.'/'.$idc, $arquivo, $nome);
             endforeach;
             endif;
 
