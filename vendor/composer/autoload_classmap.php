@@ -16,6 +16,7 @@ return array(
     'App\\Http\\Controllers\\Admin\\ExportExcelController' => $baseDir . '/app/Http/Controllers/Admin/ExportExcelController.php',
     'App\\Http\\Controllers\\Admin\\ExportUserController' => $baseDir . '/app/Http/Controllers/Admin/ExportUserController.php',
     'App\\Http\\Controllers\\Admin\\Importar' => $baseDir . '/app/Http/Controllers/Admin/Importar.php',
+    'App\\Http\\Controllers\\Admin\\ProjControl' => $baseDir . '/app/Http/Controllers/Admin/ProjControl.php',
     'App\\Http\\Controllers\\Admin\\UserControl' => $baseDir . '/app/Http/Controllers/Admin/UserControl.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',

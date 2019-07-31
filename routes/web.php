@@ -20,6 +20,8 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->get('store_p', 'ProjControl@store_p')->name('admin.proj.store_p');
 
+	$this->get('store_t', 'ProjControl@store_t')->name('admin.proj.store_t');
+
 	});	
 	
 

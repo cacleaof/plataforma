@@ -494,6 +494,7 @@ class ComposerStaticInitbe0d8b3471b34b6b4d44852f23aba0a1
         'App\\Http\\Controllers\\Admin\\ExportExcelController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ExportExcelController.php',
         'App\\Http\\Controllers\\Admin\\ExportUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ExportUserController.php',
         'App\\Http\\Controllers\\Admin\\Importar' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Importar.php',
+        'App\\Http\\Controllers\\Admin\\ProjControl' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProjControl.php',
         'App\\Http\\Controllers\\Admin\\UserControl' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserControl.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',

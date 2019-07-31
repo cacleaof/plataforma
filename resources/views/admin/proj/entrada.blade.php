@@ -21,6 +21,7 @@
             <th>ID </th>
             <th>PROJETO </th>
             <th>DESCRIÇÃO</th>
+            <th>INICIO</th>
             </tr> 
             <tr>
          @if ($projects!=null)      
@@ -28,6 +29,7 @@
             <td>{{ $project->id}} </td>
             <td>{{ $project->projeto}} </td>
             <td>{{ $project->proj_detalhe}} </td>
+            <td>{{ $project->date_ini}} </td>
             </tr>    
         @empty
         <p>Você não tem projetos na sua caixa de entrada</p>

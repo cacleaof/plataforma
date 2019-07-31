@@ -6,9 +6,9 @@
     <h1>PROJETOS</h1>
 
     <ol class='breadcrumb'>
-    	<li><a ref="">Dashboard</a></li>
-    	<li><a ref="">Consult</a></li>
-    	<li><a ref="">Entrada</a></li>
+    	<li><a ref="">Projeto</a></li>
+    	<li><a ref=""></a></li>
+    	<li><a ref=""></a></li>
     </ol>
 @stop
 
@@ -27,8 +27,21 @@
 						</div>
 						<div class="form-group">
 						<textarea type="text" name="detalhe" rows="5" cols="80" placeholder="Descreva o detalhe do projeto" class="form-control"></textarea>
+						<div class="form-group">
+							<label>Gerente do Projeto:</label>
+						<select name="gerente">
+							@foreach ($users as $user)
+							<option value="{{ $user->id }}">{{ $user->name }}</option>
+							@endforeach
+						</select>
+					</div>
 						<div class="form-row" >
-							<label>Caso seja relevante</label>
+							<label>Data de Inicio:</label>
+							<input type="date" class="form-control" name="inicio" placeholder="Data de Inicio">
+							<label>Data de Termino:</label>
+							<input type="date" class="form-control" name="fim" placeholder="Data de Termino">
+							<label>Duração:</label>
+							<input type="texto" class="form-control" name="duracao" placeholder="Duração">
 						</div>
 						<div class="form-group">
 						<button type="submit" class="btn btn-success">Enviar</button> 

@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration
             $table->string('detalhe')->nullable();
             $table->date('date_ini')->nullable();
             $table->date('date_fim')->nullable();
+            $table->integer('prevdias')->nullable();
             $table->timestamps();
             $table->integer('proj_id')->unsigned();
             $table->foreign('proj_id')->references('id')->on('projects')->onDelete('cascade');
