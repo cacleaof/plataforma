@@ -135,6 +135,18 @@ return [
             'url'         => '/admin/task',
             'icon'        => 'dashboard',
             'can'         => 'administrador',
+            'submenu'  =>  [
+                [
+                    'text'        => 'Status-Projetos',
+                    'url'         => '/admin/task',
+                    'icon'        => 'credit-card-alt'
+                ],
+                [
+                    'text'        => 'Status-Tarefas',
+                    'url'         => '/admin/status_proj',
+                    'icon'        => 'history'
+                ],
+           ]
         ],
         [
             'text'        => 'Exportar Consultorias',

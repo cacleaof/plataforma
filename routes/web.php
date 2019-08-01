@@ -22,6 +22,8 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->get('store_t', 'ProjControl@store_t')->name('admin.proj.store_t');
 
+	$this->get('status_proj', 'ProjControl@status_proj')->name('admin.proj.status_proj');
+
 	});	
 	
 

@@ -11,6 +11,16 @@ use DB;
 
 class ProjControl extends Controller
 {
+    public function status_proj(Task $task, Project $project)
+    {
+    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
+
+        //dd($tarefas);
+        $projects = DB::table('projects')->paginate(4);
+
+        return view('admin.proj.status_proj', compact('tarefas', 'projects'));
+    }
+
     public function task(Task $task, Project $project)
     {
     $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
