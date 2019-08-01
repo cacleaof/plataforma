@@ -131,19 +131,24 @@ return [
             'can'         => 'administrador',
         ],
         [
-            'text'        => 'Projeto/Tarefa',
+            'text'        => 'Projetos',
             'url'         => '/admin/task',
             'icon'        => 'dashboard',
             'can'         => 'administrador',
             'submenu'  =>  [
                 [
-                    'text'        => 'Status-Projetos',
+                    'text'        => 'Projetos & Tarefas',
                     'url'         => '/admin/task',
                     'icon'        => 'credit-card-alt'
                 ],
                 [
-                    'text'        => 'Status-Tarefas',
+                    'text'        => 'Status-Projetos',
                     'url'         => '/admin/status_proj',
+                    'icon'        => 'history'
+                ],
+                [
+                    'text'        => 'Status-Tarefas',
+                    'url'         => '/admin/status_task',
                     'icon'        => 'history'
                 ],
            ]
