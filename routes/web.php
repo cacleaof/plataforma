@@ -99,14 +99,23 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->get('usuarios', 'Importar@usuarios')->name('importar.usuarios');
 
+	$this->get('tarefas', 'Importar@tarefas')->name('importar.tarefas');
+
+	$this->post('save_tarefas', 'Importar@save_tarefas')->name('importar.save_tarefas');
+
 	$this->get('getindex', 'Importar@getindex')->name('importar.getindex');
 
 	$this->get('/export_excel', 'ExportExcelController@index');
 
 	$this->get('/export_users', 'ExportUserController@index');
 
+	$this->get('/export_proj', 'ExportProjController@index');
+
 	$this->get('/export_excel/excel', 'ExportExcelController@excel')->name('export_excel.excel');
+
 	$this->get('/export_users/excel', 'ExportUserController@excel')->name('export_users.excel');
+
+	$this->get('/export_proj/excel', 'ExportProjController@excel')->name('export_proj.excel');
 
 });
      //o certo é colocar o post, saida, fim dentro do 'middleware' => ['auth'] pois o

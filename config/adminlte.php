@@ -151,6 +151,16 @@ return [
                     'url'         => '/admin/status_task',
                     'icon'        => 'history'
                 ],
+                [
+                    'text'        => 'Exportar-Projetos',
+                    'url'         => '/admin/export_proj',
+                    'icon'        => 'history'
+                ],
+                [
+                    'text'        => 'Importar-Tarefas',
+                    'url'         => '/admin/tarefas',
+                    'icon'        => 'history'
+                ],
            ]
         ],
         [

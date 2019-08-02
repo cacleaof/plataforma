@@ -16,10 +16,10 @@ class ProjControl extends Controller
     $tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
 
         //dd($tarefas);
-        if(!empty($request->projeto)) {
+        //if(!empty($request->projeto)) {
 
-        $projeto = $request->projeto;
-        }
+       // $projeto = $request->projeto;
+       // }
         
         $projects = DB::table('projects')->paginate(4);
 

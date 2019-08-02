@@ -15,6 +15,32 @@ use DB;
 
 class Importar extends Controller
 {
+    public function tarefas()
+    {
+        //$consults = $consult->all();
+
+        return view('admin.importar.tarefas');
+    } 
+    public function save_tarefas(Request $request)
+    {
+      $arquivo = $request->file('arquivo');
+         
+    if(!empty($arquivo)) {
+
+        //$dataForm->save();
+        
+        Storage::putfileAs('Import', $arquivo, 'tarefas.csv');
+
+        return redirect()
+                    ->route('consult.entrada')
+                    ->with('success', 'Arquivo de tarefas salvo! Você precisa agora importar os dados');
+    }
+    else {
+        return redirect()
+                    ->back()
+                    ->with('error', 'Não anexou o arquivo');
+    }
+    }
     public function getIndex(){ 
 
         //DD("oi");

@@ -25,13 +25,14 @@
     <a href="{{ route('admin.proj.task') }}" class="btn btn-success">Voltar</a>
    </div>
    <br />
-   <div class="form-group">
-            <select name="projeto">
+   <form action="" method="GET" class="form form-inline" enctype="multipart/form-data">
+                {!! csrf_field() !!}
+              <select name="projeto">
               @foreach ($projects as $project)
               <option value="{{ $project->id }}">{{ $project->projeto }}</option>
               @endforeach
             </select>
-          </div>
+            </form>
    <div class="table-responsive">
     <table class="table table-striped table-bordered">
      <tr>
@@ -42,7 +43,7 @@
       <td>Gerente</td>
      </tr>
      @foreach($tarefas as $tarefa)
-      @if ($proj_id = $projeto )
+      @if ($proj_id = $project->id )
       <tr>
       <td>{{ $tarefa->id}} </td>
       <td bgcolor="red">{{ $tarefa->task}}</td>
