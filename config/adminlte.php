@@ -157,8 +157,23 @@ return [
                     'icon'        => 'history'
                 ],
                 [
-                    'text'        => 'Importar-Tarefas',
+                    'text'        => 'Exportar-Tarefas',
+                    'url'         => '/admin/export_task',
+                    'icon'        => 'history'
+                ],
+                [
+                    'text'        => 'Exportar-Dependencias',
+                    'url'         => '/admin/export_dep',
+                    'icon'        => 'history'
+                ],
+                [
+                    'text'        => 'Anexar arquivo Importar-Tarefas',
                     'url'         => '/admin/tarefas',
+                    'icon'        => 'history'
+                ],
+                [
+                    'text'        => 'Importar-Tarefas',
+                    'url'         => '/admin/gettask',
                     'icon'        => 'history'
                 ],
            ]

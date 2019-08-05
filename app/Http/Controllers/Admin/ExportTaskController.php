@@ -5,25 +5,26 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin;
-use App\Exports\UsersExport;
+use App\Exports\TaskExport;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use DB;
 use Excel;
 
-class ExportUserController extends Controller
+class ExportTaskController extends Controller
 {
    function index()
     {
 
-     $users_data = DB::table('users')->paginate(6);
+     $task_data = DB::table('tasks')->paginate(6);
 
-     return view('export_users')->with('users_data', $users_data);
+     return view('export_task')->with('task_data', $task_data);
     }
 
     function excel()
     {
      
-     return Excel::download( new UsersExport, 'dados_usuarios.xlsx');
+     return Excel::download( new TaskExport, 'dados_tarefas.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+
     
          }// //
 }

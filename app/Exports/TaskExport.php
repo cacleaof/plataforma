@@ -2,32 +2,31 @@
 
 namespace App\Exports;
 
-use app\models\user;
+use App\Models\Task;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class UsersExport implements FromCollection, WithHeadings
+class TaskExport implements FromCollection, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return User::all();
+        return Task::all();
     }
     public function headings(): array
     {
         return [
-            'cpf',
-            'name',
-            'email',
-            'cns',
-            'telefone_residencial',
-            'telefone_celular',
-            'conselho',
-            'num_conselho',
-            'razao_social',
-            'nome_fantasia',
+            //'id',
+            'task',
+            'detalhe',
+            'date_ini',
+            'date_fim',
+            'prevdias',
+            'created_at',
+            'updated_at',
+            'proj_id',
         ];
     }
 }

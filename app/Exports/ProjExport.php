@@ -4,8 +4,9 @@ namespace App\Exports;
 
 use App\Models\Project;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ProjExport implements FromCollection
+class ProjExport implements FromCollection, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection

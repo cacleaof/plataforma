@@ -103,6 +103,8 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->post('save_tarefas', 'Importar@save_tarefas')->name('importar.save_tarefas');
 
+	$this->get('gettask', 'Importar@gettask')->name('importar.gettask');
+
 	$this->get('getindex', 'Importar@getindex')->name('importar.getindex');
 
 	$this->get('/export_excel', 'ExportExcelController@index');
@@ -111,11 +113,19 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->get('/export_proj', 'ExportProjController@index');
 
+	$this->get('/export_task', 'ExportTaskController@index');
+
+	$this->get('/export_dep', 'ExportDepController@index');
+
 	$this->get('/export_excel/excel', 'ExportExcelController@excel')->name('export_excel.excel');
 
 	$this->get('/export_users/excel', 'ExportUserController@excel')->name('export_users.excel');
 
 	$this->get('/export_proj/excel', 'ExportProjController@excel')->name('export_proj.excel');
+
+	$this->get('/export_task/excel', 'ExportTaskController@excel')->name('export_task.excel');
+
+	$this->get('/export_dep/excel', 'ExportDepController@excel')->name('export_dep.excel');
 
 });
      //o certo é colocar o post, saida, fim dentro do 'middleware' => ['auth'] pois o

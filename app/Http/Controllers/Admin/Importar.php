@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UsersImport;
+use App\Imports\TasksImport;
 use App\Models\User;
+use App\Models\Task;
 //use storage\app\public\Import\usuarios;
 use DB;
 //use PDO;
@@ -41,6 +43,30 @@ class Importar extends Controller
                     ->with('error', 'Não anexou o arquivo');
     }
     }
+    public function gettask(){ 
+
+        //DD("oi");
+        try{   
+    Excel::import(new TasksImport, 'Import\tarefas.csv', null, \Maatwebsite\Excel\Excel::CSV);
+
+    return redirect('/admin')
+            ->with('success', 'Arquivo de Tarefas foi Importado');
+            }
+     catch(\Exception $e){
+     $ec = $e->getCode();
+
+     switch ($ec) {
+    case "23000":
+        return redirect('/admin')
+            ->with('error', 'O Arquivo não foi importado, pois tem uma tarefa que já está cadastrada. Tipo de erro número: '.$ec);
+        break;
+    
+    default:  
+        return redirect('/admin')
+            ->with('error', 'Arquivo não foi Importado, pois está fora do padrão aceito.  Erro número: '.$ec);
+                    }    
+                        }
+                            }
     public function getIndex(){ 
 
         //DD("oi");
