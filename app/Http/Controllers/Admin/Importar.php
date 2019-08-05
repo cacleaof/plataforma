@@ -31,7 +31,7 @@ class Importar extends Controller
 
         //$dataForm->save();
         
-        Storage::putfileAs('Import', $arquivo, 'tarefas.csv');
+        Storage::putfileAs('Import', $arquivo, 'tarefas.xlsx');
 
         return redirect()
                     ->route('consult.entrada')
@@ -47,7 +47,7 @@ class Importar extends Controller
 
         //DD("oi");
         try{   
-    Excel::import(new TasksImport, 'Import\tarefas.csv', null, \Maatwebsite\Excel\Excel::CSV);
+    Excel::import(new TasksImport, 'Import\tarefas.xlsx', null, \Maatwebsite\Excel\Excel::XLSX);
 
     return redirect('/admin')
             ->with('success', 'Arquivo de Tarefas foi Importado');

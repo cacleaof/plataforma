@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Task;
+use App\Models\task;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -17,7 +17,7 @@ class TasksImport implements ToModel, WithHeadingRow
     {
         return new Task([
            //'id'     => $row['id'],
-           'task'    => $row['task'], 
+           'task'      => $row['tarefa'], 
            //'detalhe'   => $row['detalhe'],
            //'date_ini'     => $row['date_ini'], 
            //'date_fim'   => $row['date_fim'],
