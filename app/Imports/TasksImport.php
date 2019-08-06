@@ -17,11 +17,11 @@ class TasksImport implements ToModel, WithHeadingRow
     {
         return new Task([
            //'id'     => $row['id'],
-           'task'      => $row['tarefa'], 
-           //'detalhe'   => $row['detalhe'],
-           //'date_ini'     => $row['date_ini'], 
-           //'date_fim'   => $row['date_fim'],
-           //'prevdias'   => $row['prevdias'],
+           'task'      => $row['task'], 
+           'detalhe'   => $row['detalhe'],
+           'date_ini'     => $row['date_ini'], 
+           'date_fim'   => $row['date_fim'],
+           'prevdias'   => $row['prevdias'],
           // 'created_at'     => $row['created_at'],
           // 'updated_at'     => $row['updated_at'],
            'proj_id'   => $row['proj_id'],

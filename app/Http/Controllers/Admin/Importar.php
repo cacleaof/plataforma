@@ -11,7 +11,7 @@ use App\Imports\UsersImport;
 use App\Imports\TasksImport;
 use App\Models\User;
 use App\Models\Task;
-//use storage\app\public\Import\usuarios;
+use Import\tarefas;
 use DB;
 //use PDO;
 
@@ -48,6 +48,8 @@ class Importar extends Controller
         //DD("oi");
         try{   
     Excel::import(new TasksImport, 'Import\tarefas.xlsx', null, \Maatwebsite\Excel\Excel::XLSX);
+    //Excel::import(new TaskImport, 'Import\tarefas.xlsx', null, \Maatwebsite\Excel\Excel::XLSX);
+    
 
     return redirect('/admin')
             ->with('success', 'Arquivo de Tarefas foi Importado');
@@ -56,12 +58,12 @@ class Importar extends Controller
      $ec = $e->getCode();
 
      switch ($ec) {
-    case "23000":
+     case "23000":
         return redirect('/admin')
             ->with('error', 'O Arquivo não foi importado, pois tem uma tarefa que já está cadastrada. Tipo de erro número: '.$ec);
         break;
     
-    default:  
+     default:  
         return redirect('/admin')
             ->with('error', 'Arquivo não foi Importado, pois está fora do padrão aceito.  Erro número: '.$ec);
                     }    

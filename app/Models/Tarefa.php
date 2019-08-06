@@ -1,15 +1,18 @@
 <?php
 
-namespace App\Models;
+namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Task;
 
 class Task extends Model
 {
-	protected $fillable = ['task', 'detalhe', 'date_ini', 'date_fim', 'prevdias', 'proj_id'];
-
     public function task()
     {
     	return $this->belongsTo(Task::class);
+    }
+    public function project()
+    {
+    	return $this->belongsTo(Project::class);
     }
 }
