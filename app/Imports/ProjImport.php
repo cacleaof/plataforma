@@ -5,7 +5,6 @@ namespace App\Imports;
 use App\Models\task;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use DB;
 
 class TasksImport implements ToModel, WithHeadingRow
 {
@@ -16,13 +15,6 @@ class TasksImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-      
-      $tarefa = Task::where('proj_id' , $row['proj_id'])->get();
-        
-      //$tarefa = DB::table('tasks')->all();  
-      
-      dd($tarefa);
-                        
         return new Task([
            //'id'     => $row['id'],
            'task'      => $row['task'], 
