@@ -11,6 +11,17 @@ use DB;
 
 class ProjControl extends Controller
 {
+    public function diario(task $task, project $project)
+    {
+    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'projects.date_ini', 'projects.date_fim', 'projects.duracao', 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
+
+    $projects = $project->all();
+
+     $users = DB::table('users')->paginate(4);
+    //dd($projects);
+
+        return view('admin.proj.diario', compact('tarefas', 'projects', 'users'));
+    }
     public function status_task(Task $task, Project $project, Request $request)
     {
     $tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
@@ -62,15 +73,17 @@ class ProjControl extends Controller
 
     $projects = $project->all();
 
+     $users = DB::table('users')->paginate(4);
     //dd($projects);
 
-        return view('admin.proj.n_task', compact('tarefas', 'projects'));
+        return view('admin.proj.n_task', compact('tarefas', 'projects', 'users'));
     }
     public function store_p(Request $request)
     {
     if(!empty($request->projeto)) {
         $dataForm = new Project;
         $dataForm->projeto = $request->projeto;
+        $dataForm->gerente = $request->gerente;
         $dataForm->proj_detalhe = $request->detalhe;
         $dataForm->date_ini = $request->inicio;
         $dataForm->date_fim = $request->fim;
@@ -92,6 +105,7 @@ class ProjControl extends Controller
         if(!empty($request->tarefa)) {
             $dataForm = new Task;
             $dataForm->proj_id = $request->projeto;
+            $dataForm->user_id = $request->gerente;
             $dataForm->detalhe = $request->detalhe;
             $dataForm->task = $request->tarefa;
             $dataForm->save();

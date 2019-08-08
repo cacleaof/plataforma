@@ -19,6 +19,8 @@ class CreateProjectsTable extends Migration
             $table->string('proj_detalhe')->nullable();
             $table->integer('duracao')->nullable();
             $table->integer('gerente')->nullable();
+            $table->integer('urg')->nullable();
+            $table->integer('imp')->nullable();
             $table->date('date_ini')->nullable();
             $table->date('date_fim')->nullable();
             $table->timestamps();

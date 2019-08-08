@@ -15,7 +15,7 @@
 @section('content')
 	<div class="box box-solid box-info">
 		<div class="box-header" with-border>
-			<h3>Digite os dados da Tarefa</h3>
+			<h3>Atividades Diárias</h3>
 		</div>
 		<div class="box-body">
 			<form method="get" action="{{ route('admin.proj.store_t')}}" enctype="multipart/form-data">
@@ -37,14 +37,25 @@
 							@endforeach
 						</select>
 					</div>
-						<div class="form-group" >
-							<input type="text" class="form-control" name="tarefa" maxlength="50" placeholder="Nome da Tarefa">
+					<div class="form-group">
+							<label>Tarefa:</label>
+						<select name="tarefa">
+							@foreach ($tarefas as $tarefa)
+							<option value="{{ $tarefa->id }}">{{ $tarefa->task }}</option>
+							@endforeach
+						</select>
+					</div>
+						<div class="form-group col-xs-3" >
+							<input type="date" class="form-control" name="tarefa" maxlength="10" placeholder="Dia">
+						</div>
+						<div class="form-group col-xs-2" >
+							<input type="time" class="form-control" value="09:00" name="hora" maxlength="10" placeholder="Dia">
+						</div>
+						<div class="form-group col-xs-2" >
+							<input type="time" class="form-control" name="fim" value="17:00" maxlength="10" placeholder="Dia">
 						</div>
 						<div class="form-group">
-						<textarea type="text" name="detalhe" rows="5" cols="80" placeholder="Descreva o detalhe do projeto" class="form-control"></textarea>
-						<div class="form-row" >
-							<label>Tarefas</label>
-						</div>
+						<textarea type="text" name="detalhe" rows="5" cols="80" placeholder="Descreva o que foi realizado" class="form-control"></textarea>
 						<div class="form-group">
 						<button type="submit" class="btn btn-success">Enviar</button> 
 						</div>

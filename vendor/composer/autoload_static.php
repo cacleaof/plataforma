@@ -517,7 +517,6 @@ class ComposerStaticInitbe0d8b3471b34b6b4d44852f23aba0a1
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\MoneyValidationFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/MoneyValidationFormRequest.php',
         'App\\Http\\Requests\\UpdateProfileFormRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateProfileFormRequest.php',
-        'App\\Imports\\TaskImport' => __DIR__ . '/../..' . '/app/Imports/TaskImport.php',
         'App\\Imports\\TasksImport' => __DIR__ . '/../..' . '/app/Imports/TasksImport.php',
         'App\\Imports\\UsersImport' => __DIR__ . '/../..' . '/app/Imports/UsersImport.php',
         'App\\Jobs\\ImportCSV' => __DIR__ . '/../..' . '/app/Jobs/ImportCSV.php',

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksTable extends Migration
+class CreateDiarioTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,19 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('diario', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('task');
-            $table->string('detalhe')->nullable();
-            $table->date('date_ini')->nullable();
-            $table->date('date_fim')->nullable();
-            $table->integer('prevdias')->nullable();
-            $table->integer('urg')->nullable();
-            $table->integer('imp')->nullable();
-            $table->timestamps();
             $table->integer('proj_id')->unsigned();
             $table->foreign('proj_id')->references('id')->on('projects')->onDelete('cascade');
+            $table->integer('task_id')->unsigned();
+            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
+            $table->string('detalhe')->nullable();
+            $table->date('date')->nullable();
+            $table->time('ini')->nullable();
+            $table->time('fim')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -37,6 +36,6 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('diario');
     }
 }

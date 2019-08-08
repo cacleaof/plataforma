@@ -39,7 +39,6 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Requests\\MoneyValidationFormRequest' => $baseDir . '/app/Http/Requests/MoneyValidationFormRequest.php',
     'App\\Http\\Requests\\UpdateProfileFormRequest' => $baseDir . '/app/Http/Requests/UpdateProfileFormRequest.php',
-    'App\\Imports\\TaskImport' => $baseDir . '/app/Imports/TaskImport.php',
     'App\\Imports\\TasksImport' => $baseDir . '/app/Imports/TasksImport.php',
     'App\\Imports\\UsersImport' => $baseDir . '/app/Imports/UsersImport.php',
     'App\\Jobs\\ImportCSV' => $baseDir . '/app/Jobs/ImportCSV.php',
