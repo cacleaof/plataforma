@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\Models\Project;
@@ -49,10 +50,12 @@ class ProjControl extends Controller
 
     public function task(Task $task, Project $project)
     {
-    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
+    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.urg')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
 
         //dd($tarefas);
         $projects = DB::table('projects')->paginate(4);
+
+        //$tarefas = $tars->sortBy('urg');
 
         return view('admin.proj.entrada', compact('tarefas', 'projects'));
     }

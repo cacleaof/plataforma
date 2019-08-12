@@ -3,12 +3,12 @@
 @section('title', 'Projeto')
 
 @section('content_header')
-    <h1>TAREFAS</h1>
+    <h4>Atividades do dia: {{ date('d/m/y') }} </h4>
 
     <ol class='breadcrumb'>
-    	<li><a ref="">Projeto</a></li>
-    	<li><a ref="">Tarefa</a></li>
     	<li><a ref=""></a></li>
+    	<li><a ref="">Calendario</a></li>
+    	<li><a ref="date('d/m/y')">{{ date('F') }}</a></li>
     </ol>
 @stop
 

@@ -127,13 +127,13 @@ return [
         [
             'text'        => 'Editar Usuários',
             'url'         => '/admin/lista',
-            'icon'        => 'dashboard',
+            'icon'        => 'fas fa-fw fa-user-lock',
             'can'         => 'administrador',
         ],
         [
             'text'        => 'Projetos',
             'url'         => '/admin/task',
-            'icon'        => 'dashboard',
+            'icon'        => 'fas fa-fw fa-address-book',
             'can'         => 'administrador',
             'submenu'  =>  [
                 [
@@ -144,7 +144,7 @@ return [
                 [
                     'text'        => 'Status-Projetos',
                     'url'         => '/admin/status_proj',
-                    'icon'        => 'history'
+                    'icon'        => 'dashboard'
                 ],
                 [
                     'text'        => 'Status-Tarefas',
@@ -154,7 +154,7 @@ return [
                 [
                     'text'        => 'Exportar-Projetos',
                     'url'         => '/admin/export_proj',
-                    'icon'        => 'history'
+                    'icon'        => 'file-medical'
                 ],
                 [
                     'text'        => 'Exportar-Tarefas',
