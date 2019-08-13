@@ -127,13 +127,13 @@ return [
         [
             'text'        => 'Editar Usuários',
             'url'         => '/admin/lista',
-            'icon'        => 'fas fa-fw fa-user-lock',
+            'icon'        => 'fas fa-user-lock',
             'can'         => 'administrador',
         ],
         [
             'text'        => 'Projetos',
             'url'         => '/admin/task',
-            'icon'        => 'fas fa-fw fa-address-book',
+            'icon'        => 'fas fa-camera',
             'can'         => 'administrador',
             'submenu'  =>  [
                 [

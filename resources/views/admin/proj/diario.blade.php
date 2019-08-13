@@ -24,8 +24,8 @@
 					@include('admin.includes.alerts')
 					<div class="form-group">
 						<select name="projeto">
-							@foreach ($projects as $project)
-							<option value="{{ $project->id }}">{{ $project->projeto }}</option>
+							@foreach ($tarefas as $tarefa)
+							<option value="{{ $tarefa->id }}">{{ $tarefa->projeto }}</option>
 							@endforeach
 						</select>
 					</div>
