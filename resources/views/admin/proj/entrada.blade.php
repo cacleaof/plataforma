@@ -59,7 +59,6 @@
         @empty
         <p>Você não tem tarefas na sua caixa de entrada</p>
         @endforelse
-        {!! $tarefas->links() !!}
         @endif
         </table>
 @endsection
