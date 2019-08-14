@@ -127,7 +127,7 @@ return [
         [
             'text'        => 'Editar Usuários',
             'url'         => '/admin/lista',
-            'icon'        => 'fas fa-user-lock',
+            'icon'        => 'far fa-address-book',
             'can'         => 'administrador',
         ],
         [
@@ -154,7 +154,7 @@ return [
                 [
                     'text'        => 'Exportar-Projetos',
                     'url'         => '/admin/export_proj',
-                    'icon'        => 'file-medical'
+                    'icon'        => 'far fa-file'
                 ],
                 [
                     'text'        => 'Exportar-Tarefas',
@@ -169,7 +169,7 @@ return [
                 [
                     'text'        => 'Anexar arquivo Importar-Tarefas',
                     'url'         => '/admin/tarefas',
-                    'icon'        => 'history'
+                    'icon'        => 'far fa-save'
                 ],
                 [
                     'text'        => 'Importar-Tarefas',
