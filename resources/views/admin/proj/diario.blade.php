@@ -4,7 +4,20 @@
 
 @section('content_header')
     <h4>Atividades do dia: {{ date('d/m/y') }} </h4>
-
+    <div class="box-header">
+            <a href="{{ route('admin.proj.n_proj') }}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>8-16</a>
+            <a href="{{ route('admin.proj.n_task')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>9-17</a>
+            <a href="{{ route('admin.proj.diario')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Hora</a>
+	<div class="form-group col-xs-2" >
+		<input type="date" class="form-control" value="{{ date('Y-m-d') }}" name="dia" maxlength="5" placeholder="Dia">
+	</div>
+	<div class="form-group col-xs-1" >
+		<input type="time" class="form-control" value="09:00" name="hora" maxlength="10" placeholder="Dia">
+	</div>
+	<div class="form-group col-xs-1" >
+		<input type="time" class="form-control" name="fim" value="17:00" maxlength="10" placeholder="Dia">
+	</div>
+	</div>
     <ol class='breadcrumb'>
     	<li><a ref=""></a></li>
     	<li><a ref="">Calendario</a></li>
