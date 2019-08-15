@@ -46,12 +46,12 @@ class Importar extends Controller
     public function gettask(){ 
 
         //DD("oi");
-        try{   
+        //try{   
     Excel::import(new TasksImport, 'Import\tarefas.xlsx', null, \Maatwebsite\Excel\Excel::XLSX);
     //Excel::import(new TaskImport, 'Import\tarefas.xlsx', null, \Maatwebsite\Excel\Excel::XLSX);
     
 
-    return redirect('/admin')
+    /*return redirect('/admin')
             ->with('success', 'Arquivo de Tarefas foi Importado');
             }
      catch(\Exception $e){
@@ -67,7 +67,7 @@ class Importar extends Controller
         return redirect('/admin')
             ->with('error', 'Arquivo não foi Importado, pois está fora do padrão aceito.  Erro número: '.$ec);
                     }    
-                        }
+                        }*/
                             }
     public function getIndex(){ 
 

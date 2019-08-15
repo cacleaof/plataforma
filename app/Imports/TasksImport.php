@@ -17,11 +17,11 @@ class TasksImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
       
-      $tarefa = Task::where('proj_id' , $row['proj_id'])->get();
+      //$tarefa = Task::where('proj_id' , $row['proj_id'])->get();
         
       //$tarefa = DB::table('tasks')->all();  
       
-      dd($tarefa);
+      //dd($tarefa);
                         
         return new Task([
            //'id'     => $row['id'],
