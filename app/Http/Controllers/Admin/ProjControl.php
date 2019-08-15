@@ -12,14 +12,20 @@ use DB;
 
 class ProjControl extends Controller
 {
-    public function diario(task $task, project $project)
+    public function diario(task $task, project $project, Request $request)
     {
     $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'projects.date_ini', 'projects.date_fim', 'projects.duracao', 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
 
     $projects = $project->all();
 
      $users = DB::table('users')->paginate(4);
-    //dd($projects);
+
+     //$horaini = '7:00';
+
+     //if(!empty($request->h_ini)) {
+     
+    //$horaini = $request->h_ini;
+    // } <input type="hidden" name="h_ini" value="8:00">
 
         return view('admin.proj.diario', compact('tarefas', 'projects', 'users'));
     }

@@ -3,11 +3,13 @@
 @section('title', 'Projeto')
 
 @section('content_header')
-    <h4>Atividades do dia: {{ date('d/m/y') }} </h4>
-    <div class="box-header">
-            <a href="{{ route('admin.proj.n_proj') }}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>8-16</a>
-            <a href="{{ route('admin.proj.n_task')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>9-17</a>
-            <a href="{{ route('admin.proj.diario')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Hora</a>
+    <h4>Atividades do dia: {{ $horaini or '10:00' }} </h4>
+    <div class="form-control">
+		<button class="btn btn-primary" onclick="Func9()">9-17</button> 
+	</div>
+	<div class="form-control">
+		<button class="btn btn-primary" onclick="Func8()">8-16</button> 
+	</div>
 	<div class="form-group col-xs-2" >
 		<input type="date" class="form-control" value="{{ date('Y-m-d') }}" name="dia" maxlength="5" placeholder="Dia">
 	</div>
@@ -17,12 +19,21 @@
 	<div class="form-group col-xs-1" >
 		<input type="time" class="form-control" name="fim" value="17:00" maxlength="10" placeholder="Dia">
 	</div>
-	</div>
     <ol class='breadcrumb'>
     	<li><a ref=""></a></li>
     	<li><a ref="">Calendario</a></li>
     	<li><a ref="date('d/m/y')">{{ date('F') }}</a></li>
     </ol>
+    <script type="text/javascript">
+    function Func9(){
+  	var horaini = "9:00";
+	}
+	</script>
+	<script type="text/javascript">
+	function Func8(){
+  	var horaini = "8:00";
+	}
+	</script>
 @stop
 
 @section('content')
