@@ -8,18 +8,32 @@ use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\Diario;
 use DB;
 
 class ProjControl extends Controller
 {
-    public function diario(task $task, project $project, Request $request)
+    public function diario(task $task, project $project, Request $request, Diario $diario)
     {
-    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'projects.date_ini', 'projects.date_fim', 'projects.duracao', 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
+    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'projects.date_ini', 'projects.date_fim', 'projects.duracao', 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id')->paginate(4);  
 
     $projects = $project->all();
 
-     $users = DB::table('users')->paginate(4);
+    //$diarios = Diario::where('user_id', auth()->user()->id)->paginate(6);
 
+    $diarios = diario::select('projects.projeto', 'diarios.date', 'diarios.task_id', 'diarios.detalhe', 'diarios.ini', 'diarios.fim', 'tasks.task')->join('projects', 'diarios.proj_id', 'projects.id')->join('tasks', 'diarios.task_id', 'tasks.id')->paginate(5);
+    
+    $users = DB::table('users')->paginate(4);
+
+     //$diarios = auth()->user()->diarios()->get();
+
+
+     //$pv = $diario->project()->get()->first();
+     
+     //dd($diarios);
+
+     //$diarios = Diario::where('user_id', auth()->user()->id);
+       //dd($diarios);
      //$horaini = '7:00';
 
      //if(!empty($request->h_ini)) {
@@ -27,7 +41,7 @@ class ProjControl extends Controller
     //$horaini = $request->h_ini;
     // } <input type="hidden" name="h_ini" value="8:00">
 
-        return view('admin.proj.diario', compact('tarefas', 'projects', 'users'));
+        return view('admin.proj.diario', compact('tarefas', 'projects', 'users', 'diarios'));
     }
     public function status_task(Task $task, Project $project, Request $request)
     {

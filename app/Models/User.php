@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Balance;
 use App\Models\Historic;
+use App\Models\Diario;
 use Illuminate\Database\Eloquent\Model;
 use App\Role;
 use App\Models\Permission;
@@ -51,10 +52,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Historic::class);
     }
+    public function diarios()
+    {
+        return $this->hasMany(Diario::class);
+    }
 
     public function consults()
     {
-        return $this->hasMany(consults::class);
+        return $this->hasMany(Consults::class);
     }
 
 

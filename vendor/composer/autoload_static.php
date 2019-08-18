@@ -538,6 +538,7 @@ class ComposerStaticInitbe0d8b3471b34b6b4d44852f23aba0a1
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\models\\Diario' => __DIR__ . '/../..' . '/app/Models/Diario.php',
         'App\\models\\Project' => __DIR__ . '/../..' . '/app/Models/Project.php',
         'App\\models\\Task' => __DIR__ . '/../..' . '/app/Models/Tarefa.php',
         'App\\models\\imports' => __DIR__ . '/../..' . '/app/Models/imports.php',

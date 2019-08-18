@@ -60,6 +60,7 @@ return array(
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
+    'App\\models\\Diario' => $baseDir . '/app/Models/Diario.php',
     'App\\models\\Project' => $baseDir . '/app/Models/Project.php',
     'App\\models\\Task' => $baseDir . '/app/Models/Tarefa.php',
     'App\\models\\imports' => $baseDir . '/app/Models/imports.php',

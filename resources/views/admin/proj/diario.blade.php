@@ -32,6 +32,23 @@
 		<input type="time" class="form-group col-xs-2" name="ini" maxlength="10">
 		<input type="time" class="form-group col-xs-2" name="fim"  maxlength="10" placeholder="Dia">
 	</div>
+	<table class="table table-striped">
+		<tr>
+			@forelse ($diarios as $diario)
+				<a name="dia"></a>
+				<td>{{ $diario->date }}</td>
+				<td>
+					{{ $diario->projeto }}
+				</td>
+				<td>{{ $diario->task }}</td>
+				<td>{{ $diario->detalhe }}</td>
+				<td>{{ $diario->ini }}</td>
+				<td>{{ $diario->fim }}</td>
+		</tr>
+			@empty
+				<p>Sem tarefas planejadas para a data</p>
+			@endforelse
+	</table>
 			<form method="get" action="{{ route('admin.proj.store_t')}}" enctype="multipart/form-data">
 					{!! csrf_field() !!}
 				<div class="form-row">
