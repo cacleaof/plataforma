@@ -5,17 +5,17 @@
 @section('content_header')
     <script type="text/javascript">
     function Func9(){
-  	var horaini = "9:00";
   	$('input[name="ini"]').val('09:00');
   	$('input[name="fim"]').val('17:00');
 	}
 	</script>
 	<script type="text/javascript">
-	function Func8(){
-  	var horaini = "8:00";
-  	$('input[name="ini"]').val('08:00');
-  	$('input[name="fim"]').val('16:00');
-	}
+		$( document ).ready(function() {
+		$('#func8').click(function(){ 
+			$('input[name="ini"]').val('08:00');
+  			$('input[name="fim"]').val('16:00');
+		})
+		})
 	</script>
 @stop
 
@@ -26,21 +26,24 @@
 		</div>
 		<div class="box-body">
 			<div class="form-group">
-		<button class="btn btn-primary" onclick="Func8()">8-16</button> 
+		<form method="POST" action="{{ route('admin.proj.diario') }}" enctype="multipart/form-data">
+					{!! csrf_field() !!}
+		<a id="func8" class="btn btn-primary">8-16</a> 
 		<button class="btn btn-primary" onclick="Func9()">9-17</button> 
-		<input type="date" class="form-group col-xs-4" value="{{ date('Y-m-d') }}" name="dia" maxlength="5" placeholder="Dia">
-		<input type="time" class="form-group col-xs-2" name="ini" maxlength="10">
-		<input type="time" class="form-group col-xs-2" name="fim"  maxlength="10" placeholder="Dia">
+		<input type="date" class="form-group col-xs-4" value="{{ $dia !=null ? $dia : date('Y-m-d') }}" name="dia" maxlength="5">
+		<input type="time" class="form-group col-xs-2" value="{{ $ini !=null ? $ini : '' }}" name="ini" maxlength="10">
+		<input type="time" class="form-group col-xs-2" value="{{ $fim !=null ? $fim : '' }}" name="fim"  maxlength="10">
+		<button type="submit" class="btn btn-primary">Enviar</button> 
+		</form>
 	</div>
 	<table class="table table-striped">
 		<tr>
 			@forelse ($diarios as $diario)
-				<a name="dia"></a>
 				<td>{{ $diario->date }}</td>
 				<td>
-					{{ $diario->projeto }}
+					{{ $diario->project->projeto }}
 				</td>
-				<td>{{ $diario->task }}</td>
+				<td>{{ $diario->task->task }}</td>
 				<td>{{ $diario->detalhe }}</td>
 				<td>{{ $diario->ini }}</td>
 				<td>{{ $diario->fim }}</td>

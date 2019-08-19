@@ -19,9 +19,23 @@ class ProjControl extends Controller
 
     $projects = $project->all();
 
-    //$diarios = Diario::where('user_id', auth()->user()->id)->paginate(6);
+    $dia = null;
+    $ini = null;
+    $fim = null;
 
-    $diarios = diario::select('projects.projeto', 'diarios.date', 'diarios.task_id', 'diarios.detalhe', 'diarios.ini', 'diarios.fim', 'tasks.task')->join('projects', 'diarios.proj_id', 'projects.id')->join('tasks', 'diarios.task_id', 'tasks.id')->paginate(5);
+    if(!empty($request->dia)) {
+    $dia = $request->dia;
+    $ini = $request->ini;
+    $fim = $request->fim;
+    }
+    if(!empty($request->dia)) {
+    $diarios = Diario::where('user_id', auth()->user()->id)
+                ->where('date' ,$dia)->paginate(6);
+    }
+    else {
+    $diarios = Diario::where('user_id', auth()->user()->id)->paginate(6);
+    }
+    //$diarios = diario::select('projects.projeto', 'diarios.date', 'diarios.task_id', 'diarios.detalhe', 'diarios.ini', 'diarios.fim', 'tasks.task')->join('projects', 'diarios.proj_id', 'projects.id')->join('tasks', 'diarios.task_id', 'tasks.id')->paginate(5);
     
     $users = DB::table('users')->paginate(4);
 
@@ -41,7 +55,7 @@ class ProjControl extends Controller
     //$horaini = $request->h_ini;
     // } <input type="hidden" name="h_ini" value="8:00">
 
-        return view('admin.proj.diario', compact('tarefas', 'projects', 'users', 'diarios'));
+        return view('admin.proj.diario', compact('tarefas', 'projects', 'users', 'diarios', 'dia', 'ini', 'fim'));
     }
     public function status_task(Task $task, Project $project, Request $request)
     {

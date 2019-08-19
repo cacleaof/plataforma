@@ -16,6 +16,6 @@ class Project extends Model
     }
     public function diarios()
     {
-        return $this->hasMany(Diario::class);
+        return $this->hasMany(Diario::class, 'proj_id');
     }
 }

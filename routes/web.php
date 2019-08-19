@@ -16,6 +16,8 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->get('diario', 'ProjControl@diario')->name('admin.proj.diario');
 
+	$this->post('diario', 'ProjControl@diario')->name('admin.proj.diario');
+
 	$this->get('n_proj', 'ProjControl@n_proj')->name('admin.proj.n_proj');
 
 	$this->get('n_task', 'ProjControl@n_task')->name('admin.proj.n_task');
