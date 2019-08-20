@@ -15,9 +15,22 @@ class ProjControl extends Controller
 {
     public function diario(task $task, project $project, Request $request, Diario $diario)
     {
-    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'projects.date_ini', 'projects.date_fim', 'projects.duracao', 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id')->paginate(4);  
+    //$tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'projects.date_ini', 'projects.date_fim', 'projects.duracao', 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id')->paginate(4);  
 
+
+    if(!empty($request->projeto)) {
+    $projects = Project::where('gerente', auth()->user()->id)
+                ->where('id' , $request->projeto)->paginate(6);
+    $tarefas = Task::where('user_id', auth()->user()->id)
+                ->where('proj_id' , $request->projeto)->paginate(6);
+    }
+    else {
     $projects = $project->all();
+    $tarefas = $task->all();
+    }
+
+    /*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> */
 
     $dia = null;
     $ini = null;
