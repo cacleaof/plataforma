@@ -19,6 +19,8 @@ class CreateFilesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('consult_id')->unsigned();
             $table->foreign('consult_id')->references('id')->on('consults')->onDelete('cascade');
+            $table->integer('diario_id')->unsigned();
+            $table->foreign('diario_id')->references('id')->on('diarios')->onDelete('cascade');
             $table->string('file', 100)->nullable();
             $table->integer('size')->nullable();
         });

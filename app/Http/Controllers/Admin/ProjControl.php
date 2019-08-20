@@ -9,6 +9,7 @@ use App\Models\Task;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\Diario;
+use App\Models\file;
 use DB;
 
 class ProjControl extends Controller
@@ -32,21 +33,19 @@ class ProjControl extends Controller
     /*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> */
 
-    $dia = null;
-    $ini = null;
-    $fim = null;
 
     if(!empty($request->dia)) {
     $dia = $request->dia;
     $ini = $request->ini;
     $fim = $request->fim;
-    }
-    if(!empty($request->dia)) {
     $diarios = Diario::where('user_id', auth()->user()->id)
                 ->where('date' ,$dia)->paginate(6);
     }
     else {
     $diarios = Diario::where('user_id', auth()->user()->id)->paginate(6);
+    $dia = null;
+    $ini = null;
+    $fim = null;
     }
     //$diarios = diario::select('projects.projeto', 'diarios.date', 'diarios.task_id', 'diarios.detalhe', 'diarios.ini', 'diarios.fim', 'tasks.task')->join('projects', 'diarios.proj_id', 'projects.id')->join('tasks', 'diarios.task_id', 'tasks.id')->paginate(5);
     
@@ -69,6 +68,49 @@ class ProjControl extends Controller
     // } <input type="hidden" name="h_ini" value="8:00">
 
         return view('admin.proj.diario', compact('tarefas', 'projects', 'users', 'diarios', 'dia', 'ini', 'fim'));
+    }
+     public function store(Request $request)
+    {
+    if(!empty($request->tarefa)) {
+        $arquivos = $request->file('arquivo');
+        $dataForm = new Diario;
+        $dataForm->proj_id = $request->projeto;
+        $dataForm->task_id = $request->tarefa;
+        $dataForm->ativo = $request->ativo;
+        $dataForm->detalhe = $request->detalhe;
+        $dataForm->date = $request->date;
+        $dataForm->ini = $request->ini;
+        $dataForm->fim = $request->fim;
+        $nome = $request->file;
+        $dataForm->user_id = auth()->user()->id;
+        $dataForm->save();
+        $idc = $dataForm->id;
+        if(!empty($arquivos)):
+                $dataForm->anexos = '1';
+                $dataForm->update();
+            foreach ($arquivos as $arquivo):
+
+                $data = new file;
+                $data->diario_id = $idc;
+                $data->size = $arquivo->getClientSize();
+                $nome = $arquivo->getClientOriginalName();
+                $nome = $idc.'-'.$nome;
+                $data->file = $nome;
+                $data->user_id = auth()->user()->id;
+                $data->save();
+                Storage::putfileAs($dataForm->user_id.'/'.$idc, $arquivo, $nome);
+            endforeach;
+        endif;
+
+        return redirect()
+                    ->route('admin.proj.task')
+                    ->with('success', 'TeleConsultoria enviada com sucesso - Prazo Máximo de Retorno 72 horas');
+    }
+    else {
+        return redirect()
+                    ->back()
+                    ->with('error', 'O campo descreva sua dúvida ou questionamento deve ser preenchido para envio da consultoria');
+    }
     }
     public function status_task(Task $task, Project $project, Request $request)
     {

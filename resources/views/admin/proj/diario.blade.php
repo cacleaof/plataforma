@@ -76,7 +76,10 @@
 							<option value="{{ $project->id }}">{{ $project->projeto }}</option>
 							@endforeach
 						</select>
-						<button type="submit" class="btn btn-primary">Enviar</button> 
+						<input type="hidden" value="{{ $dia }}" name="dia">
+						<input type="hidden" value="{{ $ini }}" name="ini">
+						<input type="hidden" value="{{ $fim }}" name="fim">
+						<button type="submit" class="btn btn-primary">Tarefas</button> 
 						</form>
 						<select name="tarefa">
 							@foreach ($tarefas as $tarefa)
@@ -85,6 +88,11 @@
 						</select>
 					</div>
 						<textarea type="text" name="detalhe" rows="5" cols="80" placeholder="Descreva o que foi realizado" class="form-control"></textarea>
+						<div class="form-row">
+							<label for="file">Arquivos Anexos:</label>
+							<input type="file" name="arquivo[]" id="file" multiple>
+							<input type="hidden" value="{{ csrf_token() }}" name="_token">
+						</div>
 						<div class="form-group">
 						<button type="submit" class="btn btn-success">Enviar</button> 
 						</div>
