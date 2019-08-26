@@ -24,6 +24,8 @@ class TaskExport implements FromCollection, WithHeadings
             'date_ini',
             'date_fim',
             'prevdias',
+            'urg',
+            'imp',
             'created_at',
             'updated_at',
             'proj_id',

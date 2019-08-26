@@ -2,10 +2,10 @@
 
 namespace App\Imports;
 
-use App\Models\task;
+use App\Models\Task;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use DB;
+use Carbon\Carbon;
 
 class TasksImport implements ToModel, WithHeadingRow
 {
@@ -17,22 +17,18 @@ class TasksImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
       
-      //$tarefa = Task::where('proj_id' , $row['proj_id'])->get();
-        
-      //$tarefa = DB::table('tasks')->all();  
-      
-      //dd($tarefa);
                         
         return new Task([
-           //'id'     => $row['id'],
            'task'      => $row['task'], 
            'detalhe'   => $row['detalhe'],
-           'date_ini'     => $row['date_ini'], 
-           'date_fim'   => $row['date_fim'],
+           'date_ini'   => Carbon::now(),
+           'date_fim'   => Carbon::now(),
+          // 'date_ini'   => $row['date_ini'],
+          // 'date_fim'   => $row['date_fim'],
            'prevdias'   => $row['prevdias'],
-          // 'created_at'     => $row['created_at'],
-          // 'updated_at'     => $row['updated_at'],
-           'proj_id'   => $row['proj_id'],
+           'urg'        => $row['urg'],
+           'imp'        => $row['imp'],
+           'proj_id'   => $row['proj_id']
         ]);
     }
 }

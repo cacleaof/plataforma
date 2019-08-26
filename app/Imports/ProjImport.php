@@ -2,11 +2,11 @@
 
 namespace App\Imports;
 
-use App\Models\task;
+use App\Models\Task;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class TasksImport implements ToModel, WithHeadingRow
+class ProjImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -15,7 +15,7 @@ class TasksImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        return new Task([
+        return new Project([
            //'id'     => $row['id'],
            'task'      => $row['task'], 
            'detalhe'   => $row['detalhe'],

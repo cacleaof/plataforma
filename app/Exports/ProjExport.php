@@ -23,6 +23,8 @@ class ProjExport implements FromCollection, WithHeadings
             'proj_detalhe',
             'duracao',
             'gerente',
+            'urg',
+            'imp',
             'date_ini',
             'date_fim',
         ];

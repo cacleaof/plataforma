@@ -10,6 +10,7 @@ use App\Models\Project;
 use App\Models\User;
 use App\Models\Diario;
 use App\Models\file;
+use App\Models\arquivo;
 use DB;
 
 class ProjControl extends Controller
@@ -18,70 +19,71 @@ class ProjControl extends Controller
     {
     //$tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'projects.date_ini', 'projects.date_fim', 'projects.duracao', 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id')->paginate(4);  
 
-
     if(!empty($request->projeto)) {
     $projects = Project::where('gerente', auth()->user()->id)
                 ->where('id' , $request->projeto)->paginate(6);
     $tarefas = Task::where('user_id', auth()->user()->id)
                 ->where('proj_id' , $request->projeto)->paginate(6);
+    $projeto = $request->projeto;
+    $dia = $request->dia;
+    $ini = $request->ini;
+    $fim = $request->fim;
+    $data = $request->data;
+    $nini = $request->nini;
+    $nfim = $request->nfim;
     }
     else {
     $projects = $project->all();
     $tarefas = $task->all();
+    $dia = null;
+    $ini = null;
+    $fim = null;
+    $projeto = null;
+    $data = null;
+    $nini = null;
+    $nfim = null;
     }
+    //dd($projeto);
+    
 
     /*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> */
 
-
-    if(!empty($request->dia)) {
+      if(!empty($request->dia)) {
     $dia = $request->dia;
     $ini = $request->ini;
     $fim = $request->fim;
+    $data = $request->data;
+    $nini = $request->nini;
+    $nfim = $request->nfim;
+    $projeto = $request->projeto;
     $diarios = Diario::where('user_id', auth()->user()->id)
-                ->where('date' ,$dia)->paginate(6);
+                ->where('date' , $dia)->paginate(6);
     }
     else {
     $diarios = Diario::where('user_id', auth()->user()->id)->paginate(6);
-    $dia = null;
-    $ini = null;
-    $fim = null;
     }
+
     //$diarios = diario::select('projects.projeto', 'diarios.date', 'diarios.task_id', 'diarios.detalhe', 'diarios.ini', 'diarios.fim', 'tasks.task')->join('projects', 'diarios.proj_id', 'projects.id')->join('tasks', 'diarios.task_id', 'tasks.id')->paginate(5);
     
     $users = DB::table('users')->paginate(4);
 
-     //$diarios = auth()->user()->diarios()->get();
-
-
-     //$pv = $diario->project()->get()->first();
      
-     //dd($diarios);
-
-     //$diarios = Diario::where('user_id', auth()->user()->id);
-       //dd($diarios);
-     //$horaini = '7:00';
-
-     //if(!empty($request->h_ini)) {
-     
-    //$horaini = $request->h_ini;
-    // } <input type="hidden" name="h_ini" value="8:00">
-
-        return view('admin.proj.diario', compact('tarefas', 'projects', 'users', 'diarios', 'dia', 'ini', 'fim'));
+    return view('admin.proj.diario', compact('tarefas', 'projects', 'users', 'diarios', 'dia', 'ini', 'fim', 'projeto', 'data', 'nini', 'nfim'));
+       
     }
-     public function store(Request $request)
+    public function store_diario(Request $request)
     {
     if(!empty($request->tarefa)) {
         $arquivos = $request->file('arquivo');
         $dataForm = new Diario;
         $dataForm->proj_id = $request->projeto;
         $dataForm->task_id = $request->tarefa;
-        $dataForm->ativo = $request->ativo;
+        $dataForm->date = $request->data;
+        $dataForm->ini = $request->nini;
+        $dataForm->fim = $request->nfim;
         $dataForm->detalhe = $request->detalhe;
-        $dataForm->date = $request->date;
-        $dataForm->ini = $request->ini;
-        $dataForm->fim = $request->fim;
-        $nome = $request->file;
+        $nome = $request->arquivo;
         $dataForm->user_id = auth()->user()->id;
         $dataForm->save();
         $idc = $dataForm->id;
@@ -89,13 +91,12 @@ class ProjControl extends Controller
                 $dataForm->anexos = '1';
                 $dataForm->update();
             foreach ($arquivos as $arquivo):
-
-                $data = new file;
+                $data = new arquivo;
                 $data->diario_id = $idc;
                 $data->size = $arquivo->getClientSize();
                 $nome = $arquivo->getClientOriginalName();
                 $nome = $idc.'-'.$nome;
-                $data->file = $nome;
+                $data->arquivo = $nome;
                 $data->user_id = auth()->user()->id;
                 $data->save();
                 Storage::putfileAs($dataForm->user_id.'/'.$idc, $arquivo, $nome);
@@ -103,29 +104,25 @@ class ProjControl extends Controller
         endif;
 
         return redirect()
-                    ->route('admin.proj.task')
-                    ->with('success', 'TeleConsultoria enviada com sucesso - Prazo Máximo de Retorno 72 horas');
+                    ->route('admin.proj.diario')
+                    ->with('success', 'Atividade Concluida');
     }
     else {
         return redirect()
                     ->back()
-                    ->with('error', 'O campo descreva sua dúvida ou questionamento deve ser preenchido para envio da consultoria');
+                    ->with('error', 'Erro na entrada de dados');
     }
     }
-    public function status_task(Task $task, Project $project, Request $request)
+
+     public function status_task(Task $task, Project $project, Request $request)
     {
     $tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
-
-        //dd($tarefas);
-        //if(!empty($request->projeto)) {
-
-       // $projeto = $request->projeto;
-       // }
         
         $projects = DB::table('projects')->paginate(4);
 
         return view('admin.proj.status_task', compact('tarefas', 'projects'));
     }
+
 
     public function status_proj(Task $task, Project $project)
     {
