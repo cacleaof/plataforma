@@ -9,14 +9,65 @@ use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UsersImport;
 use App\Imports\TasksImport;
+use App\Imports\ProjImport;
 use App\Models\User;
 use App\Models\Task;
-use Import\tarefas;
+use App\Models\Project;
 use DB;
 //use PDO;
 
 class Importar extends Controller
 {
+    public function projetos()
+    {
+        //$consults = $consult->all();
+
+        return view('admin.importar.projetos');
+    } 
+    public function save_projetos(Request $request)
+    {
+      $arquivo = $request->file('arquivo');
+         
+    if(!empty($arquivo)) {
+
+        //$dataForm->save();
+        
+        Storage::putfileAs('Import', $arquivo, 'projetos.xlsx');
+
+        return redirect()
+                    ->back()
+                    ->with('success', 'Arquivo de tarefas salvo! Você precisa agora importar os dados');
+    }
+    else {
+        return redirect()
+                    ->back()
+                    ->with('error', 'Não anexou o arquivo');
+    }
+    }
+    public function getproj(){ 
+
+        //DD("oi");
+        try{   
+    Excel::import(new ProjImport, 'Import\projetos.xlsx', null, \Maatwebsite\Excel\Excel::XLSX);
+
+    return redirect('/admin')
+            ->with('success', 'Arquivo de Tarefas foi Importado');
+            }
+     catch(\Exception $e){
+     $ec = $e->getCode();
+
+     switch ($ec) {
+     case "23000":
+        return redirect('/admin')
+            ->with('error', 'O Arquivo não foi importado, pois tem uma tarefa que já está cadastrada. Tipo de erro número: '.$ec);
+        break;
+    
+     default:  
+        return redirect('/admin')
+            ->with('error', 'Arquivo não foi Importado, pois está fora do padrão aceito.  Erro número: '.$ec);
+                    }    
+                        }
+        }
     public function tarefas()
     {
         //$consults = $consult->all();
@@ -34,7 +85,7 @@ class Importar extends Controller
         Storage::putfileAs('Import', $arquivo, 'tarefas.xlsx');
 
         return redirect()
-                    ->route('consult.entrada')
+                    ->back()
                     ->with('success', 'Arquivo de tarefas salvo! Você precisa agora importar os dados');
     }
     else {

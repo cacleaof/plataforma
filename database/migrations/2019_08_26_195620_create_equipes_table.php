@@ -15,7 +15,7 @@ class CreateEquipesTable extends Migration
     {
         Schema::create('equipes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('equipe')->nullable();
+            $table->string('equipe', 10)->unique();
             $table->integer('user_id')->nullable();
             $table->timestamps();
         });

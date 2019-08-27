@@ -109,7 +109,13 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->post('save_tarefas', 'Importar@save_tarefas')->name('importar.save_tarefas');
 
+	$this->get('projetos', 'Importar@projetos')->name('importar.projetos');
+
+	$this->post('save_projetos', 'Importar@save_projetos')->name('importar.save_projetos');
+
 	$this->get('gettask', 'Importar@gettask')->name('importar.gettask');
+
+	$this->get('getproj', 'Importar@getproj')->name('importar.getproj');
 
 	$this->get('getindex', 'Importar@getindex')->name('importar.getindex');
 

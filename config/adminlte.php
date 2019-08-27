@@ -109,6 +109,11 @@ return [
 
     'menu' => [
         //'MENU',
+         [
+            'text'        => 'Plataforma',
+            'url'         => '/admin/entrada',
+            'icon'        => 'envelope',
+            'submenu'  =>  [
         [
             'text'        => 'Caixa de Entrada',
             'url'         => '/admin/entrada',
@@ -130,12 +135,19 @@ return [
             'icon'        => 'far fa-address-book',
             'can'         => 'administrador',
         ],
+                             ]
+        ],
         [
             'text'        => 'Projetos',
             'url'         => '/admin/task',
             'icon'        => 'fas fa-camera',
             'can'         => 'administrador',
             'submenu'  =>  [
+                [
+                    'text'        => 'Diário',
+                    'url'         => '/admin/diario',
+                    'icon'        => 'credit-card-alt'
+                ],
                 [
                     'text'        => 'Projetos & Tarefas',
                     'url'         => '/admin/task',
@@ -152,6 +164,12 @@ return [
                     'icon'        => 'history'
                 ],
                 [
+                    'text'        => 'Exportar',
+                    'url'         => '',
+                    'icon'        => 'fas fa-camera',
+                    'can'         => 'administrador',
+                    'submenu'  =>  [
+                [
                     'text'        => 'Exportar-Projetos',
                     'url'         => '/admin/export_proj',
                     'icon'        => 'far fa-file'
@@ -166,8 +184,16 @@ return [
                     'url'         => '/admin/export_dep',
                     'icon'        => 'history'
                 ],
+                                ]
+                ],
                 [
-                    'text'        => 'Anexar arquivo Importar-Tarefas',
+                    'text'        => 'Importar',
+                    'url'         => '',
+                    'icon'        => 'fas fa-camera',
+                    'can'         => 'administrador',
+                    'submenu'  =>  [
+                [
+                    'text'        => 'Anexar arquivo Tarefas',
                     'url'         => '/admin/tarefas',
                     'icon'        => 'far fa-save'
                 ],
@@ -176,9 +202,27 @@ return [
                     'url'         => '/admin/gettask',
                     'icon'        => 'history'
                 ],
+                [
+                    'text'        => 'Anexar arquivo Projetos',
+                    'url'         => '/admin/projetos',
+                    'icon'        => 'far fa-save'
+                ],
+                [
+                    'text'        => 'Importar-projetos',
+                    'url'         => '/admin/getproj',
+                    'icon'        => 'history'
+                ],
+                                    ]
+                ],
            ]
         ],
         [
+        'text'        => 'Administração',
+            'url'         => '',
+            'icon'        => 'envelope',
+            'can'         => 'administrador',
+            'submenu'  =>  [
+            [
             'text'        => 'Exportar Consultorias',
             'url'         => '',
             'icon'        => 'envelope',
@@ -194,8 +238,8 @@ return [
                     'url'         => 'admin/getindex',
                     'icon'        => 'history'
                 ],
-           ]
-        ],
+                            ]
+            ],
         [
             'text'        => 'Exportar Usuários',
             'url'         => '',
@@ -231,6 +275,8 @@ return [
                 ],
            ]
         ]
+    ],
+    ]
     ],
 
     /*
