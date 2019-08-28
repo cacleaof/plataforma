@@ -28,7 +28,7 @@ class ProjControl extends Controller
     $dia = $request->dia;
     $ini = $request->ini;
     $fim = $request->fim;
-    $data = $request->data;
+    $ndia = $request->ndia;
     $nini = $request->nini;
     $nfim = $request->nfim;
     }
@@ -39,7 +39,7 @@ class ProjControl extends Controller
     $ini = null;
     $fim = null;
     $projeto = null;
-    $data = null;
+    $ndia = null;
     $nini = null;
     $nfim = null;
     }
@@ -53,23 +53,21 @@ class ProjControl extends Controller
     $dia = $request->dia;
     $ini = $request->ini;
     $fim = $request->fim;
-    $data = $request->data;
+    $ndia = $request->ndia;
     $nini = $request->nini;
     $nfim = $request->nfim;
     $projeto = $request->projeto;
     $diarios = Diario::where('user_id', auth()->user()->id)
-                ->where('date' , $dia)->paginate(6);
+                ->where('ndia' , $dia)->paginate(6);
     }
     else {
     $diarios = Diario::where('user_id', auth()->user()->id)->paginate(6);
     }
-
-    //$diarios = diario::select('projects.projeto', 'diarios.date', 'diarios.task_id', 'diarios.detalhe', 'diarios.ini', 'diarios.fim', 'tasks.task')->join('projects', 'diarios.proj_id', 'projects.id')->join('tasks', 'diarios.task_id', 'tasks.id')->paginate(5);
     
     $users = DB::table('users')->paginate(4);
 
      
-    return view('admin.proj.diario', compact('tarefas', 'projects', 'users', 'diarios', 'dia', 'ini', 'fim', 'projeto', 'data', 'nini', 'nfim'));
+    return view('admin.proj.diario', compact('tarefas', 'projects', 'users', 'diarios', 'dia', 'ini', 'fim', 'projeto', 'ndia', 'nini', 'nfim'));
        
     }
     public function store_diario(Request $request)
@@ -79,7 +77,7 @@ class ProjControl extends Controller
         $dataForm = new Diario;
         $dataForm->proj_id = $request->projeto;
         $dataForm->task_id = $request->tarefa;
-        $dataForm->date = $request->data;
+        $dataForm->ndia = $request->ndia;
         $dataForm->ini = $request->nini;
         $dataForm->fim = $request->nfim;
         $dataForm->detalhe = $request->detalhe;

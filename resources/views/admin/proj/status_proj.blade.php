@@ -33,14 +33,20 @@
       <td>Detalhe</td>
       <td>Duração</td>
       <td>Gerente</td>
+      <td>Urg</td>
      </tr>
      @foreach($projects as $project)
      <tr>
       <td>{{ $project->id }}</td>
+      @if( $project->urg > 2 )
       <td bgcolor="red">{{ $project->projeto }}</td>
+      @else
+      <td>{{ $project->projeto }}</td>
+      @endif
       <td style="background-color: #FFF633">{{ $project->proj_detalhe }}</td>
       <td>{{ $project->duracao }}</td>
       <td>{{ $project->gerente }}</td>
+      <td>{{ $project->urg }}</td>
      </tr>
      @endforeach
     </table>

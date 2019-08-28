@@ -23,7 +23,7 @@ class CreateDiariosTable extends Migration
             $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
             $table->string('detalhe')->nullable();
             $table->boolean('anexos')->nullable();
-            $table->date('date')->nullable();
+            $table->date('ndia')->nullable();
             $table->time('ini')->nullable();
             $table->time('fim')->nullable();
             $table->timestamps();

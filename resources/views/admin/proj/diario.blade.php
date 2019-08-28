@@ -41,7 +41,7 @@
 	<table class="table table-striped">
 	<tr>
 	@forelse ($diarios as $diario)
-	<td>{{ $diario->date }}</td>
+	<td>{{ $diario->ndia }}</td>
 	<td>
 	{{ $diario->project->projeto }}
 	</td>
@@ -49,6 +49,7 @@
 	<td>{{ $diario->detalhe }}</td>
 	<td>{{ $diario->ini }}</td>
 	<td>{{ $diario->fim }}</td>
+	<td></td>
 	</tr>
 @empty
 	<p>Sem tarefas planejadas para a data</p>
@@ -61,7 +62,7 @@
 <form method="POST" action="{{ route('admin.proj.diario') }}" enctype="multipart/form-data">
 	{!! csrf_field() !!}
 	<div class="form-group col-xs-3" >
-	<input type="date" class="form-control" value="{{ $dia !=null ? $dia : date('Y-m-d') }}" name="data" maxlength="10">
+	<input type="date" class="form-control" value="{{ $dia !=null ? $dia : date('Y-m-d') }}" name="ndia" maxlength="10">
 	</div>
 	<div class="form-group col-xs-2" >
 	<input type="time" class="form-control" value="{{ $ini !=null ? $ini : '' }}" name="nini" maxlength="10">
@@ -79,7 +80,7 @@
 	<input type="hidden" name="dia" value="{{ $dia }}">
 	<input type="hidden" name="ini" value="{{ $ini }}">
 	<input type="hidden" name="fim" value="{{ $fim }}">
-	<input type="hidden" name="data" value="{{ $data }}">
+	<input type="hidden" name="ndia" value="{{ $ndia }}">
 	<input type="hidden" name= "nini" value="{{ $nini }}">
 	<input type="hidden" name="nfim" value="{{ $nfim }}">
 	<button type="submit" class="btn btn-primary">Enviar</button> 
@@ -92,7 +93,7 @@
 @endforeach
 	</select>
 	<input type="hidden" name="projeto" value="{{ $projeto }}">
-	<input type="hidden" name="data" value="{{ $data }}">
+	<input type="date" name="ndia" value="{{ $dia }}">
 	<input type="hidden" name= "nini" value="{{ $nini }}">
 	<input type="hidden" name="nfim" value="{{ $nfim }}">
 	</div>
