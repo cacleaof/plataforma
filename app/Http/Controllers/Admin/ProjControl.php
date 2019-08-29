@@ -17,13 +17,13 @@ class ProjControl extends Controller
 {
     public function diario(task $task, project $project, Request $request, Diario $diario)
     {
-    //$tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'projects.date_ini', 'projects.date_fim', 'projects.duracao', 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id')->paginate(4);  
 
     if(!empty($request->projeto)) {
     $projects = Project::where('gerente', auth()->user()->id)
-                ->where('id' , $request->projeto)->paginate(6);
-    $tarefas = Task::where('user_id', auth()->user()->id)
-                ->where('proj_id' , $request->projeto)->paginate(6);
+                ->where('id' , $request->projeto)->paginate(12);
+    //$tarefas = Task::where('user_id', auth()->user()->id)
+                //->where('proj_id' , $request->projeto)->paginate(6);
+    $tarefas = Task::where('proj_id' , $request->projeto)->paginate(12);
     $projeto = $request->projeto;
     $dia = $request->dia;
     $ini = $request->ini;
@@ -43,11 +43,6 @@ class ProjControl extends Controller
     $nini = null;
     $nfim = null;
     }
-    //dd($projeto);
-    
-
-    /*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> */
 
       if(!empty($request->dia)) {
     $dia = $request->dia;
@@ -114,30 +109,38 @@ class ProjControl extends Controller
 
      public function status_task(Task $task, Project $project, Request $request)
     {
-    $tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
+    $tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
         
-        $projects = DB::table('projects')->paginate(4);
+        $projects = DB::table('projects')->paginate(12);
 
         return view('admin.proj.status_task', compact('tarefas', 'projects'));
     }
 
+    public function status_diario(Task $task, Project $project, Request $request)
+    {
+    $diarios = project::select('projects.projeto', 'projects.proj_detalhe' , 'diarios.task_id', 'diarios.detalhe', 'diarios.proj_id')->join('diarios', 'diarios.proj_id', 'projects.id' )->paginate(12);  
+        
+        $projects = DB::table('projects')->paginate(12);
+
+        return view('admin.proj.status_diario', compact('diarios', 'projects'));
+    }
 
     public function status_proj(Task $task, Project $project)
     {
-    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
+    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
 
         //dd($tarefas);
-        $projects = DB::table('projects')->paginate(4);
+        $projects = DB::table('projects')->paginate(12);
 
         return view('admin.proj.status_proj', compact('tarefas', 'projects'));
     }
 
     public function task(Task $task, Project $project)
     {
-        $taref = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.urg')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
+        $taref = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.urg')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
 
         
-        $projects = DB::table('projects')->paginate(4);
+        $projects = DB::table('projects')->paginate(12);
 
         $tarefas = $taref->sortByDesc('urg');
 

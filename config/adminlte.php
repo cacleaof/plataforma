@@ -159,8 +159,8 @@ return [
                     'icon'        => 'dashboard'
                 ],
                 [
-                    'text'        => 'Status-Tarefas',
-                    'url'         => '/admin/status_task',
+                    'text'        => 'Status-Diario',
+                    'url'         => '/admin/status_diario',
                     'icon'        => 'history'
                 ],
                 [

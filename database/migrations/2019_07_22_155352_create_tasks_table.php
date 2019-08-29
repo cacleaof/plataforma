@@ -23,6 +23,8 @@ class CreateTasksTable extends Migration
             $table->integer('urg')->nullable();
             $table->integer('imp')->nullable();
             $table->timestamps();
+            $table->integer('user_id')->nullable();
+            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('proj_id')->unsigned();
             $table->foreign('proj_id')->references('id')->on('projects')->onDelete('cascade');
         });

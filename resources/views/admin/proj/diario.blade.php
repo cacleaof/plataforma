@@ -51,10 +51,10 @@
 	<td>{{ $diario->fim }}</td>
 	<td></td>
 	</tr>
-@empty
+	@empty
 	<p>Sem tarefas planejadas para a data</p>
-@endforelse
-{!! $diarios->links() !!}
+	@endforelse
+	{!! $diarios->links() !!}
 	</table>
 	<div class="form-row">
 @include('admin.includes.alerts')
@@ -80,20 +80,17 @@
 	<input type="hidden" name="dia" value="{{ $dia }}">
 	<input type="hidden" name="ini" value="{{ $ini }}">
 	<input type="hidden" name="fim" value="{{ $fim }}">
-	<input type="hidden" name="ndia" value="{{ $ndia }}">
-	<input type="hidden" name= "nini" value="{{ $nini }}">
-	<input type="hidden" name="nfim" value="{{ $nfim }}">
 	<button type="submit" class="btn btn-primary">Enviar</button> 
 </form>
 <form method="POST" action="{{ route('admin.proj.store_diario') }}" enctype="multipart/form-data">
-{!! csrf_field() !!}
+	{!! csrf_field() !!}
 	<select name="tarefa">
 @foreach ($tarefas as $tarefa)
 	<option value="{{ $tarefa->id }}">{{ $tarefa->task }}</option>
 @endforeach
 	</select>
 	<input type="hidden" name="projeto" value="{{ $projeto }}">
-	<input type="date" name="ndia" value="{{ $dia }}">
+	<input type="date" name="ndia" value="{{ $ndia }}">
 	<input type="hidden" name= "nini" value="{{ $nini }}">
 	<input type="hidden" name="nfim" value="{{ $nfim }}">
 	</div>

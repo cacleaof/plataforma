@@ -8,7 +8,7 @@ use App\Models\User;
 
 class Diario extends Model
 {
-	protected $fillable =['proj_id', 'user_id', 'projeto'];
+	protected $fillable =['proj_id', 'user_id', 'projeto', 'ndia'];
 
 	public function diario()
 	{
