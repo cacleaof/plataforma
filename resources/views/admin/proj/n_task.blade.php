@@ -43,7 +43,18 @@
 						<div class="form-group">
 						<textarea type="text" name="detalhe" rows="5" cols="80" placeholder="Descreva o detalhe do projeto" class="form-control"></textarea>
 						<div class="form-row" >
-							<label>Tarefas</label>
+							<label>Urgência:</label>
+							<input type="texto" class="form-control" name="urg" placeholder="Número de 1 a 5">
+							<label>Importância:</label>
+							<input type="texto" class="form-control" name="imp" placeholder="Número de 1 a 5">
+						</div>
+						<div class="form-row" >
+							<label>Início:</label>
+							<input type="date" class="form-control" name="date_ini" placeholder="Data de Inicio">
+							<label>Conclusão:</label>
+							<input type="date" class="form-control" name="date_fim" placeholder="Data de Conclusão">
+							<label>Previsão em Dias</label>
+							<input type="text" class="form-control" name="prevdias" placeholder="Previsão em dias">
 						</div>
 						<div class="form-group">
 						<button type="submit" class="btn btn-success">Enviar</button> 

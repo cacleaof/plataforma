@@ -109,7 +109,7 @@ return [
 
     'menu' => [
         //'MENU',
-            [
+         [
             'text'        => 'Plataforma',
             'url'         => '/admin/entrada',
             'icon'        => 'envelope',
@@ -135,8 +135,8 @@ return [
             'icon'        => 'far fa-address-book',
             'can'         => 'administrador',
         ],
-                             ] //Submenu Plataforma
-        ], //Plataforma
+                             ]
+        ],
         [
             'text'        => 'Projetos',
             'url'         => '/admin/task',
@@ -164,18 +164,34 @@ return [
                     'icon'        => 'history'
                 ],
                 [
-                    'text'        => 'Status-Tarefas',
-                    'url'         => '/admin/status_task',
+                    'text'        => 'Exportar',
+                    'url'         => '',
+                    'icon'        => 'fas fa-camera',
+                    'can'         => 'administrador',
+                    'submenu'  =>  [
+                [
+                    'text'        => 'Exportar-Projetos',
+                    'url'         => '/admin/export_proj',
+                    'icon'        => 'far fa-file'
+                ],
+                [
+                    'text'        => 'Exportar-Tarefas',
+                    'url'         => '/admin/export_task',
                     'icon'        => 'history'
                 ],
-                            ] //Submenu Projetos
-        ], //Projetos
-        [
-                'text'        => 'Importar',
-                'url'         => '',
-                'icon'        => 'fas fa-camera',
-                'can'         => 'administrador',
-                'submenu'  =>  [
+                [
+                    'text'        => 'Exportar-Dependencias',
+                    'url'         => '/admin/export_dep',
+                    'icon'        => 'history'
+                ],
+                                ]
+                ],
+                [
+                    'text'        => 'Importar',
+                    'url'         => '',
+                    'icon'        => 'fas fa-camera',
+                    'can'         => 'administrador',
+                    'submenu'  =>  [
                 [
                     'text'        => 'Anexar arquivo Tarefas',
                     'url'         => '/admin/tarefas',
@@ -196,8 +212,10 @@ return [
                     'url'         => '/admin/getproj',
                     'icon'        => 'history'
                 ],
-                                    ] //Submenu Importar
-        ], //Importar
+                                    ]
+                ],
+           ]
+        ],
         [
         'text'        => 'Administração',
             'url'         => '',
@@ -220,9 +238,9 @@ return [
                     'url'         => 'admin/getindex',
                     'icon'        => 'history'
                 ],
-                            ] //Submenu Exportar Consultorias
-            ], //Exportar Consultorias
-            [
+                            ]
+            ],
+        [
             'text'        => 'Exportar Usuários',
             'url'         => '',
             'icon'        => 'envelope',
@@ -238,9 +256,9 @@ return [
                     'url'         => 'admin/getindex',
                     'icon'        => 'history'
                 ],
-                            ] //Submenu Exportar Usuários
-            ],  //Exportar Usuarios
-            [
+           ]
+        ],
+        [
            'text' => 'Importar Cadastros',
            'icon' => 'dashboard',
            'can'         => 'administrador',
@@ -255,12 +273,12 @@ return [
                     'url'         => 'admin/getindex',
                     'icon'        => 'history'
                 ],
-                            ] //Submenu Importar Cadastros
-            ], // Importar Cadastros
-                            ] //Submenu Administração
-            ], //Administração
-        ], // Menu 
-        
+           ]
+        ]
+    ],
+    ]
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Menu Filters

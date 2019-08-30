@@ -25,6 +25,15 @@
     <a href="{{ route('admin.proj.task') }}" class="btn btn-success">Voltar</a>
    </div>
    <br />
+   <form action="{{ route('admin.proj.status_task') }}" method="GET" class="form form-inline" enctype="multipart/form-data">
+                {!! csrf_field() !!}
+              <select name="projeto">
+              @foreach ($projects as $project)
+              <option value="{{ $project->id }}">{{ $project->projeto }}</option>
+              @endforeach
+            </select>
+            <button type="submit" class="btn btn-primary">Enviar</button> 
+   </form>
    <div class="table-responsive">
     <table class="table table-striped table-bordered">
      <tr>
@@ -36,8 +45,8 @@
       <td>Previsão</td>
       <td>Urg</td>
       <td>Imp</td>
+      <td>Duração</td>
       <td>Gerente</td>
-      <td>Projeto</td>
      </tr>
      @foreach($tarefas as $tarefa)
       <tr>
@@ -49,11 +58,12 @@
       <td>{{ $tarefa->prevdias}}</td>
       <td>{{ $tarefa->urg}}</td>
       <td>{{ $tarefa->imp}}</td>
-      <td>{{ $tarefa->user_id }}</td>
-      <td>{{ $tarefa->proj_id }}</td>
+      <td>{{ $project->duracao }}</td>
+      <td>{{ $project->gerente }}</td>
      </tr>
      @endforeach
     </table>
+    {!! $projects->links() !!}
    </div>  
   </div>
  </body>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
@@ -109,11 +111,21 @@ class ProjControl extends Controller
 
      public function status_task(Task $task, Project $project, Request $request)
     {
-    $tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
-        
-        $projects = DB::table('projects')->paginate(12);
 
-        return view('admin.proj.status_task', compact('tarefas', 'projects'));
+    //$tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' );  
+     $taref = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.prevdias', 'tasks.date_ini', 'tasks.date_fim', 'tasks.imp', 'tasks.urg', 'tasks.user_id', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);     
+     $tarefas = $taref->sortByDesc('urg');
+        //$projects = DB::table('projects')->paginate(12);
+        //$tarefas = $task->all();
+        //dd($tarefas);
+
+        //if(!empty($request->projeto)) {
+          //  $projeto = $request->projeto;
+            //$tarefas = $tarefas->where('proj_id', $projeto);
+            //dd($tarefas);
+        //}
+
+        return view('admin.proj.status_task', compact('tarefas'));
     }
 
     public function status_diario(Task $task, Project $project, Request $request)
@@ -177,6 +189,8 @@ class ProjControl extends Controller
         $dataForm->projeto = $request->projeto;
         $dataForm->gerente = $request->gerente;
         $dataForm->proj_detalhe = $request->detalhe;
+        $dataForm->urg = $request->urg;
+        $dataForm->imp = $request->imp;
         $dataForm->date_ini = $request->inicio;
         $dataForm->date_fim = $request->fim;
         $dataForm->duracao = $request->duracao;
@@ -200,6 +214,11 @@ class ProjControl extends Controller
             $dataForm->user_id = $request->gerente;
             $dataForm->detalhe = $request->detalhe;
             $dataForm->task = $request->tarefa;
+            $dataForm->date_ini = $request->date_ini;
+            $dataForm->date_fim = $request->date_fim;
+            $dataForm->prevdias = $request->prevdias;
+            $dataForm->urg = $request->urg;
+            $dataForm->imp = $request->imp;
             $dataForm->save();
        
 

@@ -34,6 +34,9 @@
       <td>Duração</td>
       <td>Gerente</td>
       <td>Urg</td>
+      <td>Imp</td>
+      <td>Início</td>
+      <td>Fim</td>
      </tr>
      @foreach($projects as $project)
      <tr>
@@ -47,6 +50,9 @@
       <td>{{ $project->duracao }}</td>
       <td>{{ $project->gerente }}</td>
       <td>{{ $project->urg }}</td>
+      <td>{{ $project->imp }}</td>
+      <td>{{ $project->date_ini }}</td>
+      <td>{{ $project->date_fim }}</td>
      </tr>
      @endforeach
     </table>

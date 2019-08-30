@@ -36,6 +36,12 @@
 						</select>
 					</div>
 						<div class="form-row" >
+							<label>Urgência:</label>
+							<input type="texto" class="form-control" name="urg" placeholder="Número de 1 a 5">
+							<label>Importância:</label>
+							<input type="texto" class="form-control" name="imp" placeholder="Número de 1 a 5">
+						</div>
+						<div class="form-row" >
 							<label>Data de Inicio:</label>
 							<input type="date" class="form-control" name="inicio" placeholder="Data de Inicio">
 							<label>Data de Termino:</label>

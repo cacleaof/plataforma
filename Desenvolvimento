@@ -1,2 +1,4 @@
 Desenvolvimento
 Proj_control Diario - Deixei as tarefas com user_id, mas vamos desenvolver as equipes.
+<td>{{ $project->duracao }}</td>
+      <td>{{ $project->gerente }}</td>
