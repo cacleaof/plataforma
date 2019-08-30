@@ -62,13 +62,13 @@
 <form method="POST" action="{{ route('admin.proj.diario') }}" enctype="multipart/form-data">
 	{!! csrf_field() !!}
 	<div class="form-group col-xs-3" >
-	<input type="date" class="form-control" value="{{ $dia !=null ? $dia : date('Y-m-d') }}" name="ndia" maxlength="10">
+	<input type="date" class="form-control" value="{{ $ndia !=null ? $ndia : $dia }}" name="ndia" maxlength="10">
 	</div>
 	<div class="form-group col-xs-2" >
-	<input type="time" class="form-control" value="{{ $ini !=null ? $ini : '' }}" name="nini" maxlength="10">
+	<input type="time" class="form-control" value="{{ $nini !=null ? $nini : $ini }}" name="nini" maxlength="10">
 	</div>
 	<div class="form-group col-xs-2" >
-	<input type="time" class="form-control" value="{{ $fim !=null ? $fim : '' }}"name="nfim"  maxlength="10">
+	<input type="time" class="form-control" value="{{ $nfim !=null ? $nfim : $fim }}"name="nfim"  maxlength="10">
 	</div>
 	<div class="form-group">
 	<div class="form-group">
@@ -91,8 +91,8 @@
 	</select>
 	<input type="hidden" name="projeto" value="{{ $projeto }}">
 	<input type="date" name="ndia" value="{{ $ndia }}">
-	<input type="hidden" name= "nini" value="{{ $nini }}">
-	<input type="hidden" name="nfim" value="{{ $nfim }}">
+	<input type="time" name= "nini" value="{{ $nini }}">
+	<input type="time" name="nfim" value="{{ $nfim }}">
 	</div>
 	<textarea type="text" name="detalhe" rows="5" cols="80" placeholder="Descreva o que foi realizado" class="form-control"></textarea>
 	<div class="form-row">

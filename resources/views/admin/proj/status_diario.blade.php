@@ -37,25 +37,24 @@
     <table class="table table-striped table-bordered">
      <tr>
       <td>Id</td>
-      <td>Projeto</td>
+      <td>Tarefa</td>
       <td>Detalhe</td>
-      <td>Duração</td>
-      <td>Gerente</td>
+      <td>Dia</td>
+      <td>Inicio</td>
+      <td>Fim</td>
      </tr>
      @foreach($diarios as $diario)
-      @if ($proj_id = $project->id )
       <tr>
       <td>{{ $diario->id}} </td>
       <td bgcolor="red">{{ $diario->task_id}}</td>
       <td style="background-color: #FFF633">{{ $diario->detalhe}}</td>
       <td>{{ $diario->ndia }}</td>
       <td>{{ $diario->ini }}</td>
-       <td>{{ $diario->fim }}</td>
+      <td>{{ $diario->fim }}</td>
      </tr>
-     @endif
      @endforeach
     </table>
-    {!! $projects->links() !!}
+    {!! $diarios->links() !!}
    </div>  
   </div>
  </body>

@@ -44,7 +44,7 @@ class ProjControl extends Controller
     $nfim = null;
     }
 
-      if(!empty($request->dia)) {
+      if(!empty($request->dia) or !empty($request->ndia)) {
     $dia = $request->dia;
     $ini = $request->ini;
     $fim = $request->fim;
@@ -118,7 +118,7 @@ class ProjControl extends Controller
 
     public function status_diario(Task $task, Project $project, Request $request)
     {
-    $diarios = project::select('projects.projeto', 'projects.proj_detalhe' , 'diarios.task_id', 'diarios.detalhe', 'diarios.proj_id')->join('diarios', 'diarios.proj_id', 'projects.id' )->paginate(12);  
+    $diarios = project::select('projects.projeto', 'projects.proj_detalhe' , 'diarios.task_id', 'diarios.detalhe', 'diarios.proj_id', 'diarios.ndia', 'diarios.ini', 'diarios.fim')->join('diarios', 'diarios.proj_id', 'projects.id' )->paginate(12);  
         
         $projects = DB::table('projects')->paginate(12);
 
