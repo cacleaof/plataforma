@@ -132,6 +132,8 @@ class ProjControl extends Controller
     {
     $diarios = project::select('projects.projeto', 'projects.proj_detalhe' , 'diarios.task_id', 'diarios.detalhe', 'diarios.proj_id', 'diarios.ndia', 'diarios.ini', 'diarios.fim')->join('diarios', 'diarios.proj_id', 'projects.id' )->paginate(12);  
         
+        //$diarios = $dia->sortBy('proj_id');
+
         $projects = DB::table('projects')->paginate(12);
 
         return view('admin.proj.status_diario', compact('diarios', 'projects'));
