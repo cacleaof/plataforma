@@ -54,7 +54,6 @@
      </tr>
      @endforeach
     </table>
-    {!! $diarios->links() !!}
    </div>  
   </div>
  </body>

@@ -3,3 +3,4 @@ Proj_control Diario - Deixei as tarefas com user_id, mas vamos desenvolver as eq
 <td>{{ $project->duracao }}</td>
       <td>{{ $project->gerente }}</td>
       {!! $projects->links() !!}
+      {!! $diarios->links() !!}

@@ -22,6 +22,7 @@ class CreateDiariosTable extends Migration
             $table->integer('task_id')->unsigned();
             $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
             $table->string('detalhe')->nullable();
+            $table->string('hylink')->nullable();
             $table->boolean('anexos')->nullable();
             $table->date('ndia')->nullable();
             $table->time('ini')->nullable();

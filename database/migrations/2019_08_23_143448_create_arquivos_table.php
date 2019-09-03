@@ -19,7 +19,7 @@ class CreateArquivosTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('diario_id')->unsigned();
             $table->foreign('diario_id')->references('id')->on('diarios')->onDelete('cascade');
-            $table->string('file', 100)->nullable();
+            $table->string('arquivo', 100)->nullable();
             $table->integer('size')->nullable();
         });
     }
