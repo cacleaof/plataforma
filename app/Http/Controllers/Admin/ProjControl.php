@@ -134,7 +134,11 @@ class ProjControl extends Controller
         
         $diarios = $dia->sortByDesc('ndia');
     //dd($diarios);
+         if(!empty($request->projeto)) {
 
+            $proj = $request->projeto;
+            dd($proj);
+        }
         $projects = DB::table('projects')->paginate(12);
 
         return view('admin.proj.status_diario', compact('diarios', 'projects'));

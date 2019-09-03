@@ -25,6 +25,7 @@
     <a href="{{ route('admin.proj.task') }}" class="btn btn-success">Voltar</a>
    </div>
    <br />
+   <input type="hidden" name="projeto" value='1'>
    <form action="" method="GET" class="form form-inline" enctype="multipart/form-data">
                 {!! csrf_field() !!}
               <select name="projeto">
@@ -32,7 +33,7 @@
               <option value="{{ $project->id }}">{{ $project->projeto }}</option>
               @endforeach
             </select>
-            </form>
+   </form>
    <div class="table-responsive">
     <table class="table table-striped table-bordered">
      <tr>
@@ -43,6 +44,7 @@
       <td>Inicio</td>
       <td>Fim</td>
      </tr>
+     @if('projeto' != null)
      @foreach($diarios as $diario)
       <tr>
       <td>{{ $diario->id}} </td>
@@ -51,8 +53,10 @@
       <td>{{ $diario->ndia }}</td>
       <td>{{ $diario->ini }}</td>
       <td>{{ $diario->fim }}</td>
+      <td> projeto </td>
      </tr>
      @endforeach
+     @endif
     </table>
    </div>  
   </div>

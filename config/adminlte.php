@@ -168,6 +168,21 @@ return [
                     'url'         => '/admin/status_task',
                     'icon'        => 'history'
                 ],
+                [
+                    'text'        => 'Exportar-Projetos',
+                    'url'         => '/admin/export_proj',
+                    'icon'        => 'far fa-file'
+                ],
+                [
+                    'text'        => 'Exportar-Tarefas',
+                    'url'         => '/admin/export_task',
+                    'icon'        => 'history'
+                ],
+                [
+                    'text'        => 'Exportar-Dependencias',
+                    'url'         => '/admin/export_dep',
+                    'icon'        => 'history'
+                ],
                             ] //Submenu Projetos
         ], //Projetos
         [
