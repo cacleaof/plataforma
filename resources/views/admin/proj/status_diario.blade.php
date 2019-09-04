@@ -33,6 +33,7 @@
               <option value="{{ $project->id }}">{{ $project->projeto }}</option>
               @endforeach
             </select>
+    <button type="submit" class="btn btn-primary">Enviar</button> 
    </form>
    <div class="table-responsive">
     <table class="table table-striped table-bordered">
@@ -44,19 +45,16 @@
       <td>Inicio</td>
       <td>Fim</td>
      </tr>
-     @if('projeto' != null)
      @foreach($diarios as $diario)
       <tr>
       <td>{{ $diario->id}} </td>
-      <td bgcolor="red">{{ $diario->task_id}}</td>
+      <td bgcolor="red">{{ $diario->task_id }}</td>
       <td style="background-color: #FFF633">{{ $diario->detalhe}}</td>
       <td>{{ $diario->ndia }}</td>
       <td>{{ $diario->ini }}</td>
       <td>{{ $diario->fim }}</td>
-      <td> projeto </td>
      </tr>
      @endforeach
-     @endif
     </table>
    </div>  
   </div>

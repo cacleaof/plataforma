@@ -130,14 +130,19 @@ class ProjControl extends Controller
 
     public function status_diario(Task $task, Project $project, Request $request)
     {
-    $dia = project::select('projects.projeto', 'projects.proj_detalhe' , 'diarios.task_id', 'diarios.detalhe', 'diarios.proj_id', 'diarios.ndia', 'diarios.ini', 'diarios.fim')->join('diarios', 'diarios.proj_id', 'projects.id' )->paginate(12);  
+    $diaj = project::select('projects.projeto', 'projects.proj_detalhe' , 'diarios.task_id', 'diarios.detalhe', 'diarios.proj_id', 'diarios.ndia', 'diarios.ini', 'diarios.fim')->join('diarios', 'diarios.proj_id', 'projects.id' )->paginate(12);  
         
-        $diarios = $dia->sortByDesc('ndia');
+        $diarios = $diaj->sortByDesc('ndia');
     //dd($diarios);
          if(!empty($request->projeto)) {
 
             $proj = $request->projeto;
-            dd($proj);
+
+            $diajp = $diaj->where('proj_id', $proj);
+
+            $diarios = $diajp->sortByDesc('ndia');
+
+            //dd($diarios);
         }
         $projects = DB::table('projects')->paginate(12);
 
