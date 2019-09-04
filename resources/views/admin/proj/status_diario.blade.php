@@ -28,9 +28,16 @@
    <input type="hidden" name="projeto" value='1'>
    <form action="" method="GET" class="form form-inline" enctype="multipart/form-data">
                 {!! csrf_field() !!}
-              <select name="projeto">
+              <select name="projeto" class="form-control">
+              <option value="">--Selecione o Projeto--  OU</option>
               @foreach ($projects as $project)
               <option value="{{ $project->id }}">{{ $project->projeto }}</option>
+              @endforeach
+            </select>
+            <select name="usuario" class="form-control">
+            <option value="">--Selecione o Usuario--</option>
+              @foreach ($users as $user)
+              <option value="{{ $user->id }}">{{ $user->name }}</option>
               @endforeach
             </select>
     <button type="submit" class="btn btn-primary">Enviar</button> 
@@ -56,7 +63,7 @@
      </tr>
      @endforeach
     </table>
-   </div>  
+   </div> 
   </div>
  </body>
 </html>

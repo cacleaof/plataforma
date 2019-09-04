@@ -21,6 +21,7 @@
 			<form method="get" action="{{ route('admin.proj.store_t')}}" enctype="multipart/form-data">
 					{!! csrf_field() !!}
 				<div class="form-row">
+					<label>Projeto:</label>
 					@include('admin.includes.alerts')
 					<div class="form-group">
 						<select name="projeto">
@@ -28,10 +29,11 @@
 							<option value="{{ $project->id }}">{{ $project->projeto }}</option>
 							@endforeach
 						</select>
-					</div>
-					<div class="form-group">
+						</div>
+						<div class="form-group">
 							<label>Responsavel da Tarefa:</label>
-						<select name="gerente">
+						<select name="gerente" class="form-control">
+						<option value="">--Selecione o Responsável--</option>
 							@foreach ($users as $user)
 							<option value="{{ $user->id }}">{{ $user->name }}</option>
 							@endforeach
@@ -41,7 +43,7 @@
 							<input type="text" class="form-control" name="tarefa" maxlength="50" placeholder="Nome da Tarefa">
 						</div>
 						<div class="form-group">
-						<textarea type="text" name="detalhe" rows="5" cols="80" placeholder="Descreva o detalhe do projeto" class="form-control"></textarea>
+						<textarea type="text" name="detalhe" rows="3" cols="80" placeholder="Descreva o detalhe do projeto" class="form-control"></textarea>
 						<div class="form-row" >
 							<label>Urgência:</label>
 							<input type="texto" class="form-control" name="urg" placeholder="Número de 1 a 5">

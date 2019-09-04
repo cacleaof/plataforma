@@ -130,10 +130,12 @@ class ProjControl extends Controller
 
     public function status_diario(Task $task, Project $project, Request $request)
     {
-    $diaj = project::select('projects.projeto', 'projects.proj_detalhe' , 'diarios.task_id', 'diarios.detalhe', 'diarios.proj_id', 'diarios.ndia', 'diarios.ini', 'diarios.fim')->join('diarios', 'diarios.proj_id', 'projects.id' )->paginate(12);  
+    $diaj = project::select('projects.projeto', 'projects.proj_detalhe' , 'diarios.task_id', 'diarios.detalhe', 'diarios.proj_id', 'diarios.ndia', 'diarios.ini', 'diarios.fim', 'diarios.user_id')->join('diarios', 'diarios.proj_id', 'projects.id' )->paginate(12);  
         
         $diarios = $diaj->sortByDesc('ndia');
-    //dd($diarios);
+
+        $users = DB::table('users')->paginate(4);
+    
          if(!empty($request->projeto)) {
 
             $proj = $request->projeto;
@@ -141,12 +143,23 @@ class ProjControl extends Controller
             $diajp = $diaj->where('proj_id', $proj);
 
             $diarios = $diajp->sortByDesc('ndia');
-
-            //dd($diarios);
         }
+
+            if(!empty($request->usuario)) {
+
+            $usu = $request->usuario;
+
+            $diajp = $diaj->where('user_id', $usu);
+
+            //dd($diajp);
+
+            $diarios = $diajp->sortByDesc('ndia');
+            
+        }
+
         $projects = DB::table('projects')->paginate(12);
 
-        return view('admin.proj.status_diario', compact('diarios', 'projects'));
+        return view('admin.proj.status_diario', compact('diarios', 'projects', 'users'));
     }
 
     public function status_proj(Task $task, Project $project)
