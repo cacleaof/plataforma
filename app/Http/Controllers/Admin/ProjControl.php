@@ -172,6 +172,16 @@ class ProjControl extends Controller
         return view('admin.proj.status_proj', compact('tarefas', 'projects'));
     }
 
+     public function showpj(Task $task, Project $project, Request $request)
+    {
+    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
+
+        //dd($tarefas);
+        $projects = DB::table('projects')->paginate(12);
+
+        return view('admin.proj.showpj', compact('tarefas', 'projects'));
+    }
+
     public function task(Task $task, Project $project)
     {
         $taref = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.urg')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  

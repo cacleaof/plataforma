@@ -23,14 +23,19 @@
             <th>PROJETO </th>
             <th>DESCRIÇÃO</th>
             <th>INICIO</th>
+            <th>IMP</th>
+            <th>URG</th>
             </tr> 
             <tr>
          @if ($projects!=null)      
          @forelse($projects as $project)
-            <td>{{ $project->id}} </td>
-            <td>{{ $project->projeto}} </td>
+         <td>{{ $project->id}} </td>
+         <td><a href="{{ route('proj.showpj', ['prj' => $project->id]) }}"
+            > {{ $project->projeto }}</a></td>
             <td>{{ $project->proj_detalhe}} </td>
             <td>{{ $project->date_ini}} </td>
+            <td>{{ $project->imp}} </td>
+            <td>{{ $project->urg}} </td>
             </tr>    
         @empty
         <p>Você não tem projetos na sua caixa de entrada</p>

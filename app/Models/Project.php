@@ -8,7 +8,7 @@ use App\Models\Diario;
 
 class Project extends Model
 {
-	protected $fillable = ['proj_id', 'projeto'];
+	protected $fillable = ['proj_id', 'projeto', 'proj_detalhe', 'duracao', 'gerente', 'urg', 'imp'];
 	
 	 public function project()
     {
