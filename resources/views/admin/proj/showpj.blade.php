@@ -22,20 +22,17 @@
     <div class="box-header" with-border>
       <h3 align="center">Altere os dados do seu Projeto</h3>
     </div>
-    <div class="box-body">
       <form method="POST" action="{{ route('admin.proj.store_p')}}" enctype="multipart/form-data">
           {!! csrf_field() !!}
-        <div class="form-row">
+        <div class="form-group">
           @include('admin.includes.alerts')
-            <div class="form-group">
               <div class="form-group col-xs-1" >
               <output class="form-control">ID:{{ $project->id }}</output>
               </div>
-            </div>
-            <div class="form-group col-xs-9" >
+            <div class="form-group col-xs-7" >
               <input type="text" class="form-control" name="projeto" maxlength="50" value="Projeto:{{ $project->projeto }}">
             </div>
-            <div class="form-group col-xs-9">
+            <div class="form-group col-xs-7">
               <input type="text" name="detalhe" maxlength="50" value="{{ $project->proj_detalhe }}" class="form-control">
             </div>
             <div class="form-group col-xs-3">
@@ -62,6 +59,5 @@
             </div>
           </div>
         </form>
-      </div>
  </body>
 </html>
