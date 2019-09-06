@@ -177,16 +177,19 @@ class ProjControl extends Controller
     $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
 
         //dd($tarefas);
-        $projects = DB::table('projects')->paginate(12);
+        $proj = $request->prj;
 
-        return view('admin.proj.showpj', compact('tarefas', 'projects'));
+        $project = Project::where( 'id', $proj)->first();
+
+        //dd($project);
+
+        return view('admin.proj.showpj', compact('tarefas', 'project'));
     }
 
     public function task(Task $task, Project $project)
     {
         $taref = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.urg')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
 
-        
         $projects = DB::table('projects')->paginate(12);
 
         $tarefas = $taref->sortByDesc('urg');

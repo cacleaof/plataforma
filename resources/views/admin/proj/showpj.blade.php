@@ -19,46 +19,49 @@
  </head>
  <body>
   <br />
-  <div class="container">
-   <h3 align="center">Lista Projetos</h3><br />
-   <div align="center">
-    <a href="{{ route('admin.proj.task') }}" class="btn btn-success">Voltar</a>
-   </div>
-   <br />
-   <div class="table-responsive">
-    <table class="table table-striped table-bordered">
-     <tr>
-      <td>Id</td>
-      <td>Projeto</td>
-      <td>Detalhe</td>
-      <td>Duração</td>
-      <td>Gerente</td>
-      <td>Urg</td>
-      <td>Imp</td>
-      <td>Início</td>
-      <td>Fim</td>
-     </tr>
-     @foreach($projects as $project)
-     <tr>
-      <td>{{ $project->id }}</td>
-      @if( $project->urg > 2 )
-      <td bgcolor="red">{{ $project->projeto }}</td>
-      @else
-      <td>{{ $project->projeto }}</td>
-      @endif
-      <td style="background-color: #FFF633">{{ $project->proj_detalhe }}</td>
-      <td>{{ $project->duracao }}</td>
-      <td>{{ $project->gerente }}</td>
-      <td>{{ $project->urg }}</td>
-      <td>{{ $project->imp }}</td>
-      <td>{{ $project->date_ini }}</td>
-      <td>{{ $project->date_fim }}</td>
-     </tr>
-     @endforeach
-    </table>
-    {!! $projects->links() !!}
-   </div>
-   
-  </div>
+    <div class="box-header" with-border>
+      <h3 align="center">Altere os dados do seu Projeto</h3>
+    </div>
+    <div class="box-body">
+      <form method="POST" action="{{ route('admin.proj.store_p')}}" enctype="multipart/form-data">
+          {!! csrf_field() !!}
+        <div class="form-row">
+          @include('admin.includes.alerts')
+            <div class="form-group">
+              <div class="form-group col-xs-1" >
+              <output class="form-control">ID:{{ $project->id }}</output>
+              </div>
+            </div>
+            <div class="form-group col-xs-9" >
+              <input type="text" class="form-control" name="projeto" maxlength="50" value="Projeto:{{ $project->projeto }}">
+            </div>
+            <div class="form-group col-xs-9">
+              <input type="text" name="detalhe" maxlength="50" value="{{ $project->proj_detalhe }}" class="form-control">
+            </div>
+            <div class="form-group col-xs-3">
+              <label class="form-group">Duração</label>
+            <input type="text" name="duracao" maxlength="10" value="{{ $project->duracao }}" class="form-control">  
+            </div>
+            <div class="form-group col-xs-2">
+              <input type="text" name="gerente" maxlength="10" value="{{ $project->gerente }}" class="form-control">
+            </div>
+            <div class="form-group col-xs-2">
+              <input type="text" name="urg" maxlength="5" value="{{ $project->urg }}" class="form-control">
+            </div>
+             <div class="form-group col-xs-2">
+              <input type="text" name="imp" maxlength="5" value="{{ $project->imp }}" class="form-control">
+            </div>
+            <div class="form-group col-xs-2">
+              <input type="date" name="date_ini" maxlength="5" value="{{ $project->date_ini }}" class="form-control">
+            </div>
+            <div class="form-group col-xs-2">
+              <input type="date" name="date_fim" maxlength="5" value="{{ $project->date_fim }}" class="form-control">
+            </div>
+            <div class="form-control">
+            <button type="submit" class="btn btn-success">Enviar</button> 
+            </div>
+          </div>
+        </form>
+      </div>
  </body>
 </html>
