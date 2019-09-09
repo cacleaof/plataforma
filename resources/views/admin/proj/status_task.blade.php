@@ -29,7 +29,8 @@
     <table class="table table-striped table-bordered">
      <tr>
       <td>Id</td>
-      <td>Projeto</td>
+      <td>Link Edição</td>
+      <td>Tarefa</td>
       <td>Detalhe</td>
       <td>Início</td>
       <td>Conclusão</td>
@@ -42,6 +43,8 @@
      @foreach($tarefas as $tarefa)
       <tr>
       <td>{{ $tarefa->id}} </td>
+      <td><a href="{{ route('proj.showtk', ['trf' => $tarefa->id]) }}"
+            > {{ $tarefa->task }}</a></td>
       <td bgcolor="red">{{ $tarefa->task}}</td>
       <td style="background-color: #FFF633">{{ $tarefa->detalhe}}</td>
       <td>{{ $tarefa->date_ini}}</td>

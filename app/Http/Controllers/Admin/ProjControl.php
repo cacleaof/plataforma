@@ -185,6 +185,19 @@ class ProjControl extends Controller
 
         return view('admin.proj.showpj', compact('tarefas', 'project'));
     }
+     public function showtk(Task $task, Project $project, Request $request)
+    {
+    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
+
+        //dd($tarefas);
+        $taref = $request->trf;
+
+        $task = Task::where( 'id', $taref)->first();
+
+        //dd($project);
+
+        return view('admin.proj.showtk', compact('tarefas', 'task'));
+    }
 
     public function task(Task $task, Project $project)
     {
@@ -219,6 +232,58 @@ class ProjControl extends Controller
     //dd($projects);
 
         return view('admin.proj.n_task', compact('tarefas', 'projects', 'users'));
+    }
+    public function upd_p(Request $request)
+    {
+        //dd($request->prj);
+
+    if(!empty($request->projeto)) {
+        $dataForm = Project::find($request->prj);
+        $dataForm->projeto = $request->projeto;
+        $dataForm->gerente = $request->gerente;
+        $dataForm->proj_detalhe = $request->detalhe;
+        $dataForm->urg = $request->urg;
+        $dataForm->imp = $request->imp;
+        $dataForm->date_ini = $request->date_ini;
+        $dataForm->date_fim = $request->date_fim;
+        $dataForm->duracao = $request->duracao;
+        $dataForm->save();
+
+        return redirect()
+                    ->route('admin.proj.task')
+                    ->with('success', 'Projeto enviado com sucesso');
+    }
+    else {
+        return redirect()
+                    ->back()
+                    ->with('error', 'Os campos do Projeto devem ser preenchidos');
+    }
+    }
+    public function upd_t(Request $request)
+    {
+        //dd($request->prj);
+
+    if(!empty($request->tarefa)) {
+        $dataForm = Task::find($request->trf);
+        $dataForm->task = $request->tarefa;
+        $dataForm->user_id = $request->usuario;
+        $dataForm->detalhe = $request->detalhe;
+        $dataForm->urg = $request->urg;
+        $dataForm->imp = $request->imp;
+        $dataForm->date_ini = $request->inicio;
+        $dataForm->date_fim = $request->termino;
+        $dataForm->prevdias = $request->prevdias;
+        $dataForm->save();
+
+        return redirect()
+                    ->route('admin.proj.task')
+                    ->with('success', 'Tarefa atualizada com sucesso');
+    }
+    else {
+        return redirect()
+                    ->back()
+                    ->with('error', 'Os campos da tarefa devem ser preenchidos');
+    }
     }
     public function store_p(Request $request)
     {
