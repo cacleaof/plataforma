@@ -121,12 +121,12 @@ class Importar extends Controller
     public function getIndex(){ 
 
         //DD("oi");
-        try{   
+        //try{   
     Excel::import(new UsersImport, 'Import\usuarios.XLSX', null, \Maatwebsite\Excel\Excel::XLSX);
 
     return redirect('/admin')
             ->with('success', 'Arquivo de Usuários foi Importado');
-            }
+      /*      }
      catch(\Exception $e){
      $ec = $e->getCode();
 
@@ -140,7 +140,7 @@ class Importar extends Controller
         return redirect('/admin')
             ->with('error', 'Arquivo não foi Importado, pois está fora do padrão aceito.  Erro número: '.$ec);
                     }    
-                        }
+                        }*/
                             }
 
     public function usuarios()
