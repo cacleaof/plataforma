@@ -115,7 +115,10 @@ class ProjControl extends Controller
     //$tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' );  
      $taref = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.id', 'tasks.task', 'tasks.detalhe', 'tasks.prevdias', 'tasks.date_ini', 'tasks.date_fim', 'tasks.imp', 'tasks.urg', 'tasks.user_id', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);     
      $tarefas = $taref->sortByDesc('urg');
-        //$projects = DB::table('projects')->paginate(12);
+
+     $users = DB::table('users')->paginate(4);
+
+     $projects = DB::table('projects')->paginate(12);
         //$tarefas = $task->all();
         //dd($tarefas);
 
@@ -125,7 +128,7 @@ class ProjControl extends Controller
             //dd($tarefas);
         //}
 
-        return view('admin.proj.status_task', compact('tarefas'));
+        return view('admin.proj.status_task', compact('tarefas', 'projects', 'users'));
     }
 
     public function status_diario(Task $task, Project $project, Request $request)
