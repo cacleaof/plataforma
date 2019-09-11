@@ -28,7 +28,8 @@ class TasksImport implements ToModel, WithHeadingRow
            'prevdias'   => $row['prevdias'],
            'urg'        => $row['urg'],
            'imp'        => $row['imp'],
-           'proj_id'   => $row['proj_id']
+           'proj_id'   => $row['proj_id'],
+           'user_id'   => $row['usuario']
         ]);
     }
 }

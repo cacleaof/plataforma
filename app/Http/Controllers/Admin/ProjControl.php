@@ -250,6 +250,7 @@ class ProjControl extends Controller
         $dataForm->date_ini = $request->date_ini;
         $dataForm->date_fim = $request->date_fim;
         $dataForm->duracao = $request->duracao;
+        $dataForm->status = $request->status;
         $dataForm->save();
 
         return redirect()
@@ -276,6 +277,7 @@ class ProjControl extends Controller
         $dataForm->date_ini = $request->inicio;
         $dataForm->date_fim = $request->termino;
         $dataForm->prevdias = $request->prevdias;
+        $dataForm->status = $request->status;
         $dataForm->save();
 
         return redirect()

@@ -48,6 +48,7 @@
       <td>Link Edição</td>
       <td>Tarefa</td>
       <td>Detalhe</td>
+      <td>Status</td>
       <td>Início</td>
       <td>Conclusão</td>
       <td>Previsão</td>
@@ -63,6 +64,7 @@
             > {{ $tarefa->task }}</a></td>
       <td bgcolor="red">{{ $tarefa->task}}</td>
       <td style="background-color: #FFF633">{{ $tarefa->detalhe}}</td>
+      <td>{{ $tarefa->status}}%</td>
       <td>{{ $tarefa->date_ini}}</td>
       <td>{{ $tarefa->date_fim}}</td>
       <td>{{ $tarefa->prevdias}}</td>

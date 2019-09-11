@@ -31,6 +31,7 @@
       <td>Id</td>
       <td>Projeto</td>
       <td>Detalhe</td>
+      <td>Status</td>
       <td>Duração</td>
       <td>Gerente</td>
       <td>Urg</td>
@@ -47,6 +48,7 @@
       <td>{{ $project->projeto }}</td>
       @endif
       <td style="background-color: #FFF633">{{ $project->proj_detalhe }}</td>
+      <td>{{ $project->status }}%</td>
       <td>{{ $project->duracao }}</td>
       <td>{{ $project->gerente }}</td>
       <td>{{ $project->urg }}</td>

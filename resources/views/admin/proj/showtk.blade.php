@@ -68,6 +68,10 @@
         <label>Termino</label>
         <input type="date" name="termino" maxlength="5" value="{{ $task->date_fim }}" class="form-control">
       </div>
+      <div class="col-xs-1">
+        <label>Status %</label>
+        <input type="text" name="status" maxlength="5" value="{{ $task->status }}" class="form-control">
+      </div>
     </div>
   </div>
     <div class="form-group">
