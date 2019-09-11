@@ -122,7 +122,7 @@ class Importar extends Controller
 
         //DD("oi");
         //try{   
-    Excel::import(new UsersImport, 'Import\usuarios.XLSX', null, \Maatwebsite\Excel\Excel::XLSX);
+    Excel::import(new UsersImport, 'Import\usuarios.xlsx', null, \Maatwebsite\Excel\Excel::XLSX);
 
     return redirect('/admin')
             ->with('success', 'Arquivo de Usuários foi Importado');

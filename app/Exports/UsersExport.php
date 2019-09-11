@@ -18,16 +18,26 @@ class UsersExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
+            'id',
+            'admin',
+            'criado',
+            'updated',
             'cpf',
-            'name',
+            'nome',
             'email',
             'cns',
-            'telefone_residencial',
-            'telefone_celular',
+            'nacionalidade',
+            'nascimento',
+            'sexo',
+            'telefone',
+            'celular',
             'conselho',
-            'num_conselho',
-            'razao_social',
-            'nome_fantasia',
+            'numero',
+            'razão social',
+            'nome fantasia',
+            'cnes',
+            'cnpj',
+            'cep',
         ];
     }
 }

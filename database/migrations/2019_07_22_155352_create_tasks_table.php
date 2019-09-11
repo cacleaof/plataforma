@@ -17,6 +17,7 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->string('task');
             $table->string('detalhe')->nullable();
+            $table->integer('status')->nullable();
             $table->date('date_ini')->nullable();
             $table->date('date_fim')->nullable();
             $table->integer('prevdias')->nullable();
