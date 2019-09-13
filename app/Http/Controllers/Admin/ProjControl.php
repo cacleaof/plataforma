@@ -109,24 +109,66 @@ class ProjControl extends Controller
     }
     }
 
-     public function status_task(Task $task, Project $project, Request $request)
+     public function status_task(Task $task, Project $project, Request $request, User $user)
     {
 
     //$tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' );  
      $taref = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.id', 'tasks.task', 'tasks.detalhe', 'tasks.prevdias', 'tasks.date_ini', 'tasks.date_fim', 'tasks.imp', 'tasks.urg', 'tasks.user_id', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);     
      $tarefas = $taref->sortByDesc('urg');
 
-     $users = DB::table('users')->paginate(4);
+     $users = $user->all();
+
+     //$users = DB::table('users')->paginate(12);
 
      $projects = DB::table('projects')->paginate(12);
-        //$tarefas = $task->all();
-        //dd($tarefas);
 
-        //if(!empty($request->projeto)) {
-          //  $projeto = $request->projeto;
-            //$tarefas = $tarefas->where('proj_id', $projeto);
-            //dd($tarefas);
-        //}
+        if(!empty($request->projeto)) {
+
+        $projeto = $request->projeto;
+        $taref = DB::table('tasks')->where('proj_id', $projeto)->paginate(12);
+        $tarefas = $taref->sortByDesc('urg');
+        }
+         if(!empty($request->usuario)) {
+
+            $usu = $request->usuario;
+
+            $tarus = $taref->where('user_id', $usu);
+
+            $tarefas = $tarus->sortByDesc('urg');
+            
+        }
+
+        return view('admin.proj.status_task', compact('tarefas', 'projects', 'users'));
+    }
+
+    public function dep_task(Task $task, Project $project, Request $request, User $user)
+    {
+
+    //$tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' );  
+     $taref = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.id', 'tasks.task', 'tasks.detalhe', 'tasks.prevdias', 'tasks.date_ini', 'tasks.date_fim', 'tasks.imp', 'tasks.urg', 'tasks.user_id', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id')->join('dependencias', 'dependencias.task_id', 'dependencias.antes')->paginate(12);     
+     $tarefas = $taref->sortByDesc('urg');
+
+     $users = $user->all();
+
+     //$users = DB::table('users')->paginate(12);
+
+     $projects = DB::table('projects')->paginate(12);
+
+        if(!empty($request->projeto)) {
+
+        $projeto = $request->projeto;
+        $taref = DB::table('tasks')->where('proj_id', $projeto)->paginate(12);
+        $tarefas = $taref->sortByDesc('urg');
+        }
+         if(!empty($request->usuario)) {
+
+            $usu = $request->usuario;
+
+            $tarus = $taref->where('user_id', $usu);
+
+            $tarefas = $tarus->sortByDesc('urg');
+            
+        }
 
         return view('admin.proj.status_task', compact('tarefas', 'projects', 'users'));
     }

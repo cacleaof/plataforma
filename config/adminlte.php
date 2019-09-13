@@ -154,6 +154,11 @@ return [
                     'icon'        => 'credit-card-alt'
                 ],
                 [
+                    'text'        => 'Dependencias das Tarefas',
+                    'url'         => '/admin/dep_task',
+                    'icon'        => 'history'
+                ],
+                [
                     'text'        => 'Status-Projetos',
                     'url'         => '/admin/status_proj',
                     'icon'        => 'dashboard'

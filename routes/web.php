@@ -40,6 +40,8 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->get('status_task', 'ProjControl@status_task')->name('admin.proj.status_task');
 
+	$this->get('dep_task', 'ProjControl@dep_task')->name('admin.proj.dep_task');
+
 	$this->get('status_diario', 'ProjControl@status_diario')->name('admin.proj.status_diario');
 
 	});	
