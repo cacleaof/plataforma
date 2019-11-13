@@ -160,7 +160,9 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->get('meu-perfil', 'Admin\UserControl@profile')->name('profile')->middleware('auth');
 
-	$this->get('/', 'Site\SiteController@index')->name('home');
+	//$this->get('/', 'Site\SiteController@index')->name('home');
+
+	Route::get('/', function(){  return view('auth.login'); });
 
 	$this->get('/finalizadas', 'Admin\ConsultController@finalizada')->name('admin.home.finalizada')->middleware('auth');
 
