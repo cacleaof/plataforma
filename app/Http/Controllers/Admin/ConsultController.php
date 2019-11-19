@@ -47,7 +47,7 @@ class ConsultController extends Controller
     if (perfil()['solC']) {
 
     $conscons = Consult::where('cons_id', auth()->user()->id)
-                        ->where('status', 'C')->paginate(12);
+                        ->wherein('status', ['C', '2'])->paginate(12);
 
     }
     else{$conscons=null;}
