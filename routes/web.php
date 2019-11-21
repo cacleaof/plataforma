@@ -103,6 +103,8 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->post('show_store', 'ConsultController@show_store')->name('consult.show_store');
 
+	$this->post('show_replica', 'ConsultController@show_replica')->name('consult.show_replica');
+
 	$this->get('download', 'ConsultController@download')->name('consult.download');
 
 	$this->get('respcons', 'ConsultController@respcons')->name('consult.respcons');
