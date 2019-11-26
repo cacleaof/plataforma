@@ -30,7 +30,7 @@
           <h4>Dados da TeleConsultoria Selecionada</h4>    
             <td>{{ $consult->id}}</a></td>
             <td>{{ showstat($consult->status) }} </td>
-            <td>{{ $consult->serviço}} </td>
+            <td>{{ $consult->servico}} </td>
             <td>{{ $consult->consulta}} </td>
             <td>{{ $consult->municipio}} </td>
             <td>{{ $consult->uf}} </td>

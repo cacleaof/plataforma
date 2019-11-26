@@ -25,7 +25,7 @@
             <tr>
             <td>{{ $consult->id}} </td>
             <td>{{ showstat($consult->status) }} </td>
-            <td>{{ substr($consult->serviço, 18, 40) }} </td>
+            <td>{{ substr($consult->servico, 18, 40) }} </td>
             <td>{{ substr($consult->consulta, 0, 50) }} </td>
             <td>{{ $consult->image}} </td>
             <td>{{ $consult->municipio}} </td>

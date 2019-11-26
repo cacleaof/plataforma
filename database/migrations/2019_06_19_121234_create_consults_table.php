@@ -18,7 +18,7 @@ class CreateConsultsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('serviço', 50)->nullable();
+            $table->string('servico', 50)->nullable();
             $table->text('consulta');
             $table->text('cons_replica')->nullable();
             $table->text('cons_treplica')->nullable();

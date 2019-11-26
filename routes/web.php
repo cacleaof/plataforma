@@ -75,7 +75,11 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->get('/nova', 'ConsultController@nova')->name('consult.nova');
 
+	$this->get('/novaecg', 'ConsultController@novaecg')->name('consult.novaecg');
+
 	$this->post('store', 'ConsultController@store')->name('consult.store');
+
+	$this->post('storeecg', 'ConsultController@storeecg')->name('consult.storeecg');
 
 	$this->get('regular', 'ConsultController@regular')->name('consult.regular');
 
@@ -108,6 +112,8 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 	$this->get('download', 'ConsultController@download')->name('consult.download');
 
 	$this->get('respcons', 'ConsultController@respcons')->name('consult.respcons');
+
+	$this->get('respecg', 'ConsultController@respecg')->name('consult.respecg');
 
 	$this->post('storecons', 'ConsultController@storecons')->name('consult.storecons');
 

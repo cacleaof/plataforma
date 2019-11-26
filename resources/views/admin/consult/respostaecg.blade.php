@@ -3,7 +3,7 @@
 @section('title', 'Teleconsultoria')
 
 @section('content_header')
-    <h1>Teleconsultoria e Tele-ECG</h1>
+    <h1>Tele-ECG</h1>
 
     <ol class='breadcrumb'>
     	<li><a ref="">Dashboard</a></li>
@@ -17,7 +17,7 @@
         <div class="box">
         <div class="box-header">
             <a href="{{ route('consult.dev_cons', ['sid' => $sid]) }}" class="btn btn-danger"><i class="fas fa-shopping-cart"></i>Devolver ao Regulador</a>
-            <a href="{{ route('consult.respcons', ['sid' => $sid]) }}" class="btn btn-success"><i class="fas fa-shopping-cart"></i>Preparar a Resposta</a>
+            <a href="{{ route('consult.respecg', ['sid' => $sid]) }}" class="btn btn-success"><i class="fas fa-shopping-cart"></i>Preparar a Resposta</a>
         </div>
         </div>
     </div>

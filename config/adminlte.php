@@ -113,7 +113,7 @@ return [
             'text'        => 'Plataforma',
             'url'         => '/admin/entrada',
             'icon'        => 'envelope',
-            'submenu'  =>  [
+        ],
         [
             'text'        => 'Caixa de Entrada',
             'url'         => '/admin/entrada',
@@ -135,8 +135,8 @@ return [
             'icon'        => 'far fa-address-book',
             'can'         => 'administrador',
         ],
-                             ] //Submenu Plataforma
-        ], //Plataforma
+                             //Submenu Plataforma
+         //Plataforma
         [
             'text'        => 'Projetos',
             'url'         => '/admin/task',

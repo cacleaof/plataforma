@@ -12,6 +12,7 @@
         <div class="box">
         <div class="box-header">
             <a href="{{ route('consult.nova')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>TeleConsultoria</a>
+            <a href="{{ route('consult.novaecg')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>TeleC-ECG</a>
         </div>
         </div>
     </div>
@@ -37,7 +38,7 @@
          @forelse($consults as $consult)
             <td><a href="{{ route('consult.showS', ['sid' => $consult->id]) }}"> {{ $consult->id}}</a></td>
             <td>{{ showstat($consult->status) }} </td>
-            <td>{{ $consult->serviço}} </td>
+            <td>{{ $consult->servico}} </td>
             <td>{{ substr($consult->consulta, 0, 200) }} </td>
             <td>{{ $consult->image}} </td>
             <td>{{ $consult->municipio}} </td>
@@ -60,7 +61,7 @@
         <form>      
             <td><a href="{{ route('consult.regular', ['sid' => $reg->id] ) }}">{{ $reg->id}}</a> </td>
             <td>{{ showstat($reg->status) }} </td>
-            <td>{{ $reg->serviço}} </td>
+            <td>{{ $reg->servico}} </td>
             <td>{{ substr($reg->consulta, 0, 200) }} </td>
             <td>{{ $reg->image}} </td>
             <td>{{ $reg->municipio}} </td>
@@ -84,7 +85,7 @@
         <form>      
             <td><a href="{{ route('consult.selecresp', ['sid' => $con->id, 'cid' => $con->user_id]) }}">{{ $con->id }}</a> </td>
             <td>{{ showstat($con->status) }} </td>
-            <td>{{ $con->serviço}} </td>
+            <td>{{ $con->servico}} </td>
             <td>{{ $con->consulta}} </td>
             <td>{{ $con->image}} </td>
             <td>{{ $con->municipio}} </td>

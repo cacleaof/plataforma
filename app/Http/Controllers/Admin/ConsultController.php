@@ -103,6 +103,22 @@ class ConsultController extends Controller
                     ->with('error', 'Você não tem autorização para entrar uma TeleConsultoria');   
         }
     } 
+    public function novaecg(Consult $consult, Perfil $perfil)
+    {
+        //if($perfil->select('perfil')->where( 'user_id' , auth()->user()->id)->first()->perfil == 'S')
+        if(perfil()['solS'])
+        {
+        $consults = $consult->all();
+
+        return view('admin.consult.novaecg', compact('consults'));
+        }
+        else
+        {
+         return redirect()
+                    ->route('consult.entrada')
+                    ->with('error', 'Você não tem autorização para entrar uma TeleConsultoria');   
+        }
+    } 
 
     public function WordsSearch() 
     {
@@ -130,7 +146,7 @@ class ConsultController extends Controller
         $arquivos = $request->file('arquivo');
         $dataForm = new Consult;
         $dataForm->consulta = $request->consulta;
-        $dataForm->serviço = $request->serviço;
+        $dataForm->servico = $request->servico;
         $dataForm->ativo = $request->ativo;
         $dataForm->paciente = $request->paciente;
         $dataForm->idade = $request->idade;
@@ -168,6 +184,52 @@ class ConsultController extends Controller
         return redirect()
                     ->back()
                     ->with('error', 'O campo descreva sua dúvida ou questionamento deve ser preenchido para envio da consultoria');
+    }
+    }
+    public function storeecg(Request $request)
+    {
+    if(!empty($request->consulta)) {
+        $arquivos = $request->file('arquivo');
+        $dataForm = new Consult;
+        $dataForm->consulta = $request->consulta;
+        $dataForm->servico = 'Tele-ECG';
+        $dataForm->ativo = $request->ativo;
+        $dataForm->paciente = $request->paciente;
+        $dataForm->idade = $request->idade;
+        $dataForm->queixa = $request->queixa;
+        $dataForm->instituiçao = $request->instituiçao;
+        $dataForm->municipio_sol = $request->municipio_sol;
+        $dataForm->area = $request->area;
+        $nome = $request->file;
+        $dataForm->status = 'R';
+        $dataForm->user_id = auth()->user()->id;
+        $dataForm->save();
+        $idc = $dataForm->id;
+        if(!empty($arquivos)):
+                $dataForm->anexos = '1';
+                $dataForm->update();
+            foreach ($arquivos as $arquivo):
+
+                $data = new file;
+                $data->consult_id = $idc;
+                $data->size = $arquivo->getClientSize();
+                $nome = $arquivo->getClientOriginalName();
+                $nome = $idc.'-'.$nome;
+                $data->file = $nome;
+                $data->user_id = auth()->user()->id;
+                $data->save();
+                Storage::putfileAs($dataForm->user_id.'/'.$idc, $arquivo, $nome);
+            endforeach;
+        endif;
+
+        return redirect()
+                    ->route('consult.entrada')
+                    ->with('success', 'Tele-ECG enviado com sucesso - Prazo Máximo de Retorno 72 horas');
+    }
+    else {
+        return redirect()
+                    ->back()
+                    ->with('error', 'O campo descreva sua dúvida ou questionamento deve ser preenchido para envio');
     }
     }
     public function regular(consult $consult, Request $request, Perfil $perfil, User $user, file $file, Especialidade $especialidade, Profissoe $profissoe )
@@ -309,8 +371,14 @@ class ConsultController extends Controller
 
         if($consult->cons_id == auth()->user()->id)
         {
-        
-        return view('admin.consult.resposta', compact('consult', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
+        if($consult->servico == 'Tele-ECG')
+            {
+            return view('admin.consult.respostaecg', compact('consult', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
+            }
+        else
+            {
+            return view('admin.consult.resposta', compact('consult', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
+            }
         }
         else
         {
@@ -342,6 +410,31 @@ class ConsultController extends Controller
          return redirect()
                     ->route('consult.entrada')
                     ->with('error', 'Você não tem autorização para ver essa TeleConsultoria');   
+        }
+        
+    }
+    public function respecg(File $file, Consult $consult, Request $request, Perfil $perfil, User $user)
+    {
+        //dd($consult->cons_id);
+        
+        $sid = $request->sid;
+        $cid = $request->cid;
+        $files = $file->where('consult_id', $sid)->get();
+        $consult = Consult::find($request->sid);
+        $solRs = $perfil->where('perfil', 'C')->get($perfil->user_id);
+        $users = $user->all();
+        $downloads=DB::table('files')->get();
+        $dl = File::find($sid);
+        if($consult->cons_id == auth()->user()->id)
+        {
+
+        return view('admin.consult.respecg', compact('consult', 'solRs', 'users', 'sid', 'cid', 'files', 'downloads'));
+        }
+        else
+        {
+         return redirect()
+                    ->route('consult.entrada')
+                    ->with('error', 'Você não tem autorização para ver esse Tele-ECG');   
         }
         
     }

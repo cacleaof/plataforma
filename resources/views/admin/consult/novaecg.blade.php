@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Teleconsultoria')
+@section('title', 'Tele-ECG')
 
 @section('content_header')
-    <h1>Teleconsultoria</h1>
+    <h1>Tele-ECG</h1>
 
     <ol class='breadcrumb'>
     	<li><a ref="">Dashboard</a></li>
@@ -15,22 +15,22 @@
 @section('content')
 	<div class="box box-solid box-info">
 		<div class="box-header" with-border>
-			<h3>Digite os dados da sua consultoria</h3>
+			<h3>Digite informações relevantes para seu tele-diagnóstico</h3>
 		</div>
 		<div class="box-body">
-			<form method="POST" action="{{ route('consult.store')}}" enctype="multipart/form-data">
+			<form method="POST" action="{{ route('consult.storeecg')}}" enctype="multipart/form-data">
 					{!! csrf_field() !!}
 				<div class="form-row">
 					@include('admin.includes.alerts')
 						<div class="form-group">
-						<textarea type="text" name="consulta" rows="5" cols="80" placeholder="Descreva sua dúvida ou questionamento" class="form-control"></textarea>
+						<textarea type="text" name="consulta" rows="3" cols="70" placeholder="Informações do paciente para o Teleconsultor" class="form-control"></textarea>
 						<div class="form-row">
 							<label for="file">Arquivos Anexos:</label>
 							<input type="file" name="arquivo[]" id="file" multiple>
 							<input type="hidden" value="{{ csrf_token() }}" name="_token">
 						</div>
 						<div class="form-row" >
-							<label>Caso seja relevante informe dados do paciente como nome, idade indicando unidade(Anos, Meses, dias), Queixa, Instituiçao e Município</label>
+							<label>Informe dados do paciente como nome, idade indicando unidade(Anos, Meses, dias), Queixa, Instituiçao e Município</label>
 						</div>
 						<div class="form-group col-xs-9" >
 							<input type="text" class="form-control" name="paciente" maxlength="50" placeholder="Nome do Paciente">
@@ -52,15 +52,6 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group">
-							<select class="form-control" name="servico">
-      						<option>Teleconsultoria - Texto</option>
-      						<option>Teleconsultoria - Video</option>
-    						</select>
-    					</div>
-    					<div class="form-group">
-							<input type="text" name="area" maxlength="50" placeholder="Área de Saúde da Teleconsultoria" class="form-control">
-						</div>
 						<div class="form-group">
 						<button type="submit" class="btn btn-success">Enviar</button> 
 						</div>

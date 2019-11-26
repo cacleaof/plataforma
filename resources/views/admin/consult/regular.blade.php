@@ -3,7 +3,7 @@
 @section('title', 'Regulação da Teleconsultoria')
 
 @section('content_header')
-    <h1>Regulação da Teleconsultoria</h1>
+    <h1>Regulação da Teleconsultoria ou Tele-ECG</h1>
     <ol class='breadcrumb'>
     	<li><a ref="">Dashboard</a></li>
     	<li><a ref="">Consult</a></li>
@@ -40,7 +40,7 @@
          @forelse($consults as $consult)
             <td>{{ $consult->id}}</a></td>
             <td>{{ showstat($consult->status) }} </td>
-            <td>{{ $consult->serviço}} </td>
+            <td>{{ $consult->servico}} </td>
             <td>{{ $consult->consulta}} </td>
             <td>{{ $consult->municipio}} </td>
             <td>{{ $consult->uf}} </td>
