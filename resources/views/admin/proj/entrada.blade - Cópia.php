@@ -35,11 +35,9 @@
                 <td>{{ $project->proj_detalhe}} </td>
                 <td>{{ $project->date_ini}} </td>
                 <td>{{ $project->imp}} </td>
-                <td>{{ $project->urg}} </td> 
-                </tr> 
-                @empty
-            <p>Você não tem projetos na sua caixa de entrada</p>  
+                <td>{{ $project->urg}} </td>    
                 @endforelse
+            </tr>
         </tbody>
         <tfoot>
             <tr>
@@ -52,6 +50,15 @@
             </tr>
         </tfoot>
     </table>
+    <div class="container">
+        <div class="box">
+        <div class="box-header">
+            <a href="{{ route('admin.proj.n_proj') }}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Novo Projeto</a>
+            <a href="{{ route('admin.proj.n_task')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Nova Tarefa</a>
+            <a href="{{ route('admin.proj.diario')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Diário</a>
+        </div>
+        </div>
+    </div>
         <table class="display" style="width:100%">
         <thead>
             <tr>
