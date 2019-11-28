@@ -15,7 +15,7 @@ class ExportTaskController extends Controller
    function index()
     {
 
-     $task_data = DB::table('tasks')->paginate(6);
+     $task_data = DB::table('tasks')->paginate(12);
 
      return view('export_task')->with('task_data', $task_data);
     }

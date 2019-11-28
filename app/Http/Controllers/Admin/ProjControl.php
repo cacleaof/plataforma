@@ -113,7 +113,7 @@ class ProjControl extends Controller
     {
 
     //$tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' );  
-     $taref = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.id', 'tasks.task', 'tasks.detalhe', 'tasks.prevdias', 'tasks.date_ini', 'tasks.date_fim', 'tasks.imp', 'tasks.urg', 'tasks.user_id', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);     
+     $taref = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.id', 'tasks.task', 'tasks.detalhe', 'tasks.prevdias', 'tasks.date_ini', 'tasks.date_fim', 'tasks.imp', 'tasks.urg', 'tasks.user_id', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id')->paginate(20);     
      $tarefas = $taref->sortByDesc('urg');
 
      $users = $user->all();
