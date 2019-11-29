@@ -62,7 +62,14 @@
 @yield('adminlte_js')
 <script type="text/javascript">
     $(document).ready(function() {
-    $('#example').DataTable();
+    $('#example').DataTable({
+  "language": {
+    "sSearch": "Pesquisar", "paginate": {
+      "previous": "Anterior",
+      "next": "Próximo"
+    }
+  }
+});
 } );
 </script>
 </body>
