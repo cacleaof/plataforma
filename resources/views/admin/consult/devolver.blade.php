@@ -14,11 +14,12 @@
 <div class="container">
         <div class="box">
         <div class="box-header">
-            <a href="{{ route('consult.devstore')}}" class="btn btn-danger"><i class="fas fa-shopping-cart"></i>Cancelar</a>
-            <a href="{{ route('consult.encaminhar', ['sid' => $sid]) }}" class="btn btn-success"><i class="fas fa-shopping-cart"></i>Devolver</a>
+            <a href="{{ route('consult.devstore')}}" class="btn btn-danger"><i class="fa fa-fw fa-close"></i> Cancelar</a>
+            <a href="{{ route('consult.encaminhar', ['sid' => $sid]) }}" class="btn btn-success"><i class="fa fa-fw fa-rotate-left"></i> Devolver</a>
         </div>
         </div>
     </div>
+
 	<table class="table table-striped">
             <tr>
             <hr>
@@ -54,23 +55,36 @@
          <p>Você não tem consultas na sua caixa de entrada</p>
          @endforelse
       @endif
-    </table>  
-    <div class="box box-solid box-info">
-        <div class="box-header" with-border>
-            <h3>Digite o Motivo da Devolução da Teleconsultoria</h3>
-        </div>
-        <div class="box-body">
-            <form method="POST" action="{{ route('consult.devstore', ['sid' => $sid]) }}" enctype="multipart/form-data">
-                    {!! csrf_field() !!}
-                <div class="form-row">
-                        <div class="form-group">
-                        <textarea type="text" name="devolutiva" rows="5" cols="80" placeholder="Descreva o motivo da Devolução da Teleconsultoria" class="form-control"></textarea>
-                        </div>
-                        <div class="form-group">
-                        <button type="submit" class="btn btn-success">Enviar</button> 
-                        </div>
-                </div>
-            </form>
-        </div>
+    </table>
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Digite o Motivo da Devolução da Teleconsultoria</h3>
     </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form role="form">
+        <div class="box-body">
+
+            <div class="form-group">
+                <form method="POST" action="{{ route('consult.devstore', ['sid' => $sid]) }}" enctype="multipart/form-data">
+                    {!! csrf_field() !!}
+                    <div class="form-row">
+                        <div class="form-group">
+                            <textarea type="text" name="devolutiva" rows="5" cols="80" placeholder="Descreva o motivo da Devolução da Teleconsultoria" class="form-control"></textarea>
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.box-body -->
+
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+    </form>
+</div>
+
 @endsection

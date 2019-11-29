@@ -7,7 +7,7 @@ use app\models\user;
 
 class Consult extends Model
 {
-	protected $fillable = ['reg_id'];
+	protected $fillable = ['reg_id','user_id'];
 
     public function user()
     {

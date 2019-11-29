@@ -32,14 +32,14 @@ class ConsultController extends Controller
 
 	$consults = Consult::where('user_id', auth()->user()->id)
                         ->wherein('status', ['S', 'A', 'D'])
-                        ->get();
+                        ->paginate(12);
     
     }
     else{$consults=null;}
 
     if (perfil()['solR']) {
   
-    $consreg = Consult::where('status', 'R')->get();
+    $consreg = Consult::where('status', 'R')->paginate(12);
     
     }
     else{$consreg=null;}
@@ -47,7 +47,7 @@ class ConsultController extends Controller
     if (perfil()['solC']) {
 
     $conscons = Consult::where('cons_id', auth()->user()->id)
-                        ->wherein('status', ['C', '2'])->get();
+                        ->wherein('status', ['C', '2'])->paginate(12);
 
     }
     else{$conscons=null;}
@@ -62,7 +62,7 @@ class ConsultController extends Controller
  
         if (perfil()['solS']) 
         {  
-        $consults = Consult::where('user_id', auth()->user()->id)->get();
+        $consults = Consult::where('user_id', auth()->user()->id)->paginate(12);
 
          
          return view('admin.consult.saida', compact('consults'));
@@ -74,14 +74,14 @@ class ConsultController extends Controller
         $consults = Consult::where('cons_id' , $id)
                                     ->where( 'status', '!=', 'C')
                                     ->orWhere('reg_id', $id)
-                                    ->get();
+                                    ->paginate(12);
 
         return view('admin.consult.saida', compact('consults'));
         }
     }
     public function finalizada(Consult $consult)
     {
-        $consults = Consult::where('status', 'F')->orwhere('status', 'D')->get();
+        $consults = Consult::where('status', 'F')->orwhere('status', 'D')->paginate(12);
     
         //$status = $consult->status;
 
@@ -236,6 +236,7 @@ class ConsultController extends Controller
     {
         $sid = $request->sid;
         $cid = $request->cid;
+        $consult = Consult::find($request->sid);
         $files = $file->where('consult_id', $sid)->get();
         $consults = $consult->where('id', $request->sid)->get();
         
@@ -261,7 +262,7 @@ class ConsultController extends Controller
 
         $downloads=DB::table('files')->get();
         
-        return view('admin.consult.regular', compact('consults', 'solRs',  'sid', 'cid', 'files', 'downloads'));
+        return view('admin.consult.regular', compact('consult','consults', 'solRs',  'sid', 'cid', 'files', 'downloads'));
         }
         else
         {

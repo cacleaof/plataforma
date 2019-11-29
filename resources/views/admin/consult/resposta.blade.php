@@ -16,65 +16,97 @@
 	<div class="container">
         <div class="box">
         <div class="box-header">
-            <a href="{{ route('consult.dev_cons', ['sid' => $sid]) }}" class="btn btn-danger"><i class="fas fa-shopping-cart"></i>Devolver ao Regulador</a>
-            <a href="{{ route('consult.respcons', ['sid' => $sid]) }}" class="btn btn-success"><i class="fas fa-shopping-cart"></i>Preparar a Resposta</a>
+            <a href="{{ route('consult.dev_cons', ['sid' => $sid]) }}" class="btn btn-danger"><i class="fa fa-fw fa-exchange"></i>Devolver ao Regulador</a>
+            <a href="{{ route('consult.respcons', ['sid' => $sid]) }}" class="btn btn-success"><i class="fa fa-fw fa-paper-plane-o"></i>Preparar a Resposta</a>
         </div>
         </div>
     </div>
-    <table class="table table-striped">
-            <tr>
-            <hr>
-            <th width="2%">ID </th>
-            <th width="5%">STATUS </th>
-            <th width="10%">SERVIÇO </th>
-            <th width="48%">DESCRIÇÃO </th>
-            <th width="10%">MUNICIPIO </th>
-            <th width="10%">NOME SOLICITANTE </th>
-            <th width="5%">TEMPO </th>
-            <th width="10%">PACIENTE </th>
-            </tr> 
-            <tr>
-          <h4>Dados da TeleConsultoria Selecionada</h4>    
-            <td width="5%">{{ $consult->id}}</a></td>
-            <td width="10%">{{ showstat($consult->status) }} </td>
-            <td width="10%">{{ $consult->servico}} </td>
-            <td width="40%">{{ $consult->consulta}} </td>
-            <td width="10%">{{ $consult->municipio}} </td>
-            <td width="10%">{{$consult->user->name}} </td>
-            <td width="5%">{{ tempo($consult->created_at) }} </td>
-            <td width="10%">{{$consult->paciente}} </td>
-            </tr>    
-    </table>  	
-    <div class="box-tools pull-right">
-                    <a href="#" class="btn btn-success" onClick="modalshow({{$consult}})"><i class="fa fa-pencil" aria-hidden="true"></i>Detalhar a Teleconsultoria</a>
-    </div>
-     <h4>Arquivos</h4>      
-    <table class="table table-striped">
-        <tr>
-            <hr>
-            <th>ID </th>
-            <th>arquivo </th>
-        </tr>       
-          @forelse($files as $file)  
-            <tr>
-            <td>{{ $file->id}}</td>
-            <td>{{ $file->file}}</td>
-            <td>
-            <div class="form-group">
-                <img src="{{ url('storage/3/'.$file->file) }}" alt="{{ $file->file }}" style="max-width: 50px;">
-            <a href="{{ route('consult.download', ['sid' => $file->id, 'cid' => $consult->user_id]) }}">
-                <button type="button" class="btn btn-primary">
-                    <i class="glyphicon glyphicon-download">
-                        Download
-                    </i></button>
-            </a>  
+    <div class="col-md-3">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Dados da TeleConsultoria Selecionada</h3>
             </div>
-            </td>
-            </tr>
-        @empty
-        <p>A plataforma Não tem Arquivo cadastrado!</p>
-        @endforelse
-    </table>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form">
+                <div class="box-body">
+                    <div class="form-group">
+                        <p><strong>Identificação: </strong> {{ $consult->id}}</p>
+                    </div>
+                    <div class="form-group">
+                        <p><strong>Tempo: </strong>{{ tempo($consult->created_at) }}</p>
+                    </div>
+                    <div class="form-group">
+                        <p><strong>Status: </strong>{{ showstat($consult->status) }}</p>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="col-md-9">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Dados da TeleConsultoria Selecionada</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form role="form">
+            <div class="box-body">
+
+                <div class="form-group">
+                    <p><strong>Serviço:</strong> {{ $consult->servico}} </p>
+                </div>
+
+                <div class="form-group">
+                    <p><strong>Teleconsultor:</strong> {{$consult->cons_name}}</p>
+                </div>
+
+                <div class="form-group">
+                    <p><strong>Paciente: </strong> {{$consult->paciente}}</p>
+                </div>
+                <div class="form-group">
+                    <p><strong>Municipio: </strong> {{ $consult->municipio}} </p>
+                </div>
+                <div class="form-group">
+                    <p><strong>Descrição: </strong> {{ $consult->consulta}}</p>
+                </div>
+                <div class="form-group">
+                    <p><strong>Devolução: </strong> {{$consult->devolutiva}} </p>
+                </div>
+
+                <div class="form-group">
+                    @if($consult->anexos!=null)
+                        @forelse($files as $file)
+
+                            <p><strong>Arquivo anexos da teleconsultoria:</strong></p>  <a href="{{ route('consult.download', ['sid' => $file->id, 'cid' => $consult->user_id]) }}">
+                                <button type="button" class="btn btn-primary">
+                                    <i class="glyphicon glyphicon-download">
+                                        Download
+                                    </i></button>
+                            </a>
+
+                        @empty
+                            <p>A Consultoria não tem Arquivo anexado!</p>
+                            @endforelse
+
+                            </table>
+                        @endif
+                </div>
+                <div class="form-group">
+                    <a href="#" class="btn btn-success" onClick="modalshow({{ $consult }})"><i class="fa fa-pencil" aria-hidden="true"></i> Detalhar a Teleconsultoria</a>
+                </div>
+
+
+            </div>
+            <!-- /.box-body -->
+
+        </form>
+    </div>
+    </div>
+
+
 @stop
 <script type="text/javascript">
   function modalshow($consult){

@@ -17,7 +17,7 @@
           <table class="table table-bordered" id="table">
         <tr>
             <hr>
-            <th width="150px">ID </th>
+            <th width="150px">Id </th>
             <th>DATA </th>
             <th>STATUS </th>
             <th>SERVIÇO </th>
@@ -26,8 +26,8 @@
             <th>UF</th>
             <th>NOME SOLICITANTE </th>
             <th>REGULADOR</th>
-        </tr> 
-        <tr> 
+        </tr>
+        <tr>
             <td>{{ $consult->id}}</a></td>
             <td>{{ $consult->created_at}}</a></td>
             <td>{{ showstat($consult->status) }} </td>
@@ -37,7 +37,7 @@
             <td>{{ $consult->uf}} </td>
             <td>{{$consult->sol_name}} </td>
             <td>{{$consult->reg_name}} </td>
-        </tr>  
+        </tr>
         <tr>
             <hr>
             <th>TELECONSULTOR </th>

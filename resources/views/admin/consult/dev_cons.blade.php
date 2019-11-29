@@ -40,23 +40,27 @@
             <td>{{$consult->tempo}} </td>
             <td>{{$consult->paciente}} </td>
             </tr>    
-    </table>  
-    <div class="box box-solid box-info">
-        <div class="box-header" with-border>
-            <h3>Digite o Motivo da Devolução da Teleconsultoria</h3>
+    </table>
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Digite o Motivo da Devolução da Teleconsultoria</h3>
         </div>
-        <div class="box-body">
-            <form method="POST" action="{{ route('consult.dev_con_store', ['sid' => $sid]) }}" enctype="multipart/form-data">
-                    {!! csrf_field() !!}
-                <div class="form-row">
-                        <div class="form-group">
-                        <textarea type="text" name="devolutiva" rows="5" cols="80" placeholder="Descreva o motivo da Devolução da Teleconsultoria" class="form-control"></textarea>
-                        </div>
-                        <div class="form-group">
-                        <button type="submit" class="btn btn-success">Enviar</button> 
-                        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form method="POST" action="{{ route('consult.dev_con_store', ['sid' => $sid]) }}" enctype="multipart/form-data">
+            {!! csrf_field() !!}
+            <div class="box-body">
+                <div class="form-group">
+                    <textarea type="text" name="devolutiva" rows="5" cols="80" placeholder="Descreva o motivo da Devolução da Teleconsultoria" class="form-control"></textarea>
                 </div>
-            </form>
-        </div>
+
+            </div>
+            <!-- /.box-body -->
+
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
     </div>
+
 @endsection

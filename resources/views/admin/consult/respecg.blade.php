@@ -13,6 +13,7 @@
 @stop
 
 @section('content')
+
     <table class="table table-striped">
             <tr>
             <hr>
