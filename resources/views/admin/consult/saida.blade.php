@@ -7,7 +7,8 @@
 @stop
 
 @section('content')
-        <table class="table table-striped">
+        <table id="example" class="table table-striped">
+            <thead>
             <tr>
             <hr>
             <th>ID </th>
@@ -21,6 +22,8 @@
             <th>TEMPO </th>
             <th>PACIENTE </th>
             </tr>
+            </thead>
+            <tbody>
         @forelse($consults as $consult)
             <tr>
             <td>{{ $consult->id}} </td>
@@ -37,8 +40,6 @@
     	@empty
     	<p>Nenhum solicitação realizada</p>
     	@endforelse
+            </tbody>
         </table>
-        @if ($consults!=null) 
-        {!! $consults->links() !!}
-        @endif
 @endsection

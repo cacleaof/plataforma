@@ -7,7 +7,8 @@
 @stop
 
 @section('content')
-            <table class="table table-striped">
+        <table id="example" class="table table-striped">
+            <thead>
             <tr>
             <hr>
             <th>ID </th>
@@ -21,11 +22,13 @@
             <th>TEMPO </th>
             <th>PACIENTE </th>
             </tr>
+            </thead>
+            <tbody>
         @forelse($consults as $consult)
             <tr>
             <td>{{ $consult->id}} </td>
             <td>{{ showstat($consult->status) }} </td>
-            <td>{{ $consult->servico}} </td>
+            <td>{{ $consult->servico }} </td>
             <td>{{ $consult->consulta }} </td>
             <td>{{ $consult->municipio}} </td>
             <td>{{ $consult->uf}} </td>
@@ -37,6 +40,7 @@
     	@empty
     	<p>Nenhuma solicitação Finalizada</p>
     	@endforelse
+            </tbody>
         </table>
     </div>
 @endsection

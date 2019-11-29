@@ -16,7 +16,7 @@
         </div>
         </div>
     </div>
-          <table id="example" class="display" style="width:100%">
+          <table  class="display" style="width:100%">
         <thead>
             <tr>
             <th>ID </th>
@@ -31,7 +31,8 @@
             <tr>
                 @forelse($projects as $project)
                 <td>{{ $project->id}} </td>
-                <td>{{ $project->projeto }}</td>
+                <td><a href="{{ route('proj.showpj', ['prj' => $project->id]) }}"
+            > {{ $project->projeto }}</a></td>
                 <td>{{ $project->proj_detalhe}} </td>
                 <td>{{ $project->date_ini}} </td>
                 <td>{{ $project->imp}} </td>
@@ -43,66 +44,17 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>Nome</th>
-                <th>Cargo</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>ID</th>
+                <th>Projeto</th>
+                <th>Detalhes</th>
+                <th>Inicio</th>
+                <th>Importancia</th>
+                <th>Urgencia</th>
             </tr>
         </tfoot>
     </table>
-        <table class="display" style="width:100%">
+            <table id="example" class="table table-striped">
         <thead>
-            <tr>
-            <th>ID </th>
-            <th>PROJETO </th>
-            <th>DESCRIÇÃO</th>
-            <th>INICIO</th>
-            <th>IMP</th>
-            <th>URG</th>
-            </tr> 
-        </thead>
-        <tbody>
-            <tr>     
-            @forelse($projects as $project)
-            <td>{{ $project->id}} </td>
-            <td>{{ $project->projeto }}</td>
-            <td>{{ $project->proj_detalhe}} </td>
-            <td>{{ $project->date_ini}} </td>
-            <td>{{ $project->imp}} </td>
-            <td>{{ $project->urg}} </td>    
-            @empty
-            <p>Você não tem projetos na sua caixa de entrada</p>
-            @endforelse
-            </tr>
-        </tbody>
-        </table>
-        <table id="example" class="table table-striped">
-            <tr>
-            <hr>
-            <th>ID </th>
-            <th>PROJETO </th>
-            <th>DESCRIÇÃO</th>
-            <th>INICIO</th>
-            <th>IMP</th>
-            <th>URG</th>
-            </tr> 
-            <tr>      
-            @forelse($projects as $project)
-            <td>{{ $project->id}} </td>
-            <td><a href="{{ route('proj.showpj', ['prj' => $project->id]) }}"
-            > {{ $project->projeto }}</a></td>
-            <td>{{ $project->proj_detalhe}} </td>
-            <td>{{ $project->date_ini}} </td>
-            <td>{{ $project->imp}} </td>
-            <td>{{ $project->urg}} </td>    
-            @empty
-            <p>Você não tem projetos na sua caixa de entrada</p>
-            @endforelse
-            </tr>
-        </table>
-        <table class="table table-striped">
             <tr>
             <hr>
             <th>ID </th>
@@ -111,6 +63,8 @@
             <th>TAREFA </th>
             <th>DESCRIÇÃO </th>
             </tr> 
+        </thead>
+        <tbody>
             <tr>
          @if ($tarefas!=null)      
          @forelse($tarefas as $tarefa)
@@ -124,8 +78,8 @@
         @empty
         <p>Você não tem tarefas na sua caixa de entrada</p>
         @endforelse
-        {!! $tarefas->links() !!}
         @endif
+        </tbody>
         </table>
 @endsection
 

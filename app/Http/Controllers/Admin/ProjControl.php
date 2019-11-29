@@ -246,7 +246,9 @@ class ProjControl extends Controller
 
     public function task(Task $task, Project $project)
     {
-        $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.urg')->join('tasks', 'tasks.proj_id', 'projects.id' )->orderBy('urg', 'DESC')->paginate(5);  
+        $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.urg')->join('tasks', 'tasks.proj_id', 'projects.id' )->orderBy('urg', 'DESC')->get(); 
+
+        //$tarefas = $task->all(); 
 
         //$projects = DB::table('projects')->paginate(5);
         //$projects = DB::table('projects');

@@ -12,12 +12,13 @@
         <div class="box">
         <div class="box-header">
             <a href="{{ route('consult.nova')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>TeleConsultoria</a>
-            <a href="{{ route('consult.novaecg')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>TeleC-ECG</a>
+            <a href="{{ route('consult.novaecg')}}" class="btn btn-primary"><i class="fas fa-shopping-cart"></i>Tele-ECG</a>
         </div>
         </div>
     </div>
     @endif
-        <table class="table table-striped">
+        <table id="example" class="table table-striped">
+        <thead>
             <tr>
             <hr>
             <th>ID </th>
@@ -32,8 +33,10 @@
             <th>TEMPO </th>
             <th>PACIENTE </th>
             </tr> 
+            </thead>
+         @if ($consults!=null)
+           <tbody>
             <tr>
-         @if ($consults!=null)  
           <p>PERFIL:SOLICITANTE</p>     
          @forelse($consults as $consult)
             <td><a href="{{ route('consult.showS', ['sid' => $consult->id]) }}"> {{ $consult->id}}</a></td>
@@ -51,14 +54,12 @@
         @empty
         <p>Você não tem consultas na sua caixa de entrada</p>
         @endforelse
-        {!! $consults->links() !!}
+        </tbody>
         @endif
-    </table>
-    <table class="table table-striped">
         @if ($consreg!=null)
+        <tbody>
         <p>PERFIL:REGULADOR</p> 
-        @forelse($consreg as $reg)  
-        <form>      
+        @forelse($consreg as $reg)        
             <td><a href="{{ route('consult.regular', ['sid' => $reg->id] ) }}">{{ $reg->id}}</a> </td>
             <td>{{ showstat($reg->status) }} </td>
             <td>{{ $reg->servico}} </td>
@@ -70,19 +71,16 @@
             <td>{{$reg->cons_name}} </td>
             <td>{{ tempo($reg->created_at) }} </td>
             <td>{{$reg->paciente}} </td>
-            </tr>   
-        </form>    
+            </tr>       
         @empty
         <p>Você não tem regulações na sua caixa de entrada</p>
         @endforelse
-        {!! $consreg->links() !!}
+        </tbody>
         @endif
-    </table>
-    <table class="table table-striped">
         @if ($conscons!=null)
+        <tbody>
         <p>PERFIL:CONSULTOR</p> 
-        @forelse($conscons as $con)  
-        <form>      
+        @forelse($conscons as $con)        
             <td><a href="{{ route('consult.selecresp', ['sid' => $con->id, 'cid' => $con->user_id]) }}">{{ $con->id }}</a> </td>
             <td>{{ showstat($con->status) }} </td>
             <td>{{ $con->servico}} </td>
@@ -94,12 +92,11 @@
             <td>{{$con->cons_name}} </td>
             <td>{{ tempo($con->created_at) }} </td>
             <td>{{$con->paciente}} </td>
-            </tr>   
-        </form>    
+            </tr>       
         @empty
         <p>Você não tem Consultorias na sua caixa de entrada</p>
         @endforelse
-        {!! $conscons->links() !!}
+        </tbody>
         @endif
          </table>
 @endsection
