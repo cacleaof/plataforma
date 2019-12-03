@@ -115,7 +115,8 @@
 
 
     <h5>Selecione o Teleconsultor que irá atender, teclando no seu nome, ou pesquise abaixo:</h5>      
-    <table id="exemple" class="table table-striped">
+    <table id="example" class="table table-striped">
+        <thead>
     	<tr>
             <hr>
             <th>ID </th>
@@ -125,14 +126,8 @@
             <th>PROFISSÃO </th>
             <th>ESPECIALIDADE </th>
         </tr>
-    <div class="box">
-        <div class="box-header">
-            <form action="" method="GET" class="form form-inline" enctype="multipart/form-data">
-                {!! csrf_field() !!}
-                <input type="text" name="nomeconsultor" value="" style="max-width:400px;float: left;" class="form-control" placeholder="Digite qualquer parte do nome ou sobrenome do consultor">
-                <input type="hidden" name="sid" value={{ $sid }}>
-                <button type="submit" class="btn btn-primary" value="refresh" style="float: left;">Pesquisar</button>
-            </form>
+        </thead>
+        <tbody>
         @forelse($solRs as $solR)          
         	<tr>
             <td>{{ $solR->user_id }}</a></td>
@@ -148,8 +143,7 @@
         	</tr>
         @empty
         @endforelse
-        </div>
-    </div>
+    </tbody>
     </table>
 @include('admin.includes.modelo')    
 @endsection

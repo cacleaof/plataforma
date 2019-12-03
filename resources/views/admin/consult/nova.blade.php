@@ -31,6 +31,13 @@
 							<input type="hidden" value="{{ csrf_token() }}" name="_token">
 						</div>
 						<div class="form-group col-md-6">
+							<select class="form-control" name="tipo">
+								<option>Escoha o tipo do arquivo</option>
+								<option value="Exame Paciente"></option>
+								<option value="Síncrona">Teleconsultoria - Tempo real (Síncrona)</option>
+							</select>
+						</div>	
+						<div class="form-group col-md-6">
 							<div class="callout callout-danger">
 								<h5><i class="fa fa-fw fa-warning"></i> Caso seja relevante informe dados do paciente como nome, idade indicando unidade(Anos, Meses, dias), Queixa, Instituiçao e Município</h5>
 							</div>

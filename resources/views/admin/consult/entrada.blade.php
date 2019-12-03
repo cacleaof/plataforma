@@ -12,7 +12,7 @@
         <div class="box">
         <div class="box-header">
             <a href="{{ route('consult.nova')}}" class="btn btn-primary"><i class="fa fa-fw fa-wechat"></i> TeleConsultoria</a>
-            <a href="{{ route('consult.novaecg')}}" class="btn btn-danger"><i class="fa fa-fw fa-heartbeat"></i> TeleC-ECG</a>
+            <a href="{{ route('consult.novaecg')}}" class="btn btn-danger"><i class="fa fa-fw fa-heartbeat"></i> Tele-ECG</a>
         </div>
         </div>
     </div>

@@ -243,6 +243,19 @@ class ProjControl extends Controller
 
         return view('admin.proj.showtk', compact('tarefas', 'task'));
     }
+    public function showdp(Task $task, Project $project, Request $request)
+    {
+    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
+
+        //dd($tarefas);
+        $taref = $request->trf;
+
+        $task = Task::where( 'id', $taref)->first();
+
+        //dd($project);
+
+        return view('admin.proj.showdp', compact('tarefas', 'task'));
+    }
 
     public function task(Task $task, Project $project)
     {

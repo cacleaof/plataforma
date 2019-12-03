@@ -42,7 +42,8 @@
    </form>
    <br />
    <div class="table-responsive">
-    <table class="table table-striped table-bordered">
+    <table id="example" class="table table-striped table-bordered">
+      <thead>
      <tr>
       <td>Id</td>
       <td>Link Edição</td>
@@ -57,6 +58,8 @@
       <td>Gerente</td>
       <td>Projeto</td>
      </tr>
+     </thead>
+     <tbody>
      @foreach($tarefas as $tarefa)
       <tr>
       <td>{{ $tarefa->id}} </td>
@@ -74,6 +77,7 @@
       <td>{{ $tarefa->proj_id }}</td>
      </tr>
      @endforeach
+     </tbody>
     </table>
        </div> 
   </div>

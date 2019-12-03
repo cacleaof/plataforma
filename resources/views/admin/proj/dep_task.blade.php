@@ -20,7 +20,7 @@
  <body>
   <br />
   <div class="container">
-   <h3 align="center">Lista de Tarefas</h3><br />
+   <h3 align="center">Lista de Tarefas 1</h3><br />
    <div align="center">
     <a href="{{ route('admin.proj.task') }}" class="btn btn-success">Voltar</a>
    </div>
@@ -60,7 +60,7 @@
      @foreach($tarefas as $tarefa)
       <tr>
       <td>{{ $tarefa->id}} </td>
-      <td><a href="{{ route('proj.showtk', ['trf' => $tarefa->id]) }}"
+      <td><a href="{{ route('proj.showdp', ['trf' => $tarefa->id]) }}"
             > {{ $tarefa->task }}</a></td>
       <td bgcolor="red">{{ $tarefa->task}}</td>
       <td style="background-color: #FFF633">{{ $tarefa->detalhe}}</td>

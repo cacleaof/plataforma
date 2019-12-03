@@ -18,6 +18,8 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->get('showtk', 'ProjControl@showtk')->name('proj.showtk');
 
+	$this->get('showdp', 'ProjControl@showdp')->name('proj.showdp');
+
 	$this->post('upd_t', 'ProjControl@upd_t')->name('proj.upd_t');
 
 	$this->post('upd_p', 'ProjControl@upd_p')->name('proj.upd_p');
