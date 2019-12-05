@@ -159,6 +159,11 @@ return [
                     'icon'        => 'history'
                 ],
                 [
+                    'text'        => 'Gantt',
+                    'url'         => '/admin/gantt',
+                    'icon'        => 'history'
+                ],
+                [
                     'text'        => 'Status-Projetos',
                     'url'         => '/admin/status_proj',
                     'icon'        => 'dashboard'

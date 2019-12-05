@@ -1,5 +1,9 @@
 <?php
 
+Route::get('gantt', function () {
+    return view('admin.proj.gantt');
+});
+
 $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function(){
 
 	$this->group(['middleware' => ['role:admin']], function(){
@@ -17,6 +21,8 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 	$this->get('showpj', 'ProjControl@showpj')->name('proj.showpj');
 
 	$this->get('showtk', 'ProjControl@showtk')->name('proj.showtk');
+
+	$this->get('gantt', 'ProjControl@gantt')->name('admin.proj.gantt');
 
 	$this->get('showdp', 'ProjControl@showdp')->name('proj.showdp');
 
