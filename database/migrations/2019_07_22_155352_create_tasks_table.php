@@ -21,11 +21,14 @@ class CreateTasksTable extends Migration
             $table->date('date_ini')->nullable();
             $table->date('date_fim')->nullable();
             $table->integer('prevdias')->nullable();
+            $table->float('progresso')->nullable();
+            $table->integer('parente')->nullable();
             $table->integer('urg')->nullable();
             $table->integer('imp')->nullable();
             $table->timestamps();
             $table->integer('user_id')->nullable();
             $table->integer('proj_id')->nullable();
+            $table->integer('sortorder')->nullable()->default(0);
             //$table->foreign('proj_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }

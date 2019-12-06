@@ -1,6 +1,6 @@
 <?php
 
-Route::get('gantt', function () {
+Route::get('admin/gantt', function () {
     return view('admin.proj.gantt');
 });
 
@@ -22,7 +22,7 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
 
 	$this->get('showtk', 'ProjControl@showtk')->name('proj.showtk');
 
-	$this->get('gantt', 'ProjControl@gantt')->name('admin.proj.gantt');
+	//$this->get('gantt', 'GanttController@get')->name('admin.proj.gantt');
 
 	$this->get('showdp', 'ProjControl@showdp')->name('proj.showdp');
 
