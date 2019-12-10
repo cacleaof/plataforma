@@ -19,11 +19,11 @@ class TaskExport implements FromCollection, WithHeadings
     {
         return [
             //'id',
-            'task',
+            'text',
             'detalhe',
-            'date_ini',
+            'start_date',
             'date_fim',
-            'prevdias',
+            'duration',
             'urg',
             'imp',
             'created_at',

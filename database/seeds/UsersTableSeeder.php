@@ -119,7 +119,7 @@ class UsersTableSeeder extends Seeder
             'gerente'      => '1',
         ]);
         task::create([
-            'task'      => 'Definir versão do Moodle',
+            'text'      => 'Definir versão do Moodle',
             'detalhe'      => 'A versão deve ser estável',
             'proj_id'      => '1',
         ]);

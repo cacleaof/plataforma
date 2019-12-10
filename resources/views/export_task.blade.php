@@ -37,7 +37,7 @@
      @foreach($task_data as $task)
      <tr>
       <td><a href="{{ route('proj.showtk', ['trf' => $task->id]) }}"
-            > {{ $task->task }}</a></td>
+            > {{ $task->text }}</a></td>
       <td>{{ $task->detalhe }}</td>
       <td>{{ $task->date_ini }}</td>
       <td>{{ $task->date_fim }}</td>

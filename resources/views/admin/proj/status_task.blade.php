@@ -64,13 +64,13 @@
       <tr>
       <td>{{ $tarefa->id}} </td>
       <td><a href="{{ route('proj.showtk', ['trf' => $tarefa->id]) }}"
-            > {{ $tarefa->task }}</a></td>
-      <td bgcolor="red">{{ $tarefa->task}}</td>
+            > {{ $tarefa->text }}</a></td>
+      <td bgcolor="red">{{ $tarefa->text}}</td>
       <td style="background-color: #FFF633">{{ $tarefa->detalhe}}</td>
       <td>{{ $tarefa->status}}%</td>
       <td>{{ $tarefa->date_ini}}</td>
       <td>{{ $tarefa->date_fim}}</td>
-      <td>{{ $tarefa->prevdias}}</td>
+      <td>{{ $tarefa->duration}}</td>
       <td>{{ $tarefa->urg}}</td>
       <td>{{ $tarefa->imp}}</td>
       <td>{{ $tarefa->user_id }}</td>

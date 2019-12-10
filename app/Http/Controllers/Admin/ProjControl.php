@@ -112,8 +112,8 @@ class ProjControl extends Controller
      public function status_task(Task $task, Project $project, Request $request, User $user)
     {
 
-    //$tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' );  
-     $taref = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.id', 'tasks.task', 'tasks.detalhe', 'tasks.prevdias', 'tasks.date_ini', 'tasks.date_fim', 'tasks.imp', 'tasks.urg', 'tasks.user_id', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id')->paginate(20);     
+    //$tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.text', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' );  
+     $taref = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.id', 'tasks.text', 'tasks.detalhe', 'tasks.duration', 'tasks.start_date', 'tasks.date_fim', 'tasks.imp', 'tasks.urg', 'tasks.user_id', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id')->paginate(20);     
      $tarefas = $taref->sortByDesc('urg');
 
      $users = $user->all();
@@ -144,8 +144,8 @@ class ProjControl extends Controller
     public function dep_task(Task $task, Project $project, Request $request, User $user)
     {
 
-    //$tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' );  
-     $taref = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.id', 'tasks.task', 'tasks.detalhe', 'tasks.prevdias', 'tasks.date_ini', 'tasks.date_fim', 'tasks.imp', 'tasks.urg', 'tasks.user_id', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id')->join('dependencias', 'dependencias.task_id', 'dependencias.antes')->paginate(12);     
+    //$tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.text', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' );  
+     $taref = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.id', 'tasks.text', 'tasks.detalhe', 'tasks.duration', 'tasks.date_ini', 'tasks.date_fim', 'tasks.imp', 'tasks.urg', 'tasks.user_id', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id')->join('dependencias', 'dependencias.task_id', 'dependencias.antes')->paginate(12);     
      $tarefas = $taref->sortByDesc('urg');
 
      $users = $user->all();
@@ -209,7 +209,7 @@ class ProjControl extends Controller
 
     public function status_proj(Task $task, Project $project)
     {
-    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
+    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.text', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
 
         //dd($tarefas);
         $projects = DB::table('projects')->paginate(12);
@@ -219,7 +219,7 @@ class ProjControl extends Controller
 
      public function showpj(Task $task, Project $project, Request $request)
     {
-    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
+    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.text', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
 
         //dd($tarefas);
         $proj = $request->prj;
@@ -232,7 +232,7 @@ class ProjControl extends Controller
     }
      public function showtk(Task $task, Project $project, Request $request)
     {
-    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
+    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.text', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
 
         //dd($tarefas);
         $taref = $request->trf;
@@ -245,7 +245,7 @@ class ProjControl extends Controller
     }
     public function gantt(Task $task, Project $project, Request $request)
     {
-    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
+    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.text', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
 
         //dd($tarefas);
         $taref = $request->trf;
@@ -258,7 +258,7 @@ class ProjControl extends Controller
     }
     public function showdp(Task $task, Project $project, Request $request)
     {
-    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
+    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.text', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(12);  
 
         //dd($tarefas);
         $taref = $request->trf;
@@ -272,7 +272,7 @@ class ProjControl extends Controller
 
     public function task(Task $task, Project $project)
     {
-        $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe', 'tasks.urg')->join('tasks', 'tasks.proj_id', 'projects.id' )->orderBy('urg', 'DESC')->get(); 
+        $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.text', 'tasks.detalhe', 'tasks.urg')->join('tasks', 'tasks.proj_id', 'projects.id' )->orderBy('urg', 'DESC')->get(); 
 
         //$tarefas = $task->all(); 
 
@@ -289,7 +289,7 @@ class ProjControl extends Controller
 
     public function n_proj(Task $task, Project $project)
     {
-    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
+    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'tasks.text', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
 
          $users = DB::table('users')->paginate(4);
 
@@ -299,7 +299,7 @@ class ProjControl extends Controller
     }
     public function n_task(task $task, project $project)
     {
-    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'projects.date_ini', 'projects.date_fim', 'projects.duracao', 'tasks.task', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
+    $tarefas = project::select('projects.id', 'projects.projeto', 'projects.proj_detalhe' , 'projects.date_ini', 'projects.date_fim', 'projects.duracao', 'tasks.text', 'tasks.detalhe')->join('tasks', 'tasks.proj_id', 'projects.id' )->paginate(4);  
 
     $projects = $project->all();
 
@@ -348,7 +348,7 @@ class ProjControl extends Controller
         $dataForm->imp = $request->imp;
         $dataForm->date_ini = $request->inicio;
         $dataForm->date_fim = $request->termino;
-        $dataForm->prevdias = $request->prevdias;
+        $dataForm->duration = $request->duration;
         $dataForm->status = $request->status;
         $dataForm->save();
 
@@ -396,7 +396,7 @@ class ProjControl extends Controller
             $dataForm->task = $request->tarefa;
             $dataForm->date_ini = $request->date_ini;
             $dataForm->date_fim = $request->date_fim;
-            $dataForm->prevdias = $request->prevdias;
+            $dataForm->duration = $request->duration;
             $dataForm->urg = $request->urg;
             $dataForm->imp = $request->imp;
             $dataForm->save();

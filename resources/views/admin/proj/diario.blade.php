@@ -86,7 +86,7 @@
 	{!! csrf_field() !!}
 	<select name="tarefa">
 @foreach ($tarefas as $tarefa)
-	<option value="{{ $tarefa->id }}">{{ $tarefa->task }}</option>
+	<option value="{{ $tarefa->id }}">{{ $tarefa->text }}</option>
 @endforeach
 	</select>
 	<input type="hidden" name="projeto" value="{{ $projeto }}">
