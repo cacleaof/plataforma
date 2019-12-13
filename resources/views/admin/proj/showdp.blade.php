@@ -42,7 +42,7 @@
     <div class="form-row">
       <label class="form-control">Duração</label>
         <div class="form-row">
-          <input type="text" name="prevdias" maxlength="10" value="{{ $task->prevdias }}" class="form-control"> 
+          <input type="text" name="duration" maxlength="10" value="{{ $task->duration }}" class="form-control"> 
         </div> 
     </div>
 <br>
