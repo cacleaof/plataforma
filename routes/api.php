@@ -12,8 +12,13 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/data', 'App\Http\Controllers\Admin\GanttController@get');
 
-Route::resource('task', 'App\Http\Controllers\Admin\TaskController');
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
-Route::resource('link', 'App\Http\Controllers\Admin\LinkController');
+Route::get('/data', 'Admin\GanttController@get');
+
+Route::resource('task', 'Admin\TaskController');
+
+Route::resource('link', 'Admin\LinkController');

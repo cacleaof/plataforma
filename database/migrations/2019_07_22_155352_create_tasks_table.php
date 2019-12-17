@@ -15,7 +15,13 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('task');
+            $table->string('text');
+            $table->integer('duration');
+            $table->float('progress');
+            $table->dateTime('start_date');
+            $table->integer('parent');
+            $table->timestamps();
+            $table->string('task')->nullable();
             $table->string('detalhe')->nullable();
             $table->integer('status')->nullable();
             $table->date('date_ini')->nullable();
@@ -25,7 +31,6 @@ class CreateTasksTable extends Migration
             $table->integer('parente')->nullable();
             $table->integer('urg')->nullable();
             $table->integer('imp')->nullable();
-            $table->timestamps();
             $table->integer('user_id')->nullable();
             $table->integer('proj_id')->nullable();
             $table->integer('sortorder')->nullable()->default(0);

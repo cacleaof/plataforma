@@ -7,14 +7,14 @@ use App\Models\Task;
 
 class TaskController extends Controller
 {
-	public function store(Request $request){
+public function store(Request $request){
 		$task = new Task();
 
-		$task->task = $request->text;
-		$task->date_ini = $request->start_date;
-		$task->prevdias = $request->duration;
-		$task->progresso = $request->has("progress") ? $request->progress : 0;
-		$task->parente = $request->parent;
+		$task->text = $request->text;
+		$task->start_date = $request->start_date;
+		$task->duration = $request->duration;
+		$task->progress = $request->has("progress") ? $request->progress : 0;
+		$task->parent = $request->parent;
 		$task->sortorder = Task::max("sortorder") + 1;;
 
 		$task->save();
@@ -28,11 +28,11 @@ class TaskController extends Controller
 	public function update($id, Request $request){
 		$task = Task::find($id);
 
-		$task->task = $request->text;
-		$task->date_ini = $request->start_date;
-		$task->prevdias = $request->duration;
-		$task->progresso = $request->has("progress") ? $request->progress : 0;
-		$task->parente = $request->parent;
+		$task->text = $request->text;
+		$task->start_date = $request->start_date;
+		$task->duration = $request->duration;
+		$task->progress = $request->has("progress") ? $request->progress : 0;
+		$task->parent = $request->parent;
 
 		if($request->has("target")){
 			$this->updateOrder($id, $request->target);
@@ -75,6 +75,6 @@ class TaskController extends Controller
 
 		return response()->json([
 			"action"=> "deleted"
-		]);
-	}
+		]);	
+}
 }
