@@ -133,5 +133,10 @@ class UsersTableSeeder extends Seeder
         //    'detalhe'      => 'A versão deve ser estável',
         //    'proj_id'      => '1',
         //]);
+        task::create([
+            'text'      => 'Definir versão do Moodle',
+            'detalhe'      => 'A versão deve ser estável',
+            'proj_id'      => '1',
+        ]);
     }
 }

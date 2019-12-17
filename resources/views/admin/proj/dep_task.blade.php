@@ -67,7 +67,7 @@
       <td>{{ $tarefa->status}}%</td>
       <td>{{ $tarefa->date_ini}}</td>
       <td>{{ $tarefa->date_fim}}</td>
-      <td>{{ $tarefa->prevdias}}</td>
+      <td>{{ $tarefa->duration}}</td>
       <td>{{ $tarefa->urg}}</td>
       <td>{{ $tarefa->imp}}</td>
       <td>{{ $tarefa->user_id }}</td>

@@ -72,7 +72,7 @@
             <td>{{ $tarefa->projeto}} </td>
             <td>{{ $tarefa->proj_detalhe}} </td>
             <td><a href="{{ route('proj.showtk', ['trf' => $tarefa->id]) }}"
-            > {{ $tarefa->task }}</a></td>
+            > {{ $tarefa->text }}</a></td>
             <td>{{ $tarefa->detalhe}} </td>
             </tr>    
         @empty

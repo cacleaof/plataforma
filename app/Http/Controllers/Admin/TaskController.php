@@ -29,6 +29,7 @@ public function store(Request $request){
 		$task = Task::find($id);
 
 		$task->text = $request->text;
+		$task->task = $request->text;
 		$task->start_date = $request->start_date;
 		$task->duration = $request->duration;
 		$task->progress = $request->has("progress") ? $request->progress : 0;

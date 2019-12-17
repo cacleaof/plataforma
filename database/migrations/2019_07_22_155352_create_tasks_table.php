@@ -24,11 +24,11 @@ class CreateTasksTable extends Migration
             $table->string('task')->nullable();
             $table->string('detalhe')->nullable();
             $table->integer('status')->nullable();
-            $table->date('date_ini')->nullable();
+            $table->date('start_date')->nullable();
             $table->date('date_fim')->nullable();
-            $table->integer('prevdias')->nullable();
-            $table->float('progresso')->nullable();
-            $table->integer('parente')->nullable();
+            $table->integer('duration')->nullable();
+            $table->float('progress')->nullable();
+            $table->integer('parent')->nullable();
             $table->integer('urg')->nullable();
             $table->integer('imp')->nullable();
             $table->integer('user_id')->nullable();

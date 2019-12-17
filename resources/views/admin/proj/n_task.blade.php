@@ -52,11 +52,11 @@
 						</div>
 						<div class="form-row" >
 							<label>Início:</label>
-							<input type="date" class="form-control" name="date_ini" placeholder="Data de Inicio">
+							<input type="date" class="form-control" name="start_date" placeholder="Data de Inicio">
 							<label>Conclusão:</label>
 							<input type="date" class="form-control" name="date_fim" placeholder="Data de Conclusão">
 							<label>Previsão em Dias</label>
-							<input type="text" class="form-control" name="prevdias" placeholder="Previsão em dias">
+							<input type="text" class="form-control" name="duration" placeholder="Previsão em dias">
 						</div>
 						<div class="form-group">
 						<button type="submit" class="btn btn-success">Enviar</button> 
