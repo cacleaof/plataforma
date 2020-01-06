@@ -3,7 +3,7 @@
 Route::get('admin/gantt', function () {
     return view('admin.proj.gantt');
 });
-Route::match(['get', 'post'], '/gantt_data', "GanttController@data");
+//Route::match(['get', 'post'], '/gantt_data', "GanttController@data");
 
 $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function(){
 

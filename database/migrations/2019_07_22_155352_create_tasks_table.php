@@ -16,22 +16,18 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('text');
-            $table->integer('duration');
-            $table->float('progress');
-            $table->dateTime('start_date');
-            $table->integer('parent');
+            $table->integer('duration')->default(0);
+            $table->float('progress')->default(0);
+            $table->dateTime('start_date')->default('2020-01-01 00:00:00');
+            $table->integer('parent')->default(0);
             $table->timestamps();
             $table->string('task')->nullable();
             $table->string('detalhe')->nullable();
             $table->integer('status')->nullable();
-            $table->date('start_date')->nullable();
             $table->date('date_fim')->nullable();
-            $table->integer('duration')->nullable();
-            $table->float('progress')->nullable();
-            $table->integer('parent')->nullable();
             $table->integer('urg')->nullable();
             $table->integer('imp')->nullable();
-            $table->integer('user_id')->nullable();
+            $table->integer('user_id')->nullable()->default(1);
             $table->integer('proj_id')->nullable();
             $table->integer('sortorder')->nullable()->default(0);
             //$table->foreign('proj_id')->references('id')->on('projects')->onDelete('cascade');

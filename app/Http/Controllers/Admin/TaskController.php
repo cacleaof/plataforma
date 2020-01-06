@@ -8,14 +8,15 @@ use App\Models\Task;
 class TaskController extends Controller
 {
 public function store(Request $request){
-		$task = new Task();
 
+		$task = new Task();
 		$task->text = $request->text;
 		$task->start_date = $request->start_date;
 		$task->duration = $request->duration;
 		$task->progress = $request->has("progress") ? $request->progress : 0;
 		$task->parent = $request->parent;
-		$task->sortorder = Task::max("sortorder") + 1;;
+		$task->sortorder = Task::max("sortorder") + 1;
+		$task->proj_id = '1';
 
 		$task->save();
 
@@ -27,9 +28,8 @@ public function store(Request $request){
 
 	public function update($id, Request $request){
 		$task = Task::find($id);
-
 		$task->text = $request->text;
-		$task->task = $request->text;
+		//$task->task = $request->text;
 		$task->start_date = $request->start_date;
 		$task->duration = $request->duration;
 		$task->progress = $request->has("progress") ? $request->progress : 0;

@@ -49,7 +49,7 @@
       <td>Link Edição</td>
       <td>Tarefa</td>
       <td>Detalhe</td>
-      <td>Status</td>
+      <td>Progresso</td>
       <td>Início</td>
       <td>Conclusão</td>
       <td>Previsão</td>
@@ -67,8 +67,8 @@
             > {{ $tarefa->text }}</a></td>
       <td bgcolor="red">{{ $tarefa->text}}</td>
       <td style="background-color: #FFF633">{{ $tarefa->detalhe}}</td>
-      <td>{{ $tarefa->status}}%</td>
-      <td>{{ $tarefa->date_ini}}</td>
+      <td>{{ $tarefa->progress*100}}%</td>
+      <td>{{ $tarefa->start_date}}</td>
       <td>{{ $tarefa->date_fim}}</td>
       <td>{{ $tarefa->duration}}</td>
       <td>{{ $tarefa->urg}}</td>

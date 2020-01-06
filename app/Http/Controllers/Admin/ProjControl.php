@@ -113,7 +113,7 @@ class ProjControl extends Controller
     {
 
     //$tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.text', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' );  
-     $taref = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.id', 'tasks.text', 'tasks.detalhe', 'tasks.duration', 'tasks.start_date', 'tasks.date_fim', 'tasks.imp', 'tasks.urg', 'tasks.user_id', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id')->paginate(20);     
+     $taref = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.id', 'tasks.text', 'tasks.detalhe', 'tasks.progress', 'tasks.duration', 'tasks.start_date', 'tasks.date_fim', 'tasks.imp', 'tasks.urg', 'tasks.user_id', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id')->paginate(20);     
      $tarefas = $taref->sortByDesc('urg');
 
      $users = $user->all();
@@ -145,7 +145,7 @@ class ProjControl extends Controller
     {
 
     //$tarefas = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.text', 'tasks.detalhe', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id' );  
-     $taref = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.id', 'tasks.text', 'tasks.detalhe', 'tasks.duration', 'tasks.date_ini', 'tasks.date_fim', 'tasks.imp', 'tasks.urg', 'tasks.user_id', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id')->join('dependencias', 'dependencias.task_id', 'dependencias.antes')->paginate(12);     
+     $taref = project::select('projects.projeto', 'projects.proj_detalhe' , 'tasks.id', 'tasks.text', 'tasks.detalhe', 'tasks.duration', 'tasks.start_date', 'tasks.date_fim', 'tasks.imp', 'tasks.urg', 'tasks.user_id', 'tasks.proj_id')->join('tasks', 'tasks.proj_id', 'projects.id')->join('dependencias', 'dependencias.task_id', 'dependencias.antes')->paginate(12);     
      $tarefas = $taref->sortByDesc('urg');
 
      $users = $user->all();
@@ -346,7 +346,7 @@ class ProjControl extends Controller
         $dataForm->detalhe = $request->detalhe;
         $dataForm->urg = $request->urg;
         $dataForm->imp = $request->imp;
-        $dataForm->date_ini = $request->inicio;
+        $dataForm->start_date = $request->inicio;
         $dataForm->date_fim = $request->termino;
         $dataForm->duration = $request->duration;
         $dataForm->status = $request->status;
@@ -393,8 +393,8 @@ class ProjControl extends Controller
             $dataForm->proj_id = $request->projeto;
             $dataForm->user_id = $request->gerente;
             $dataForm->detalhe = $request->detalhe;
-            $dataForm->task = $request->tarefa;
-            $dataForm->date_ini = $request->date_ini;
+            $dataForm->text = $request->tarefa;
+            $dataForm->start_date = $request->start_date;
             $dataForm->date_fim = $request->date_fim;
             $dataForm->duration = $request->duration;
             $dataForm->urg = $request->urg;
